@@ -1,0 +1,285 @@
+" Configuration file for vim
+set runtimepath=~/.vim,/usr/share/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vimcurrent,/usr/share/vim/vimfiles/after,/usr/share/vim/addons/after,~/.vim/after
+
+" use this path to look for files with gf, :find :tabfind etc
+set path=**;.
+
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start	" more powerful backspacing
+
+" Now we set some defaults for the editor
+set autoindent		" always set autoindenting on
+" set linebreak		" Don't wrap words by default
+set textwidth=0		" Don't wrap lines by default
+set nobackup		" Don't keep a backup file
+set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
+			" 50 lines of registers
+set tabstop=4
+set shiftwidth=4
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+
+set ignorecase
+set smartcase		" set searches to assume caseinsensitive unless uppercase chars present
+
+set incsearch		" search-as-you-type
+
+set hlsearch		" highlight all things that match the search term
+" Suffixes that get lower priority when doing tab completion for filenames.
+" These are files we are not likely to want to edit or read.
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+
+" turn off folding
+set nofoldenable
+
+
+" vim, quit leaving your trash all over my place
+set directory=~/.vim/backup,~/tmp,/var/tmp,/tmp
+
+" We know xterm-debian is a color terminal
+if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
+	set t_Co=16
+	set t_Sf=[3%dm
+	set t_Sb=[4%dm
+endif
+
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+syntax on
+
+" make sure we use informix flavoured sql highlighting
+let g:sql_type_default = 'sqlinformix'
+
+" If using a dark background within the editing area and syntax highlighting
+" turn on this option as well
+set background=dark
+
+if has("autocmd")
+	" Enabled file type detection
+	" Use the default filetype settings. If you also want to load indent files
+	" to automatically do language-dependent indenting add 'indent' as well.
+	filetype plugin on
+	filetype indent on
+
+endif " has ("autocmd")
+
+" Some Debian-specific things
+if has("autocmd")
+	augroup filetype
+	au BufRead reportbug.*		set ft=mail
+	au BufRead reportbug-*		set ft=mail
+	augroup END
+endif
+
+" Set paper size from /etc/papersize if available (Debian-specific)
+if filereadable("/etc/papersize")
+	try
+	let s:shellbak = &shell
+	let &shell="/bin/sh"
+	let s:papersize = matchstr(system("cat /etc/papersize"), "\\p*")
+	let &shell=s:shellbak
+	if strlen(s:papersize)
+		let &printoptions = "paper:" . s:papersize
+	endif
+	catch /^Vim\%((\a\+)\)\=:E145/
+	endtry
+endif
+
+" The following are commented out as they cause vim to behave a lot
+" different from regular vi. They are highly recommended though.
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+"set ignorecase		" Do case insensitive matching
+"set incsearch		" Incremental search
+"set autowrite		" Automatically save before commands like :next and :make
+
+" Source a global configuration file if available
+if filereadable("/etc/vim/vimrc.local")
+	source /etc/vim/vimrc.local
+endif
+
+" add some variables for cvscommand
+" :let g:VCSCommandCommitOnWrite = 0
+:let g:VCSCommandCVSEdit = 'split'
+:let g:VCSCommandCVSplit = 'horizontal'
+:let g:VCSCommandCVSDiffOpt = 'uN'
+
+:set diffopt=vertical,filler
+
+",v brings up .vimrc
+",V reloads it making changes
+
+map ,v :tabe ~/.vimrc<CR>
+map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'w00t!: vimrc reloaded'"<CR>
+
+" set ,z to maximise current window height-wise
+map <silent> ,z :resize 99<CR>
+" set .z to maximise current window width-wise
+map <silent> .z :vertical resize 250<CR>
+
+" set ,x to minimise current window height-wise
+map <silent> ,x :resize 0<CR>
+"set .x to resize window widthwise
+map <silent> .x :vertical resize 0<CR>
+
+" set ,; to write current file
+map ,; :w<CR>
+"set mouse active
+set mouse=a
+map ,a :set mouse=a<CR>
+map .a :set mouse=vic<CR>
+
+" set shortcut to clear all trailing whitespace
+map ,s :%s/\s\+$//g<CR>
+" this will highlight any trailing whitespace in any file, since there's no
+" excuse for it :)
+:highlight TrailWhiteSpace ctermbg=blue
+:match TrailWhiteSpace /[ \t]\+$/
+map <silent> .s :match TrailWhiteSpace /[ \t]\+$/<CR>
+
+" highlight leading non-tab space
+:highlight LeadTabSpace ctermbg = yellow
+:match LeadTabSpace /^[ ]\+/
+
+" map ~ to the same as * for searching, so i don't have to reach to the numpad
+" or 8
+map ~ *
+
+
+" map ,t to open the tag list window
+map ,t :TlistToggle<CR>
+
+" search for visually selected text
+:vmap // y/<C-R>"<CR>
+
+" is there a way to set up a secondary search?
+" I bet there is, and it'll involve something along the lines of highlight and
+" match as above, but with a slight modification
+"
+map x/ :match none<CR>
+
+" map ,p to show list of procs
+map ,p :g/^proc/#<CR>
+
+
+" automatically detect .ics files and set syntax accordingly
+autocmd! BufRead,BufNewFile *.ics setfiletype icalendar
+
+
+"	" from vim help - smart tab completion
+"	function! CleverTab()
+"	   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+"	      return "\<Tab>"
+"	   else
+"	      return "\<C-N>"
+"	endfunction
+"	inoremap <Tab> <C-R>=CleverTab()<CR>
+
+
+" JAVH: go to last edit position
+autocmd BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+		\   exe "normal! g`\"" |
+	\ endif
+
+" SuperTab
+"
+" let g:SuperTabDefaultCompletionType="<C-P>"
+let b:SuperTabDefaultCompletionType = "custom"
+let b:SuperTabNoCompleteAfter       = ['\s']
+
+nmap ,n :set invnumber<CR>
+
+"vimgrep binding from bram
+noremap <F3> :exec "vimgrep! /" . expand("<cword>") . "/j *"<cr>
+noremap <F4> :exec "vimgrep! /" . expand("<cword>") . "/j **"<cr>
+nnoremap <C-n> <Esc>:cn<Esc>
+nnoremap <C-p> <Esc>:cp<Esc>
+
+
+let g:scmDiffUseAbsPaths = 0
+
+
+set showtabline=2
+
+
+if has('gui_running')
+	colorscheme elflord
+else
+	colorscheme desert
+endif
+
+
+" replace groups up to 4 spaces before any non-whitespace characters on all
+" lines
+function! SanitiseLeadSpace()
+	let OK = 1
+	while OK == 1
+		try
+			%s/^\(\t*\)[ ]\{1,4}/\1\t/
+		catch
+			let OK = 0
+		endtry
+	endwhile
+endfunction
+nmap ,l :call SanitiseLeadSpace()<CR>
+
+" get the schema for the given stored proc in the given db
+" shove it into a new tab and set the syntax correctly
+function! GetStoredProc(db, proc)
+	" tabe
+	let database=a:db
+	let proc=a:proc
+	!dbschema -d a:db -f a:proc
+	" set syntax=sql
+endfunction
+
+" switching auto-comments on and off
+"
+" Default the auto-commenting to :
+" continue if inserting a newline in edit mode (using 'Enter')
+" NOT continue if adding a newline after a comment (using 'o')
+function! ToggleAutoComment()
+
+	let a:strmatch = strridx(&formatoptions, "o")
+
+	if a:strmatch >= 0
+		set fo-=o
+	else
+		set fo+=o
+	endif
+	let a:strmatch = strridx(&formatoptions, "r")
+
+	if a:strmatch >= 0
+		set fo-=r
+	else
+		set fo+=r
+	endif
+endfunction
+nmap ,c :call ToggleAutoComment()<CR>
+
+" When I open an XML, I hit F5... this breaks it all into individual lines.
+" Hit F7, if you want the XML node and content to be on the same line.
+"
+map <F5> :%s/<\([^>]\)*>/\r&\r/g<CR>:g/^$/d<CR>vat=
+map <F6> vatJxvito<right><left>x
+map <F7> /\v^\s*([a-zA-Z\-0-9\$])<CR>qm<F6>nq@q1000@@:1<CR>
+
+
+set diffexpr=MyDiff()
+function! MyDiff()
+	let opt = ""
+	if exists("g:diffignore") && g:diffignore != ""
+			let opt = "-I " . g:diffignore
+	endif
+	if &diffopt =~ "icase"
+		let opt = opt . "-i"
+	endif
+	if &diffopt =~ "iwhite"
+		let opt = opt . "-b"
+	endif
+	silent execute "!diff -a --binary " . opt . " " . v:fname_in . " " . v:fname_new .
+		\ " > " . v:fname_out
+endfunction

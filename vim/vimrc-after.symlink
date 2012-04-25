@@ -1,0 +1,7 @@
+" highlight characters after char 84
+highlight OverLength cterm=bold,standout
+match OverLength /\%>84v.\+/
+
+" set up formatoptions how I like it
+set formatoptions-=o
+set formatoptions+=r
