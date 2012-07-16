@@ -1,0 +1,541 @@
+if [ "$TERM" = "dumb" ]; then
+	# if we're a dumb terminal, do nothing -- it'll all get taken care of later
+	return
+elif [ $TERM != "screen" ]; then
+	s=$(screen -ls | grep Detached | awk '{print $1}')
+	if [ "$s" = "" ]; then
+		# no screen sessions
+		screen -S $(date +%Y%m%d-%H%M%S)
+	else
+		screen -RR
+	fi
+fi
+
+
+# init the colourisation variables
+source ~/.bash_colours
+
+# ======================================================================
+# setup functions
+# these initialise some specific part of the bash environment
+# aimed at different environments or purposes
+#
+
+# setup useful interactive shell env vars
+setup_env () {
+	export GDK_USE_XFT=1
+
+	export TCLLIBPATH="$TCLLIBPATH /prj/openbet/shared_tcl_pkg/ /opt/tcl8.4/lib"
+	#export GATEWAY=10.1.1.200
+	export LESS='-Ri'
+
+	export TRASH='/shared/trash/mcoles/junk'
+	export BGS='/space/mcoles/bgs/dual'
+	export CFG=~/willhill/cfg
+	export DROPBOX=/space/mcoles/Dropbox
+
+	export PROMPT_COMMAND="xtitle \"$HOSTNAME:\$PWD\""
+
+	export ARCH=$(uname -m)
+
+	set b off
+}
+
+# setup DEPLOYMENT, PATH and LD_LIBRARY_PATH
+# these are mostly env specific
+setup_path () {
+	DEPLOYMENT=/shared/prj/deployment/v4latest-64
+	PATH=$HOME/bin:/usr/bin:/usr/sbin:/bin:/shared/prj/openbet/bin
+	#PATH=/usr/lib/jvm/java-1.5.0-sun-1.5.0.06/bin:$PATH
+	PATH=$PATH:/opt/informix/bin
+	PATH=$PATH:$DEPLOYMENT/scripts:$DEPLOYMENT/bin:$DEPLOYMENT/tcl
+	PATH=$PATH:/opt/tclpro1.5/linux-ix86/bin/
+	PATH=$PATH:/usr/games
+	PATH=$PATH:/usr/local/bin
+
+	#CDPATH=.:..:../..:../../..
+
+	LD_LIBRARY_PATH=/opt/tcl8.5/lib:/shared/prj/openbet/lib/${ARCH}:/usr/lib:/usr/local/lib
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/informix/lib
+
+	if [ -d /usr/local/gnu/bin ]; then
+		PATH=/usr/local/gnu/bin:$PATH
+	fi
+
+	if [ -n $INFORMIXDIR ]; then
+		PATH=$PATH:$INFORMIXDIR/bin
+		PATH=$PATH:$INFORMIXDIR/lib
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INFORMIXDIR/lib
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INFORMIXDIR/lib/esql
+	fi
+
+	if [ -n $TCL ]; then
+		# push the tclversion specific bin/lib to the top of the path
+		PATH=$TCL/bin:$PATH
+		LD_LIBRARY_PATH=$TCL/lib:$LD_LIBRARY_PATH
+	fi
+	
+	# oracle
+	if [ -n $ORACLE_HOME ]; then
+		PATH=$ORACLE_HOME/bin:$PATH
+		LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+	fi
+
+	export PATH CDPATH LD_LIBRARY_PATH DEPLOYMENT
+	EXINIT="set notimeout"
+	export EXINIT
+}
+
+
+setup_aliases () {
+
+	# quick change cvs repository
+
+	alias du='du -s'
+
+	# HANDY: re-source bashrc without restarting bash
+	alias rrc='source ~/.bashrc'
+
+	case "$HOSTNAME" in
+		venus | proxima | mercury | rosalind | pluto | titan | cujam )
+		alias ls="ls \$LS_OPTIONS" ;;
+	*)
+		;;
+	esac
+
+	alias l='ls'
+	alias Less='less'
+	alias sv='ssh venus'
+	alias sm='ssh mercury'
+	alias st='ssh titan'
+
+	alias tcl-compile='/opt/ActiveTcl/bin/tclcompiler -nologo -force'
+
+	alias proc="grep -rwn proc * | grep -i"
+	alias rdesk="rdesktop -K -4 -d ORBIS -u mcoles -g 1280x1024 rhea.orbis &"
+
+}
+
+
+
+echo "$HOSTNAME::$TERM"
+
+# use this for running tibco server stuff for PMU
+setup_tibco () {
+	#
+	# TIBCO
+	#
+	alias tibco_exp='source ~/.bash_tibco'
+	alias tibco_go_dir='cd /space/ndsouza/tibco/ot_tibems/trunk/proxy/'
+	alias tibco_man='MANPATH=/space/pmu/tcl8.5.7/man man ot_tibems'
+
+}
+tibco_paths () {
+
+	LD_LIBRARY_PATH=/space/pmu/lib/x86_64:$LD_LIBRARY_PATH
+	LD_LIBRARY_PATH=/space/pmu/tcl8.5.7/lib:$LD_LIBRARY_PATH
+	LD_LIBRARY_PATH=/space/pmu/tibems/lib/64:$LD_LIBRARY_PATH
+
+	PATH=/space/pmu/tcl8.5.7/bin:$PATH
+	PATH=/space/pmu/tibems/bin:$PATH
+	PATH=/space/pmu/bin/x86_64:$PATH
+	TCLLIBPATH="$TCLLIBPATH /space/pmu/tcl8.5.7/lib/64 /space/pmu/tcl8.5.7/lib/ot_tibems0.2/"
+	export LD_LIBRARY_PATH PATH TCLLIBPATH
+
+}
+
+openbet () {
+	export CVSROOT=:pserver:$USER@pserver:/cvsroot-openbet
+	echo $CVSROOT
+}
+dev () {
+	export CVSROOT=:pserver:$USER@pserver:/cvsroot
+	echo $CVSROOT
+}
+setup_misc () {
+
+#	PS1="${blue}[${yellow}\t${blue}][${cyan}\u${white}@${yellow}\h${blue}:${magenta}\w${blue}]${white}\n[\#:\!] \$ "
+#	PS1="[\t][\u@\h:\w] \n ${blue}[\#:\!] ${white}\$ "
+
+	# for test:
+	PS1="${debian_chroot:+($debian_chroot)}\[${BLUEONGREEN}TEST${white}:\[${GREEN}\u\[${white}@\[${GREEN}\h${white}:\[${BLUE}\w${white} $ "
+
+	# for stage:
+	PS1="$PS1\n${debian_chroot:+($debian_chroot)}\[${REDONBLUE}STAGE${white}:\[${GREEN}\u\[${white}@\[${GREEN}\h${white}:\[${BLUE}\w${white} $ "
+
+	# testing for live
+	PS1="$PS1\n${debian_chroot:+($debian_chroot)}\[${WHITEONRED}LIVE${white}:\[${GREEN}\u\[${white}@\[${GREEN}\h${white}:\[${BLUE}\w${white} $ "
+
+	PS1="\[${blue}\[[\[${YELLOW}\t${blue}][\[${whiteonblue}\w${blue}]${white}"
+	PS1="$PS1\n${debian_chroot:+($debian_chroot)}\[${magenta}\u\[${white}@\[${cyan}\h\[${white}:\#:\!:\[\[${NONE} \$ "
+
+	PS1="\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]\$? O_O\[\e[0m\]; fi\`"
+
+	#PS1="\`if [ \$? -eq 0 ]; then echo "${green}^_^${NONE}"; else echo "${red}O_o${NONE}"; fi\`"
+	PS1="${PS1}\n${blue}[${yellow}\t${blue}][${whiteonblue}\w${blue}]${NONE}"
+	PS1="${PS1}\n${magenta}\u${white}@${cyan}\h${white}:\#:\!:${NONE} \$ "
+
+	ls --color=always >/dev/null 2>&1
+	if [ $? -eq 0 ]; then
+		LS_OPTIONS='--color'
+		eval $(dircolors ~/.colourrc)
+	else
+		LS_OPTIONS=""
+	fi
+
+	CVSROOT=:pserver:$USER@pserver:/cvsroot
+	umask 002
+	EDITOR=/usr/bin/vim
+
+	export PS1 LS_OPTIONS CVSROOT DISPLAY EDITOR
+}
+
+
+# ===========
+# db server specific setups
+
+atlas_1000 () {
+	INFORMIXDIR=/opt/informix_10.00
+	INFORMIXSERVER=atlas_1000
+	PATH=$INFORMIXDIR/bin:$PATH
+	LD_LIBRARY_PATH=$INFORMIXDIR/lib:$LD_LIBRARY_PATH
+
+	export PATH LD_LIBRARY_PATH INFORMIXDIR INFORMIXSERVER
+
+}
+
+atlas_1150 () {
+	INFORMIXDIR=/opt/informix_11.50
+	INFORMIXSERVER=atlas_1150
+	PATH=$INFORMIXDIR/bin:$PATH
+	LD_LIBRARY_PATH=$INFORMIXDIR/lib:$LD_LIBRARY_PATH
+
+	export PATH LD_LIBRARY_PATH INFORMIXDIR INFORMIXSERVER
+}
+
+db01_1150 () {
+	INFORMIXDIR=/opt/informix_11.50
+	INFORMIXSERVER=db01_1150
+	PATH=$INFORMIXDIR/bin:$PATH
+	LD_LIBRARY_PATH=$INFORMIXDIR/lib:$LD_LIBRARY_PATH
+
+	export INFORMIXDIR INFORMIXSERVER PATH LD_LIBRARY_PATH
+}
+	
+# ================================================================
+# HOST SPECIFIC ENVIRONMENTAL SETUP
+
+# on interactive login, we'll exec the $HOSTNAME as a command
+# this allows host-specific setup
+
+proxima () {
+	# appserv stuff
+	INFORMIXSERVER=sadr_10
+	INFORMIXDIR=/opt/informix
+	INFORMIXSQLHOSTS=/opt/informix/etc/sqlhosts
+
+	# local machine stuff
+	XDG_CONFIG_HOME=~/.config/
+	PROMPT_COMMAND="xtitle \"$HOSTNAME: \"\$PWD"
+	export PROMPT_COMMAND XDG_CONFIG_HOME INFORMIXSERVER INFORMIXDIR INFORMIXSQLHOSTS
+}
+
+
+rosalind () {
+	INFORMIXSERVER=atlas_1150
+	INFORMIXDIR=/opt/informix
+	TCL=/opt/tcl8.4
+	JAVA_HOME=/usr/lib/jvm/java-6-sun
+	LOGS=/space/mcoles/logs/willhill
+	PATH=$PATH:/opt/TclDevKit/bin
+	export INFORMIXDIR TCL INFORMIXSERVER TERM LOGS JAVA_HOME PATH
+}
+pluto () {
+	INFORMIXSERVER=sadr_10
+	INFORMIXDIR=/opt/informix
+	TCL=/opt/tcl8.5
+	JAVA_HOME=/usr/lib/jvm/java-6-sun
+	LOGS=/space/mcoles/logs/willhill
+	DEPLOYMENT=/shared/prj/deployment/v4latest-64
+	PATH=$PATH:/opt/TclDevKit/bin
+	PATH=$(echo $PATH | sed 's/\/prj/\/shared\/prj/')
+	PATH=$TCL/bin:$PATH
+	#LD_LIBRARY_PATH=$(echo $LD_LIBRARY_PATH | sed 's/\/prj/\/shared\/prj/g')
+	LD_LIBRARY_PATH=$TCL/lib:$LD_LIBRARY_PATH
+	export INFORMIXDIR TCL INFORMIXSERVER TERM LOGS DEPLOYMENT JAVA_HOME PATH LD_LIBRARY_PATH
+
+}
+titan () {
+
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/tcl8.4/lib:/opt/tcl8.3.3/lib:/prj/openbet/lib/${ARCH}:/usr/lib:/usr/local/lib:/opt/ids920/lib
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ids920/lib/esql:/shared/prj/telebet/tcl84_unix/lib:/opt/informix/lib
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/tclpro1.5/linux-ix86/lib/
+
+	DEPLOYMENT=/shared/prj/deployment/latest
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/tcl8.4/lib:/usr/lib:/usr/local/lib:/prj/openbet/appserv/FREEZES/CURRENT84/lib/ix86:/usr/lib:/opt/informix/l:/opt/tcl8.4/lib
+	export PATH=$PATH:/usr/local/bin:$DEPLOYMENT/bin:$DEPLOYMENT/scripts:$DEPLOYMENT/tcl:/usr/bin:/prj/openbet/bin:/opt/tclpro1.5/linux-ix86/bin:/opt/tcl8.4/bin
+	export LIBRARY_PATH=/usr/lib
+	export APACHE_HOME=/opt/apache
+	export TCL=/opt/tcl8.4
+
+	JAVA_HOME=/opt/j2sdk1.4.2_05
+	INFORMIXSERVER=atlas_1150
+	INFORMIXDIR=/opt/informix
+	CLASSPATH=
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/capscan/linux-glibc2/lib
+	export CLASSPATH INFORMIXDIR INFORMIXSERVER LD_LIBRARY_PATH JAVA_HOME
+}
+
+dev02.openbet () {
+
+	# informix 
+	db01_1150
+
+	obc_comp="/home/$(whoami)/bin/ob_control_comp"
+	if [ -f $obc_comp ]; then
+		source $obc_comp
+	fi
+
+	# appserv
+	APPSERV=/opt/appserv/current
+	PATH=$APPSERV/bin:$PATH
+	LD_LIBRARY_PATH=$APPSERV/lib:$LD_LIBRARY_PATH
+
+	export APPSERV PATH LD_LIBRARY_PATH
+
+}
+
+dev01.openbet () {
+	dev02.openbet
+}
+
+enceladus.openbet () {
+
+	JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+	ORACLE_SID=orcl 
+	ORACLE_BASE=/opt/oracle
+	ORACLE_HOME=/opt/oracle/product/11.2.0/dbhome_1
+
+	if [ -n $ORACLE_HOME ]; then
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
+		PATH=$ORACLE_HOME/bin:$PATH
+	fi
+
+	export ORACLE_SID ORACLE_BASE ORACLE_HOME LD_LIBRARY_PATH PATH JAVA_HOME
+
+}
+
+
+
+# ========================================================================
+# UTIL FUNCTIONS
+
+lcd () {
+	cd $1
+	ls --color=auto
+}
+
+
+#######
+# type 'mck <searchterm>+'
+# and it'll kill any matching proc's
+######
+
+mck () {
+	CMD="ps aux | grep ${USER} "
+	for arg in $@; do
+		CMD="$CMD| grep $arg "
+	done
+
+	CMD="$CMD| awk '{print \$2}' | xargs kill"
+	echo "Executing: $CMD"
+
+	eval "$CMD"
+}
+# as above, but bit more forceful
+mck-9 () {
+	CMD="ps aux | grep $USER"
+	for arg in $@; do
+		CMD="$CMD| grep $arg "
+	done
+
+	CMD="$CMD| awk '{print \$2}' | xargs kill -9"
+	echo "Executing: $CMD"
+
+	eval "$CMD"
+}
+
+####
+# filters thru ~/phones for the given (case-insensitive) string
+####
+
+# DEPRECATED BY lookup
+#phone () {
+#	CMD="grep -i $1 ~/phones "
+#	for arg in $@; do
+#		CMD="$CMD| grep -i $arg "
+#	done
+#
+#	eval "$CMD"
+#}
+
+#
+# pumps cvs diff output through colordiff, and filters out noise
+#
+cvsdiff () { cvs diff -b $@ 2>/dev/null | colordiff; }
+
+cdiff () {
+	cvs diff $@ | awk '
+		BEGIN { csin=0 ; csout=0; }
+		/^>/ {++csin; }
+		/^</ {++csout; }
+		{ print $0 }
+		END { print "changes: +" csin "/-" csout " "}
+	'  | colordiff
+}
+
+gdiff () {
+	git diff $@ | awk '
+		BEGIN { csin=0 ; csout=0; }
+		/^\+[^+]/ {++csin; }
+		/^-[^-]/ {++csout; }
+		{ print $0 }
+		END { print "changes: +" csin "/-" csout " "}
+	'  | colordiff
+}
+# find an album path
+album () {
+	find /shared/trash/mcoles/junk -iname "*$@*" -type d 
+}
+track () {
+	find /shared/trash/mcoles/junk -iname "*$@*" -type f 
+}
+
+case "$HOSTNAME" in
+	nihil | cujam | proxima )
+		export PAGER=most
+		xset b off ;;
+	*)
+	;;
+esac
+
+
+export PRINTER=pictor
+
+
+# print a pretty pattern
+pretty () {
+	limit=$1;
+	if [ "$limit" == "" ]; then
+		limit=34;
+	fi
+	a=1;
+	i=0;
+	while [ $i -lt $limit ]; do
+		printf %$[40-${#a}]s"$(eval $(echo $a*$a|bc|sed 's/$/0/;s/\([0-9]\)/tput setab \1; echo -n \\ ;/g'))"\\n;
+		a=1$a;
+		i=$((i+1));
+	done
+}
+
+
+
+# ========================================================================
+# Global init
+
+echo "Setting up path"
+setup_env
+setup_path
+setup_misc
+setup_aliases
+
+# System specific Init
+$HOSTNAME 2>/dev/null
+
+
+# Other stuffs
+xtitle $HOSTNAME
+
+echo -e "\e]2;$HOSTNAME\a"
+
+
+# Try and colorize grep
+if echo hello|grep --color=always l >/dev/null 2>&1; then
+	export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
+fi
+
+# fix charset for less
+# fix?
+# export LESSCHARSET=latin1
+
+bind 'set completion-ignore-case on'
+
+# switch to vi-mode
+set -o vi
+
+s=$(which current_users)
+if [ -f $s ]; then
+	current_users
+fi
+
+
+if [ -d ~/bash_completion.d/ ]; then 
+	BASH_COMPLETION_DIR=~/bash_completion.d/
+fi
+
+export BASH_COMPLETION_DIR
+
+if [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+fi
+
+# ================================================================================
+# vv DEPRECATED or USELESS vv
+#
+## hmm this might not work
+#
+#push () {
+#	# add the filename(s?) to the list
+#	GRABFILES=( "${GRABFILES[@]}" "$1" )
+#	
+#	export GRABFILES
+#}
+#pop () {
+#
+#	if [ "$1" ]; then
+#		# we got an argument 
+#		# attempt to use this as the index
+#		if [ ${GRABFILES[$1]} ]; then
+#			echo "${GRABFILES[${1}-1]}"
+#
+#			unset GRABFILES[${1}-1]
+#			
+#		fi
+#	fi
+#	# for now just go with the top one in the stack
+#	# which is the last element
+#	# 
+#	echo "${GRABFILES[${#GRABFILES[@]}-1]}"
+#
+#	unset GRABFILES[${#GRABFILES[@]}-1]
+#
+#	# return the given index of the list and remove
+#	# if index unmatched, or no index given, default to the top
+#	#   of the stack
+#
+#}
+#list_stack () {
+#	index=1
+#	for f in "${GRABFILES[@]}"
+#	do
+#		echo "${index}: $f"
+#		let "index += 1"
+#	done
+#
+#}
+#
+#my_prompt () {
+#	xtitle "\"$HOSTNAME:\$PWD\""
+#	list_stack
+#}
