@@ -1,0 +1,163 @@
+# ======================================================================
+# setup functions
+# these initialise some specific part of the bash environment
+# aimed at different environments or purposes
+#
+
+# setup useful interactive shell env vars
+setup_env () {
+	export GDK_USE_XFT=1
+
+	#export GATEWAY=10.1.1.200
+	export LESS='-Ri'
+
+	export BGS='/space/mcoles/bgs/dual'
+	export DROPBOX=/space/mcoles/Dropbox
+
+	export ARCH=$(uname -m)
+
+	# Try and colorize grep
+	if echo hello|grep --color=always l >/dev/null 2>&1; then
+		export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
+	fi
+
+	set b off
+}
+
+# setup DEPLOYMENT, PATH and LD_LIBRARY_PATH
+# these are mostly env specific
+setup_path () {
+	PATH=$HOME/bin:/usr/bin:/usr/sbin:/bin
+	PATH=$PATH:/usr/games
+	PATH=$PATH:/usr/local/bin
+
+	# this is sometimes useful for tab completion
+	# but I found it rather annoying to get used to
+	#CDPATH=.:..:../..:../../..
+
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/local/lib
+
+	if [ -d /usr/local/gnu/bin ]; then
+		PATH=/usr/local/gnu/bin:$PATH
+	fi
+
+	EXINIT="set notimeout"
+	export PATH LD_LIBRARY_PATH DEPLOYMENT EXINIT
+}
+
+
+setup_aliases () {
+
+	# HANDY: re-source bashrc without restarting bash
+	alias rrc='source ~/.bashrc'
+
+		alias proc="grep -rwn proc * | grep -i"
+	alias rdesk="rdesktop -K -4 -d ORBIS -u mcoles -g 1280x1024 rhea.orbis &"
+
+}
+
+
+setup_misc () {
+
+	# happy/sad face
+	PS1="\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]\$? O_O\[\e[0m\]; fi\`"
+	# directory readout
+	PS1="${PS1}\n${blue}[${yellow}\t${blue}][${whiteonblue}\w${blue}]${NONE}"
+	# datetime, cmd counts, prompt
+	PS1="${PS1}\n${magenta}\u${white}@${cyan}\h${white}:\#:\!:${NONE} \$ "
+
+	ls --color=always >/dev/null 2>&1
+	if [ $? -eq 0 ]; then
+		LS_OPTIONS='--color'
+		eval $(dircolors ~/.colourrc)
+	else
+		LS_OPTIONS=""
+	fi
+
+	umask 002
+
+	EDITOR=/usr/bin/vim
+
+	export PS1 LS_OPTIONS EDITOR
+}
+
+
+# ========================================================================
+# UTIL FUNCTIONS
+
+lcd () {
+	cd $1
+	ls --color=auto
+}
+
+
+#######
+# type 'mck <searchterm>+'
+# and it'll kill any matching proc's
+######
+
+mck () {
+	CMD="ps aux | grep ${USER} "
+	for arg in $@; do
+		CMD="$CMD| grep $arg "
+	done
+
+	CMD="$CMD| awk '{print \$2}' | xargs kill"
+	echo "Executing: $CMD"
+
+	eval "$CMD"
+}
+# as above, but bit more forceful
+mck-9 () {
+	CMD="ps aux | grep $USER"
+	for arg in $@; do
+		CMD="$CMD| grep $arg "
+	done
+
+	CMD="$CMD| awk '{print \$2}' | xargs kill -9"
+	echo "Executing: $CMD"
+
+	eval "$CMD"
+}
+
+#
+# pumps cvs diff output through colordiff, and filters out noise
+#
+cvsdiff () { cvs diff -b $@ 2>/dev/null | colordiff; }
+
+cdiff () {
+	cvs diff $@ | awk '
+		BEGIN { csin=0 ; csout=0; }
+		/^>/ {++csin; }
+		/^</ {++csout; }
+		{ print $0 }
+		END { print "changes: +" csin "/-" csout " "}
+	'  | colordiff
+}
+
+gdiff () {
+	git diff $@ | awk '
+		BEGIN { csin=0 ; csout=0; }
+		/^\+[^+]/ {++csin; }
+		/^-[^-]/ {++csout; }
+		{ print $0 }
+		END { print "changes: +" csin "/-" csout " "}
+	'  | colordiff
+}
+
+
+
+# print a pretty pattern
+pretty () {
+	limit=$1;
+	if [ "$limit" == "" ]; then
+		limit=34;
+	fi
+	a=1;
+	i=0;
+	while [ $i -lt $limit ]; do
+		printf %$[40-${#a}]s"$(eval $(echo $a*$a|bc|sed 's/$/0/;s/\([0-9]\)/tput setab \1; echo -n \\ ;/g'))"\\n;
+		a=1$a;
+		i=$((i+1));
+	done
+}

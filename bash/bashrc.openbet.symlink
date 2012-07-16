@@ -1,0 +1,222 @@
+# ================================================================
+# $PATH and $LD_LIBRARY_PATH setup
+openbet_path () {
+
+	DEPLOYMENT=/shared/prj/deployment/v4latest-64
+
+	PATH=$PATH:/opt/informix/bin
+	PATH=$PATH:/shared/prj/openbet/bin
+	PATH=$PATH:$DEPLOYMENT/scripts:$DEPLOYMENT/bin:$DEPLOYMENT/tcl
+
+	export DEPLOYMENT PATH
+}
+
+informix_path () {
+
+	if [ -n $INFORMIXDIR ]; then
+		PATH=$PATH:$INFORMIXDIR/bin
+		PATH=$PATH:$INFORMIXDIR/lib
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INFORMIXDIR/lib
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INFORMIXDIR/lib/esql
+	fi
+
+	export PATH LD_LIBRARY_PATH
+
+}
+
+tcl_path () {
+
+	if [ -n $TCL ]; then
+		# push the tclversion specific bin/lib to the top of the path
+		PATH=$TCL/bin:$PATH
+		LD_LIBRARY_PATH=$TCL/lib:$LD_LIBRARY_PATH
+		LD_LIBRARY_PATH=/shared/prj/openbet/lib/${ARCH}
+	fi
+
+	PATH=$PATH:/opt/tclpro1.5/linux-ix86/bin/
+
+	export PATH LD_LIBRARY_PATH
+}
+
+oracle_path () {
+
+	# oracle
+	if [ -n $ORACLE_HOME ]; then
+		PATH=$ORACLE_HOME/bin:$PATH
+		LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+	fi
+}
+
+# ===========
+# db server specific setups
+
+atlas_1000 () {
+	INFORMIXDIR=/opt/informix_10.00
+	INFORMIXSERVER=atlas_1000
+	PATH=$INFORMIXDIR/bin:$PATH
+	LD_LIBRARY_PATH=$INFORMIXDIR/lib:$LD_LIBRARY_PATH
+
+	export PATH LD_LIBRARY_PATH INFORMIXDIR INFORMIXSERVER
+
+}
+
+atlas_1150 () {
+	INFORMIXDIR=/opt/informix_11.50
+	INFORMIXSERVER=atlas_1150
+	PATH=$INFORMIXDIR/bin:$PATH
+	LD_LIBRARY_PATH=$INFORMIXDIR/lib:$LD_LIBRARY_PATH
+
+	export PATH LD_LIBRARY_PATH INFORMIXDIR INFORMIXSERVER
+}
+
+db01_1150 () {
+	INFORMIXDIR=/opt/informix_11.50
+	INFORMIXSERVER=db01_1150
+	PATH=$INFORMIXDIR/bin:$PATH
+	LD_LIBRARY_PATH=$INFORMIXDIR/lib:$LD_LIBRARY_PATH
+
+	export INFORMIXDIR INFORMIXSERVER PATH LD_LIBRARY_PATH
+}
+
+
+# ================================================================
+# HOST SPECIFIC ENVIRONMENTAL SETUP
+
+# on interactive login, we'll exec the $HOSTNAME as a command
+# this allows host-specific setup
+
+proxima () {
+	# appserv stuff
+	INFORMIXSERVER=sadr_10
+	INFORMIXDIR=/opt/informix
+	INFORMIXSQLHOSTS=/opt/informix/etc/sqlhosts
+
+	# local machine stuff
+	XDG_CONFIG_HOME=~/.config/
+	PROMPT_COMMAND="xtitle \"$HOSTNAME: \"\$PWD"
+	export PROMPT_COMMAND XDG_CONFIG_HOME INFORMIXSERVER INFORMIXDIR INFORMIXSQLHOSTS
+}
+
+
+rosalind () {
+	INFORMIXSERVER=atlas_1150
+	INFORMIXDIR=/opt/informix
+	TCL=/opt/tcl8.4
+	JAVA_HOME=/usr/lib/jvm/java-6-sun
+	LOGS=/space/mcoles/logs/willhill
+	PATH=$PATH:/opt/TclDevKit/bin
+	export INFORMIXDIR TCL INFORMIXSERVER TERM LOGS JAVA_HOME PATH
+}
+pluto () {
+	INFORMIXSERVER=sadr_10
+	INFORMIXDIR=/opt/informix
+	TCL=/opt/tcl8.5
+	JAVA_HOME=/usr/lib/jvm/java-6-sun
+	LOGS=/space/mcoles/logs/willhill
+	DEPLOYMENT=/shared/prj/deployment/v4latest-64
+	PATH=$PATH:/opt/TclDevKit/bin
+	PATH=$(echo $PATH | sed 's/\/prj/\/shared\/prj/')
+	PATH=$TCL/bin:$PATH
+	#LD_LIBRARY_PATH=$(echo $LD_LIBRARY_PATH | sed 's/\/prj/\/shared\/prj/g')
+	LD_LIBRARY_PATH=$TCL/lib:$LD_LIBRARY_PATH
+	export INFORMIXDIR TCL INFORMIXSERVER TERM LOGS DEPLOYMENT JAVA_HOME PATH LD_LIBRARY_PATH
+
+}
+titan () {
+
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/tcl8.4/lib:/opt/tcl8.3.3/lib:/prj/openbet/lib/${ARCH}:/usr/lib:/usr/local/lib:/opt/ids920/lib
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ids920/lib/esql:/shared/prj/telebet/tcl84_unix/lib:/opt/informix/lib
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/tclpro1.5/linux-ix86/lib/
+
+	DEPLOYMENT=/shared/prj/deployment/latest
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/tcl8.4/lib:/usr/lib:/usr/local/lib:/prj/openbet/appserv/FREEZES/CURRENT84/lib/ix86:/usr/lib:/opt/informix/l:/opt/tcl8.4/lib
+	export PATH=$PATH:/usr/local/bin:$DEPLOYMENT/bin:$DEPLOYMENT/scripts:$DEPLOYMENT/tcl:/usr/bin:/prj/openbet/bin:/opt/tclpro1.5/linux-ix86/bin:/opt/tcl8.4/bin
+	export LIBRARY_PATH=/usr/lib
+	export APACHE_HOME=/opt/apache
+	export TCL=/opt/tcl8.4
+
+	JAVA_HOME=/opt/j2sdk1.4.2_05
+	INFORMIXSERVER=atlas_1150
+	INFORMIXDIR=/opt/informix
+	CLASSPATH=
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/capscan/linux-glibc2/lib
+	export CLASSPATH INFORMIXDIR INFORMIXSERVER LD_LIBRARY_PATH JAVA_HOME
+}
+
+dev02.openbet () {
+
+	# informix
+	db01_1150
+
+	obc_comp="/home/$(whoami)/bin/ob_control_comp"
+	if [ -f $obc_comp ]; then
+		source $obc_comp
+	fi
+
+	# appserv
+	APPSERV=/opt/appserv/current
+	PATH=$APPSERV/bin:$PATH
+	LD_LIBRARY_PATH=$APPSERV/lib:$LD_LIBRARY_PATH
+
+	export APPSERV PATH LD_LIBRARY_PATH
+
+}
+
+dev01.openbet () {
+	dev02.openbet
+}
+
+enceladus.openbet () {
+
+	JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+	ORACLE_SID=orcl
+	ORACLE_BASE=/opt/oracle
+	ORACLE_HOME=/opt/oracle/product/11.2.0/dbhome_1
+
+	if [ -n $ORACLE_HOME ]; then
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
+		PATH=$ORACLE_HOME/bin:$PATH
+	fi
+
+	export ORACLE_SID ORACLE_BASE ORACLE_HOME LD_LIBRARY_PATH PATH JAVA_HOME
+
+}
+
+case "$HOSTNAME" in
+	nihil | cujam | proxima )
+		export PAGER=most
+		xset b off ;;
+	*)
+	;;
+esac
+
+
+# ================================================================
+openbet_env () {
+
+	export CVSROOT=:pserver:$USER@pserver:/cvsroot
+	export TCLLIBPATH="$TCLLIBPATH /prj/openbet/shared_tcl_pkg/ /opt/tcl8.4/lib"
+	export TRASH='/shared/trash/mcoles/junk'
+	export CFG=~/willhill/cfg
+	export PRINTER=pictor
+
+	openbet_path
+	tcl_path
+	informix_path
+	oracle_path
+
+}
+
+
+# ================================================================
+# CVS Repository change
+openbet () {
+	export CVSROOT=:pserver:$USER@pserver:/cvsroot-openbet
+	echo $CVSROOT
+}
+dev () {
+	export CVSROOT=:pserver:$USER@pserver:/cvsroot
+	echo $CVSROOT
+}
+# ================================================================
