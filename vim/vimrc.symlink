@@ -1,5 +1,5 @@
 " Configuration file for vim
-set runtimepath=~/.vim,/usr/share/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vimcurrent,/usr/share/vim/vimfiles/after,/usr/share/vim/addons/after,~/.vim/after
+"set runtimepath=~/.vim,/usr/share/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vimcurrent,/usr/share/vim/vimfiles/after,/usr/share/vim/addons/after,~/.vim/after
 
 " use this path to look for files with gf, :find :tabfind etc
 set path=**;.
@@ -44,6 +44,8 @@ if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
 	set t_Sf=[3%dm
 	set t_Sb=[4%dm
 endif
+
+set t_Co=256
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
