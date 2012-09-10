@@ -1,0 +1,9 @@
+[user]
+	name = sanmiguel
+	email = michael.coles@erlang-solutions.com
+[color]
+	diff = auto
+	status = auto
+	ui = auto
+[core]
+	editor = /usr/bin/vim
