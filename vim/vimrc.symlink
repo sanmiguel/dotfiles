@@ -18,6 +18,8 @@ set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 			" 50 lines of registers
 set tabstop=4
 set shiftwidth=4
+" it's time to stop using leading tabs.
+set expandtab
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 
@@ -189,8 +191,8 @@ autocmd BufReadPost *
 " SuperTab
 "
 " let g:SuperTabDefaultCompletionType="<C-P>"
-let b:SuperTabDefaultCompletionType = "custom"
-let b:SuperTabNoCompleteAfter       = ['\s']
+" let b:SuperTabDefaultCompletionType = "custom"
+" let b:SuperTabNoCompleteAfter       = ['\s']
 
 nmap ,n :set invnumber<CR>
 
@@ -208,11 +210,22 @@ set showtabline=2
 
 
 if has('gui_running')
-	colorscheme elflord
+	colorscheme darkblue
 else
 	colorscheme desert
 endif
 
+" vimerl
+" TODO: Either:
+" 1) generate the paths here and make it platform agnostic
+" or 2) set up variable sets for different platforms (eugh)
+let g:erlangHighlightErrors = 1
+let g:erlangHighlightBif = 1
+let g:erlangCompletionDisplayDoc = 1
+" TODO: There has to be a programmatic way to get these paths
+let g:erlangManPath = "/usr/share/man/man3"
+let g:erlangCheckFile = "~/.vim/vim-addons/github-oscarh-vimerl/compiler/erlang_check_file.erl"
+let g:erlangWranglerPath = "/usr/local/share/wrangler"
 
 " replace groups up to 4 spaces before any non-whitespace characters on all
 " lines
@@ -334,7 +347,12 @@ fun! SetupVAM()
   exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
                                                                                                                                            
   " Tell VAM which plugins to fetch & load:
-  call vam#ActivateAddons(['fugitive', "github:oscarh/vimerl"], {'auto_install' : 0})
+  call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:oscarh/vimerl'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:ervandew/supertab'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:puppetlabs/puppet-syntax-vim'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:smerrill/vagrant-vim'], {'auto_install' : 0})
+
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
                                                                                                                                            
   " Addons are put into vam_install_path/plugin-name directory
