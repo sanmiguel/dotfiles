@@ -20,6 +20,7 @@ set tabstop=4
 set shiftwidth=4
 " it's time to stop using leading tabs.
 set expandtab
+
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 
@@ -35,7 +36,6 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 
 " turn off folding
 set nofoldenable
-
 
 " vim, quit leaving your trash all over my place
 set directory=~/.vim/backup,~/tmp,/var/tmp,/tmp
@@ -95,9 +95,9 @@ endif
 " different from regular vi. They are highly recommended though.
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
-"set ignorecase		" Do case insensitive matching
-"set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
+" vv included for Powerline
+set laststatus=2
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -226,6 +226,7 @@ let g:erlangCompletionDisplayDoc = 1
 let g:erlangManPath = "/usr/share/man/man3"
 let g:erlangCheckFile = "~/.vim/vim-addons/github-oscarh-vimerl/compiler/erlang_check_file.erl"
 let g:erlangWranglerPath = "/usr/local/share/wrangler"
+let g:erlangRefactoring = 1
 
 " replace groups up to 4 spaces before any non-whitespace characters on all
 " lines
@@ -348,10 +349,12 @@ fun! SetupVAM()
                                                                                                                                            
   " Tell VAM which plugins to fetch & load:
   call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:oscarh/vimerl'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:ervandew/supertab'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:puppetlabs/puppet-syntax-vim'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:smerrill/vagrant-vim'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:tsaleh/vim-align'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
 
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
                                                                                                                                            
