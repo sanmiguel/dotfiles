@@ -355,6 +355,7 @@ fun! SetupVAM()
   call vam#ActivateAddons(['github:smerrill/vagrant-vim'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:tsaleh/vim-align'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
 
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
                                                                                                                                            
