@@ -37,6 +37,9 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 " turn off folding
 set nofoldenable
 
+" Always vsplit to the right
+set splitright
+
 " vim, quit leaving your trash all over my place
 set directory=~/.vim/backup,~/tmp,/var/tmp,/tmp
 
@@ -190,7 +193,7 @@ autocmd BufReadPost *
 
 " SuperTab
 "
-" let g:SuperTabDefaultCompletionType="<C-P>"
+let g:SuperTabDefaultCompletionType="<c-o>"
 " let b:SuperTabDefaultCompletionType = "custom"
 " let b:SuperTabNoCompleteAfter       = ['\s']
 
