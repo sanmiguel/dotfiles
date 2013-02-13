@@ -1,0 +1,10 @@
+#!/bin/bash
+links=$(find . -name "*.symlink" -print0)
+
+for f in $links; do
+    target=".$(basename ${f} .symlink)"
+    if [ -L ${target} ]; then
+        rm $target
+    fi
+    ln -s $f $target
+done
