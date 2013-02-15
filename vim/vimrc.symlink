@@ -101,6 +101,7 @@ set showmatch		" Show matching brackets.
 "set autowrite		" Automatically save before commands like :next and :make
 " vv included for Powerline
 set laststatus=2
+let g:Powerline_symbols = 'fancy'
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -222,12 +223,12 @@ endif
 " TODO: Either:
 " 1) generate the paths here and make it platform agnostic
 " or 2) set up variable sets for different platforms (eugh)
-let g:erlangHighlightErrors = 1
+let g:erlangHighlightErrors = 0
 let g:erlangHighlightBif = 1
 let g:erlangCompletionDisplayDoc = 1
 " TODO: There has to be a programmatic way to get these paths
 let g:erlangManPath = "/usr/share/man/man3"
-let g:erlangCheckFile = "~/.vim/vim-addons/github-oscarh-vimerl/compiler/erlang_check_file.erl"
+"let g:erlangCheckFile = "~/.vim/vim-addons/github-sanmiguel-vimerl/compiler/erlang_check.erl"
 let g:erlangWranglerPath = "/usr/local/share/wrangler"
 let g:erlangRefactoring = 1
 
@@ -322,24 +323,24 @@ fun! EnsureVamIsOnDisk(vam_install_path)
                   \"time ask maintainers to improve documentation")
       call mkdir(a:vam_install_path, 'p')
       execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '.shellescape(a:vam_install_path, 1).'/vim-addon-manager'
-      " VAM runs helptags automatically when you install or update 
+      " VAM runs helptags automatically when you install or update
       " plugins
       exec 'helptags '.fnameescape(a:vam_install_path.'/vim-addon-manager/doc')
     endif
     return eval(is_installed_c)
   endif
 endf
-                                                                                                                                           
+
 fun! SetupVAM()
   " Set advanced options like this:
   " let g:vim_addon_manager = {}
   " let g:vim_addon_manager['key'] = value
-                                                                                                                                           
+
   " Example: drop git sources unless git is in PATH. Same plugins can
   " be installed from www.vim.org. Lookup MergeSources to get more control
   " let g:vim_addon_manager['drop_git_sources'] = !executable('git')
   " let g:vim_addon_manager.debug_activation = 1
-                                                                                                                                           
+
   " VAM install location:
   let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
   if !EnsureVamIsOnDisk(vam_install_path)
@@ -349,7 +350,7 @@ fun! SetupVAM()
     return
   endif
   exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
-                                                                                                                                           
+
   " Tell VAM which plugins to fetch & load:
   call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
@@ -358,15 +359,15 @@ fun! SetupVAM()
   call vam#ActivateAddons(['github:smerrill/vagrant-vim'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:tsaleh/vim-align'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:uarun/vim-protobuf'], {'auto_install' : 0})
 
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
-                                                                                                                                           
+
   " Addons are put into vam_install_path/plugin-name directory
   " unless those directories exist. Then they are activated.
   " Activating means adding addon dirs to rtp and do some additional
   " magic
-                                                                                                                                           
+
   " How to find addon names?
   " - look up source from pool
   " - (<c-x><c-p> complete plugin names):
