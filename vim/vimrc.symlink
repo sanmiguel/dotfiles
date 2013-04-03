@@ -342,8 +342,8 @@ fun! SetupVAM()
   "
   " It's probably worth investigating if ordering is important here...
   call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})
-  "call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:aerosol/vimerl'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
+  "call vam#ActivateAddons(['github:aerosol/vimerl'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:ervandew/supertab'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:puppetlabs/puppet-syntax-vim'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:smerrill/vagrant-vim'], {'auto_install' : 0})
