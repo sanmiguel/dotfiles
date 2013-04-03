@@ -350,7 +350,10 @@ fun! SetupVAM()
   endif
   exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
 
-  " Tell VAM which plugins to fetch & load:
+  " Tell VAM which plugins to fetch & load: Let's try to put all config
+  " relevant to a single plugin just before the line that loads that plugin.
+  "
+  " It's probably worth investigating if ordering is important here...
   call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:ervandew/supertab'], {'auto_install' : 0})
@@ -359,7 +362,10 @@ fun! SetupVAM()
   call vam#ActivateAddons(['github:tsaleh/vim-align'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:uarun/vim-protobuf'], {'auto_install' : 0})
+
+  let g:ctrlp_map = '<c-l>'
   call vam#ActivateAddons(['github:kien/ctrlp.vim'], {'auto_install' : 0})
+
   call vam#ActivateAddons(['github:mileszs/ack.vim'], {'auto_install' : 0})
 
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
