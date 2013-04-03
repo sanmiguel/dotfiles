@@ -1,5 +1,4 @@
 " Configuration file for vim
-"set runtimepath=~/.vim,/usr/share/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vimcurrent,/usr/share/vim/vimfiles/after,/usr/share/vim/addons/after,~/.vim/after
 
 " use this path to look for files with gf, :find :tabfind etc
 set path=**;.
@@ -101,7 +100,7 @@ set showmatch		" Show matching brackets.
 "set autowrite		" Automatically save before commands like :next and :make
 " vv included for Powerline
 set laststatus=2
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -361,6 +360,7 @@ fun! SetupVAM()
   call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:uarun/vim-protobuf'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:kien/ctrlp.vim'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:mileszs/ack.vim'], {'auto_install' : 0})
 
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
 
