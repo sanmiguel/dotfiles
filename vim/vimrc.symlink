@@ -218,19 +218,6 @@ else
 	colorscheme desert
 endif
 
-" vimerl
-" TODO: Either:
-" 1) generate the paths here and make it platform agnostic
-" or 2) set up variable sets for different platforms (eugh)
-let g:erlangHighlightErrors = 0
-let g:erlangHighlightBif = 1
-let g:erlangCompletionDisplayDoc = 1
-" TODO: There has to be a programmatic way to get these paths
-let g:erlangManPath = "/usr/share/man/man3"
-"let g:erlangCheckFile = "~/.vim/vim-addons/github-sanmiguel-vimerl/compiler/erlang_check.erl"
-let g:erlangWranglerPath = "/usr/local/share/wrangler"
-let g:erlangRefactoring = 1
-
 " replace groups up to 4 spaces before any non-whitespace characters on all
 " lines
 function! SanitiseLeadSpace()
@@ -355,7 +342,8 @@ fun! SetupVAM()
   "
   " It's probably worth investigating if ordering is important here...
   call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
+  "call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:aerosol/vimerl'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:ervandew/supertab'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:puppetlabs/puppet-syntax-vim'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:smerrill/vagrant-vim'], {'auto_install' : 0})
