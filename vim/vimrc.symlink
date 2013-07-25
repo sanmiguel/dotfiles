@@ -152,11 +152,6 @@ map <silent> .s :match TrailWhiteSpace /[ \t]\+$/<CR>
 :highlight LeadTabSpace ctermbg = yellow
 :match LeadTabSpace /^[ ]\+/
 
-" map ~ to the same as * for searching, so i don't have to reach to the numpad
-" or 8
-map ~ *
-
-
 " map ,t to open the tag list window
 map ,t :TlistToggle<CR>
 
