@@ -171,6 +171,8 @@ map ,p :g/^proc/#<CR>
 " automatically detect .ics files and set syntax accordingly
 autocmd! BufRead,BufNewFile *.ics setfiletype icalendar
 
+" associate *.foo with php filetype
+au! BufRead,BufNewFile *.app.src setfiletype erlang
 
 "	" from vim help - smart tab completion
 "	function! CleverTab()
