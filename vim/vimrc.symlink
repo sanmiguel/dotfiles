@@ -1,5 +1,7 @@
 " Configuration file for vim
 
+" List matches when tab-completing commands
+set wildmenu
 " use this path to look for files with gf, :find :tabfind etc
 set path=**;.
 
