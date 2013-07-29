@@ -121,7 +121,7 @@ endif
 ",V reloads it making changes
 
 map ,v :tabe ~/.vimrc<CR>
-map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'w00t!: vimrc reloaded'"<CR>
+map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:source ~/.vimrc-after<CR>:exe ":echo 'w00t!: vimrc reloaded'"<CR>
 
 " set ,z to maximise current window height-wise
 map <silent> ,z :resize 99<CR>
