@@ -5,3 +5,11 @@ match OverLength /\%>84v.\+/
 " set up formatoptions how I like it
 set formatoptions-=o
 set formatoptions+=r
+
+function! StartEclim()
+    if !eclim#PingEclim(0)
+        silent! execute "!eclimd"
+    endif
+endfunction
+
+com! -nargs=0 StartEclim call StartEclim()
