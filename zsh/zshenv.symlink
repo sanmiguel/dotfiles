@@ -1,0 +1,4 @@
+# kerl
+if [ -f ~/bin/activate ]; then
+    . ~/bin/activate
+fi

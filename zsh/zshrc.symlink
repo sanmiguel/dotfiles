@@ -31,7 +31,7 @@ unsetopt hist_verify
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vagrant git git-extras osx brew)
+plugins=(github gnu-utils ssh-agent python virtualenv vagrant git git-extras osx brew rebar kerl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -41,3 +41,9 @@ export LD_LIBRARY_PATH=~/.opam/system/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 export LESS=-Ri
+
+# for zsh-completions package
+fpath=(/usr/local/share/zsh-completions $fpath)
+# debug
+#fpath=(/usr/local/share/zsh-completions /usr/share/zsh/4.3.11/functions)
+export fpath
