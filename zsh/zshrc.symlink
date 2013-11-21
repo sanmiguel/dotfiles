@@ -36,14 +36,22 @@ plugins=(github gnu-utils ssh-agent python virtualenv vagrant git git-extras osx
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=~/bin:~/.opam/system/bin:/usr/local/sbin:/usr/local/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
-export LD_LIBRARY_PATH=~/.opam/system/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+#PATH=/usr/X11/bin:$PATH
+#PATH=/sbin:$PATH
+#PATH=/usr/local/git/bin:$PATH
+#PATH=/usr/sbin:$PATH
+#PATH=/bin:$PATH
+#PATH=/usr/bin:$PATH
+#PATH=/usr/local/bin:$PATH
+#PATH=/usr/local/sbin:$PATH
+PATH=~/bin:$PATH
 
-export LESS=-Ri
+PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+
+LESS=-Ri
 
 # for zsh-completions package
 fpath=(/usr/local/share/zsh-completions $fpath)
 # debug
 #fpath=(/usr/local/share/zsh-completions /usr/share/zsh/4.3.11/functions)
-export fpath
+export fpath PATH PYTHONPATH LESS
