@@ -9,3 +9,10 @@
 	editor = /usr/bin/vim
 [help]
 	autocorrect = 1
+[diff]
+	tool = vimdiff2
+[dude]
+	interval = 30
+	notify-command = terminal-notifier -message \"$DESCRIPTION\" -title \"$TITLE\"
+[merge]
+	tool = vimdiff
