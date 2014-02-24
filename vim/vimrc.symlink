@@ -266,14 +266,6 @@ function! ToggleAutoComment()
 endfunction
 nmap ,c :call ToggleAutoComment()<CR>
 
-" When I open an XML, I hit F5... this breaks it all into individual lines.
-" Hit F7, if you want the XML node and content to be on the same line.
-"
-map <F5> :%s/<\([^>]\)*>/\r&\r/g<CR>:g/^$/d<CR>vat=
-map <F6> vatJxvito<right><left>x
-map <F7> /\v^\s*([a-zA-Z\-0-9\$])<CR>qm<F6>nq@q1000@@:1<CR>
-
-
 set diffexpr=MyDiff()
 function! MyDiff()
 	let opt = ""
@@ -359,7 +351,8 @@ fun! SetupVAM()
   "call vam#ActivateAddons(['github:dahu/SearchParty'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:editorconfig/editorconfig-vim'], {'auto_install' : 0})
 
-  call vam#ActivateAddons(['github:scrooloose/syntastic'], {'auto_install' : 0})
+  call vam#ActivateAddons(['github:tpope/vim-unimpaired'], {'auto_install' : 0})
+  "call vam#ActivateAddons(['github:scrooloose/syntastic'], {'auto_install' : 0})
 
   " Plugins: External Utilities
   call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})

@@ -1,0 +1,2 @@
+KERL_CONFIGURE_OPTIONS="--enable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit --with-ssl=/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/include/ --without-odbc"
+KERL_INSTALL_MANPAGES=yes
