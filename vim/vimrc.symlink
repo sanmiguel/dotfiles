@@ -160,154 +160,75 @@ function! MyDiff()
 		\ " > " . v:fname_out
 endfunction
 
-" VAM (vim-addon-manager) stuff
-fun! EnsureVamIsOnDisk(vam_install_path)
-  " windows users may want to use http://mawercer.de/~marc/vam/index.php
-  " to fetch VAM, VAM-known-repositories and the listed plugins
-  " without having to install curl, 7-zip and git tools first
-  " -> BUG [4] (git-less installation)
-  let is_installed_c = "isdirectory(a:vam_install_path.'/vim-addon-manager/autoload')"
-  if eval(is_installed_c)
-    return 1
-  else
-    if 1 == confirm("Clone VAM into ".a:vam_install_path."?","&Y\n&N")
-      " I'm sorry having to add this reminder. Eventually it'll pay off.
-      call confirm("Remind yourself that most plugins ship with ".
-                  \"documentation (README*, doc/*.txt). It is your ".
-                  \"first source of knowledge. If you can't find ".
-                  \"the info you're looking for in reasonable ".
-                  \"time ask maintainers to improve documentation")
-      call mkdir(a:vam_install_path, 'p')
-      execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '.shellescape(a:vam_install_path, 1).'/vim-addon-manager'
-      " VAM runs helptags automatically when you install or update
-      " plugins
-      exec 'helptags '.fnameescape(a:vam_install_path.'/vim-addon-manager/doc')
-    endif
-    return eval(is_installed_c)
-  endif
-endf
-
 fun! SetupVAM()
-  " Set advanced options like this:
-  " let g:vim_addon_manager = {}
-  " let g:vim_addon_manager['key'] = value
-
-  " Example: drop git sources unless git is in PATH. Same plugins can
-  " be installed from www.vim.org. Lookup MergeSources to get more control
-  " let g:vim_addon_manager['drop_git_sources'] = !executable('git')
-  " let g:vim_addon_manager.debug_activation = 1
-
-  " VAM install location:
-  let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
-  if !EnsureVamIsOnDisk(vam_install_path)
-    echohl ErrorMsg
-    echomsg "No VAM found!"
-    echohl NONE
-    return
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+  " most used options you may want to use:
+  " let c.log_to_buf = 1
+  " let c.auto_install = 0
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+        \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
   endif
-  exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
-
-  " Tell VAM which plugins to fetch & load: Let's try to put all config
-  " relevant to a single plugin just before the line that loads that plugin.
-  "
-  " It's probably worth investigating if ordering is important here...
-  " Plugins: Vim Utilities
-  "call vam#ActivateAddons(['github:tpope/vim-vividchalk'], {'auto_install' : 0})
-  "colorscheme vividchalk
-  call vam#ActivateAddons(['github:flazz/vim-colorschemes', 'github:altercation/vim-colors-solarized'], {'auto_install' : 0})
-  set background=dark
-  "colorscheme DevC++
-  let g:solarized_termcolors=256
-  colorscheme solarized
-
-  " SuperTab
-  let g:SuperTabDefaultCompletionType="<c-o>"
-  call vam#ActivateAddons(['github:ervandew/supertab'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:tsaleh/vim-align'], {'auto_install' : 0})
-  " vv included for Powerline
-  set laststatus=2
-  "let g:Powerline_symbols = 'fancy'
-  call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:zhaocai/linepower.vim'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:AD7six/vim-activity-log'], {'auto_install' : 0})
-  "call vam#ActivateAddons(['github:Valloric/YouCompleteMe'], {'auto_install' : 0})
-  "call vam#ActivateAddons(['github:dahu/SearchParty'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:editorconfig/editorconfig-vim'], {'auto_install' : 0})
-
-  call vam#ActivateAddons(['github:tpope/vim-unimpaired'], {'auto_install' : 0})
-  "call vam#ActivateAddons(['github:scrooloose/syntastic'], {'auto_install' : 0})
-
-  let g:golden_ratio_exclude_nonmodifiable = 1
-  call vam#ActivateAddons(['github:roman/golden-ratio'], {'auto_install' : 0})
-
-
-  " Plugins: External Utilities
-  call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:mileszs/ack.vim'], {'auto_install' : 0})
-  let g:ref_open="vsplit"
-  call vam#ActivateAddons(['github:thinca/vim-ref'], {'auto_install' : 0})
-
-  call vam#ActivateAddons(['github:tpope/vim-markdown'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:suan/vim-instant-markdown'], {'auto_install' : 0})
-
-  " Plugins: Unite
-  call vam#ActivateAddons(['github:Shougo/vimproc.vim'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:Shougo/vimshell.vim'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:Shougo/unite.vim'], {'auto_install' : 0})
-
-  nnoremap <leader>K :<C-u>Unite ref/erlang -buffer-name=erlang_docs -vertical -start-insert<CR>
-  let g:unite_source_grep_command = 'ack'
-  let g:unite_source_grep_recursive_opt = ''
-  let g:unite_source_grep_default_opts = '--noheading --nocolor '
-
-
-  " Plugins: Language-specific
-  call vam#ActivateAddons(['github:puppetlabs/puppet-syntax-vim'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:smerrill/vagrant-vim'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:uarun/vim-protobuf'], {'auto_install' : 0})
-
-  " Plugins: Erlang
-  "call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:vim-erlang/vim-rebar'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:vim-erlang/vim-erlang-omnicomplete'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:vim-erlang/vim-erlang-compiler'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:tpope/vim-dispatch'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:vim-erlang/vim-dialyzer'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:vim-erlang/vim-erlang-runtime'], {'auto_install' : 0})
-  "call vam#ActivateAddons(['github:vim-erlang/vim-erlang_tools'], {'auto_install' : 0})
-  call vam#ActivateAddons(['github:vim-erlang/vim-erlang-skeletons'], {'auto_install' : 0})
-  let g:erlang_tags_ignore = "_rel"
-  let g:erlang_tags_outfile = ".git/erlang.tags"
-
-  set tags+="/usr/local/Cellar/erlang/R16B03-1/tags"
-
-  call vam#ActivateAddons(['github:vim-erlang/vim-erlang-tags'], {'auto_install' : 0})
-  " vim-erlang-tags
-
-  " Plugins: Elixir
-  call vam#ActivateAddons(['github:elixir-lang/vim-elixir'], {'auto_install' : 0})
-
-
-  " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
-
-  " Addons are put into vam_install_path/plugin-name directory
-  " unless those directories exist. Then they are activated.
-  " Activating means adding addon dirs to rtp and do some additional
-  " magic
-
-  " How to find addon names?
-  " - look up source from pool
-  " - (<c-x><c-p> complete plugin names):
-  " You can use name rewritings to point to sources:
-  "    ..ActivateAddons(["github:foo", .. => github://foo/vim-addon-foo
-  "    ..ActivateAddons(["github:user/repo", .. => github://user/repo
-  " Also see section "2.2. names of addons and addon sources" in VAM's documentation
+  call vam#ActivateAddons([], {'auto_install' : 0})
 endfun
 call SetupVAM()
-" experimental [E1]: load plugins lazily depending on filetype, See
-" NOTES
-" experimental [E2]: run after gui has been started (gvim) [3]
-" option1:  au VimEnter * call SetupVAM()
-" option2:  au GUIEnter * call SetupVAM()
-" See BUGS sections below [*]
-" Vim 7.0 users see BUGS section [3]
+
+" It's probably worth investigating if ordering is important here...
+" Plugins: Vim Utilities
+"call vam#ActivateAddons(['github:tpope/vim-vividchalk'], {'auto_install' : 0})
+"colorscheme vividchalk
+"call vam#ActivateAddons(['github:flazz/vim-colorschemes', 'github:altercation/vim-colors-solarized'], {'auto_install' : 0})
+VAMActivate github:altercation/vim-colors-solarized
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+"" SuperTab
+"let g:SuperTabDefaultCompletionType="<c-o>"
+VAMActivate Supertab
+"call vam#ActivateAddons(['github:tsaleh/vim-align'], {'auto_install' : 0})
+
+"" vv included for Powerline
+set laststatus=2
+VAMActivate powerline github:zhaocai/linepower.vim
+
+VAMActivate activity-log editorconfig-vim unimpaired
+
+let g:golden_ratio_exclude_nonmodifiable = 1
+VAMActivate golden-ratio
+
+"" Plugins: External Utilities
+let g:ref_open="vsplit"
+"call vam#ActivateAddons(['github:tpope/vim-markdown'], {'auto_install' : 0})
+VAMActivate fugitive ack ref instant-markdown 
+"
+"" Plugins: Unite
+"nnoremap <leader>K :<C-u>Unite ref/erlang -buffer-name=erlang_docs -vertical -start-insert<CR>
+"let g:unite_source_grep_command = 'ack'
+"let g:unite_source_grep_recursive_opt = ''
+"let g:unite_source_grep_default_opts = '--noheading --nocolor '
+VAMActivate vimproc vimshell unite 
+
+"" Plugins: Language-specific
+VAMActivate github:puppetlabs/puppet-syntax-vim github:smerrill/vagrant-vim github:uarun/vim-protobuf
+
+"" Plugins: Elixir
+VAMActivate vim-elixir
+
+"" Plugins: Erlang
+" Deprecated?
+"call vam#ActivateAddons(['github:sanmiguel/vimerl'], {'auto_install' : 0})
+"call vam#ActivateAddons(['github:vim-erlang/vim-erlang_tools'], {'auto_install' : 0})
+VAMActivate github:vim-erlang/vim-rebar github:vim-erlang/vim-erlang-omnicomplete 
+VAMActivate github:vim-erlang/vim-erlang-compiler github:tpope/vim-dispatch 
+VAMActivate github:vim-erlang/vim-dialyzer github:vim-erlang/vim-erlang-runtime github:vim-erlang/vim-erlang-skeletons
+
+let g:erlang_tags_ignore = "_rel"
+let g:erlang_tags_outfile = ".git/erlang.tags"
+
+set tags+="/usr/local/Cellar/erlang/R16B03-1/tags"
+VAMActivate github:vim-erlang/vim-erlang-tags
+"
