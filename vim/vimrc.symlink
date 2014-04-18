@@ -1,6 +1,6 @@
 " Configuration file for vim
 
-set clipboard=unnamed
+set clipboard+=unnamed
 
 " List matches when tab-completing commands
 set wildmenu
@@ -354,12 +354,17 @@ fun! SetupVAM()
   call vam#ActivateAddons(['github:tpope/vim-unimpaired'], {'auto_install' : 0})
   "call vam#ActivateAddons(['github:scrooloose/syntastic'], {'auto_install' : 0})
 
+  let g:golden_ratio_exclude_nonmodifiable = 1
+  call vam#ActivateAddons(['github:roman/golden-ratio'], {'auto_install' : 0})
+
+
   " Plugins: External Utilities
   call vam#ActivateAddons(['fugitive'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:mileszs/ack.vim'], {'auto_install' : 0})
   let g:ref_open="vsplit"
   call vam#ActivateAddons(['github:thinca/vim-ref'], {'auto_install' : 0})
 
+  call vam#ActivateAddons(['github:tpope/vim-markdown'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:suan/vim-instant-markdown'], {'auto_install' : 0})
 
   " Plugins: Unite
@@ -389,8 +394,16 @@ fun! SetupVAM()
   "call vam#ActivateAddons(['github:vim-erlang/vim-erlang_tools'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:vim-erlang/vim-erlang-skeletons'], {'auto_install' : 0})
   let g:erlang_tags_ignore = "_rel"
+  let g:erlang_tags_outfile = ".git/erlang.tags"
+
+  set tags+="/usr/local/Cellar/erlang/R16B03-1/tags"
+
   call vam#ActivateAddons(['github:vim-erlang/vim-erlang-tags'], {'auto_install' : 0})
   " vim-erlang-tags
+
+  " Plugins: Elixir
+  call vam#ActivateAddons(['github:elixir-lang/vim-elixir'], {'auto_install' : 0})
+
 
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
 
