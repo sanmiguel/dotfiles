@@ -36,6 +36,9 @@ unsetopt hist_verify
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(github gnu-utils ssh-agent colored-man python virtualenv vagrant git git-extras osx brew rebar kerl elixir mix npm lein gem ruby pip)
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets pattern cursor root )
+plugins=( $plugins zsh-syntax-highlighting )
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
