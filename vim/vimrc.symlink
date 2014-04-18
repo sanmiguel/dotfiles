@@ -1,4 +1,9 @@
 " Configuration file for vim
+filetype indent plugin on
+
+" If using a dark background within the editing area and syntax highlighting
+" turn on this option as well
+set background=dark
 
 set clipboard+=unnamed
 
@@ -46,76 +51,23 @@ set splitright
 " vim, quit leaving your trash all over my place
 set directory=~/.vim/backup,~/tmp,/var/tmp,/tmp
 
-" We know xterm-debian is a color terminal
-if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
-	set t_Co=16
-	set t_Sf=[3%dm
-	set t_Sb=[4%dm
-endif
-
 set t_Co=256
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 syntax on
 
-" make sure we use informix flavoured sql highlighting
-let g:sql_type_default = 'sqlinformix'
-
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-set background=dark
-
-if has("autocmd")
-	" Enabled file type detection
-	" Use the default filetype settings. If you also want to load indent files
-	" to automatically do language-dependent indenting add 'indent' as well.
-	filetype plugin on
-	filetype indent on
-
-endif " has ("autocmd")
-
-" Some Debian-specific things
-if has("autocmd")
-	augroup filetype
-	au BufRead reportbug.*		set ft=mail
-	au BufRead reportbug-*		set ft=mail
-	augroup END
-endif
-
-" Set paper size from /etc/papersize if available (Debian-specific)
-if filereadable("/etc/papersize")
-	try
-	let s:shellbak = &shell
-	let &shell="/bin/sh"
-	let s:papersize = matchstr(system("cat /etc/papersize"), "\\p*")
-	let &shell=s:shellbak
-	if strlen(s:papersize)
-		let &printoptions = "paper:" . s:papersize
-	endif
-	catch /^Vim\%((\a\+)\)\=:E145/
-	endtry
-endif
 
 " The following are commented out as they cause vim to behave a lot
 " different from regular vi. They are highly recommended though.
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 "set autowrite		" Automatically save before commands like :next and :make
-" vv included for Powerline
-set laststatus=2
-"let g:Powerline_symbols = 'fancy'
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
 	source /etc/vim/vimrc.local
 endif
-
-" add some variables for cvscommand
-" :let g:VCSCommandCommitOnWrite = 0
-:let g:VCSCommandCVSEdit = 'split'
-:let g:VCSCommandCVSplit = 'horizontal'
-:let g:VCSCommandCVSDiffOpt = 'uN'
 
 :set diffopt=vertical,filler
 
@@ -125,18 +77,6 @@ endif
 map ,v :tabe ~/.vimrc<CR>
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:source ~/.vimrc-after<CR>:exe ":echo 'w00t!: vimrc reloaded'"<CR>
 
-" set ,z to maximise current window height-wise
-map <silent> ,z :resize 99<CR>
-" set .z to maximise current window width-wise
-map <silent> .z :vertical resize 250<CR>
-
-" set ,x to minimise current window height-wise
-map <silent> ,x :resize 0<CR>
-"set .x to resize window widthwise
-map <silent> .x :vertical resize 0<CR>
-
-" set ,; to write current file
-map ,; :w<CR>
 "set mouse active
 set mouse=a
 map ,a :set mouse=a<CR>
@@ -144,28 +84,11 @@ map .a :set mouse=vic<CR>
 
 " set shortcut to clear all trailing whitespace
 map ,s :%s/\s\+$//g<CR>
-" this will highlight any trailing whitespace in any file, since there's no
-" excuse for it :)
-:highlight TrailWhiteSpace ctermbg=blue
-:match TrailWhiteSpace /[ \t]\+$/
-map <silent> .s :match TrailWhiteSpace /[ \t]\+$/<CR>
-
-" highlight leading non-tab space
-:highlight LeadTabSpace ctermbg = yellow
-:match LeadTabSpace /^[ ]\+/
 
 " search for visually selected text
 :vmap // y/<C-R>"<CR>
 
-" is there a way to set up a secondary search?
-" I bet there is, and it'll involve something along the lines of highlight and
-" match as above, but with a slight modification
-"
 map x/ :match none<CR>
-
-" map ,p to show list of procs
-map ,p :g/^proc/#<CR>
-
 
 " automatically detect .ics files and set syntax accordingly
 autocmd! BufRead,BufNewFile *.ics setfiletype icalendar
@@ -173,49 +96,14 @@ autocmd! BufRead,BufNewFile *.ics setfiletype icalendar
 " associate *.foo with php filetype
 au! BufRead,BufNewFile *.app.src setfiletype erlang
 
-"	" from vim help - smart tab completion
-"	function! CleverTab()
-"	   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-"	      return "\<Tab>"
-"	   else
-"	      return "\<C-N>"
-"	endfunction
-"	inoremap <Tab> <C-R>=CleverTab()<CR>
-
-
-" JAVH: go to last edit position
-autocmd BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-		\   exe "normal! g`\"" |
-	\ endif
-
-" SuperTab
-"
-let g:SuperTabDefaultCompletionType="<c-o>"
-" let b:SuperTabDefaultCompletionType = "custom"
-" let b:SuperTabNoCompleteAfter       = ['\s']
-
 nmap ,n :set invnumber<CR>
 
-"vimgrep binding from bram
-noremap <F3> :exec "vimgrep! /" . expand("<cword>") . "/j *"<cr>
-noremap <F4> :exec "vimgrep! /" . expand("<cword>") . "/j **"<cr>
 nnoremap <C-n> <Esc>:cn<Esc>
 nnoremap <C-p> <Esc>:cp<Esc>
 
-
 let g:scmDiffUseAbsPaths = 0
 
-
 set showtabline=2
-
-
-"if has('gui_running')
-"	colorscheme darkblue
-"else
-"	colorscheme desert
-"    "colorscheme zellner
-"endif
 
 " replace groups up to 4 spaces before any non-whitespace characters on all
 " lines
@@ -231,16 +119,6 @@ function! SanitiseLeadSpace()
 	endwhile
 endfunction
 nmap ,l :call SanitiseLeadSpace()<CR>
-
-" get the schema for the given stored proc in the given db
-" shove it into a new tab and set the syntax correctly
-function! GetStoredProc(db, proc)
-	" tabe
-	let database=a:db
-	let proc=a:proc
-	!dbschema -d a:db -f a:proc
-	" set syntax=sql
-endfunction
 
 " switching auto-comments on and off
 "
@@ -342,8 +220,13 @@ fun! SetupVAM()
   let g:solarized_termcolors=256
   colorscheme solarized
 
+  " SuperTab
+  let g:SuperTabDefaultCompletionType="<c-o>"
   call vam#ActivateAddons(['github:ervandew/supertab'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:tsaleh/vim-align'], {'auto_install' : 0})
+  " vv included for Powerline
+  set laststatus=2
+  "let g:Powerline_symbols = 'fancy'
   call vam#ActivateAddons(['github:Lokaltog/vim-powerline'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:zhaocai/linepower.vim'], {'auto_install' : 0})
   call vam#ActivateAddons(['github:AD7six/vim-activity-log'], {'auto_install' : 0})

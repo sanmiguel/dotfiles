@@ -1,0 +1,74 @@
+
+" Some Debian-specific things
+if has("autocmd")
+	augroup filetype
+	au BufRead reportbug.*		set ft=mail
+	au BufRead reportbug-*		set ft=mail
+	augroup END
+endif
+
+" Set paper size from /etc/papersize if available (Debian-specific)
+if filereadable("/etc/papersize")
+	try
+	let s:shellbak = &shell
+	let &shell="/bin/sh"
+	let s:papersize = matchstr(system("cat /etc/papersize"), "\\p*")
+	let &shell=s:shellbak
+	if strlen(s:papersize)
+		let &printoptions = "paper:" . s:papersize
+	endif
+	catch /^Vim\%((\a\+)\)\=:E145/
+	endtry
+endif
+
+" We know xterm-debian is a color terminal
+if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
+	set t_Co=16
+	set t_Sf=[3%dm
+	set t_Sb=[4%dm
+endif
+
+" map ,p to show list of procs
+map ,p :g/^proc/#<CR>
+
+" make sure we use informix flavoured sql highlighting
+let g:sql_type_default = 'sqlinformix'
+
+" get the schema for the given stored proc in the given db
+" shove it into a new tab and set the syntax correctly
+function! GetStoredProc(db, proc)
+	" tabe
+	let database=a:db
+	let proc=a:proc
+	!dbschema -d a:db -f a:proc
+	" set syntax=sql
+endfunction
+
+" add some variables for cvscommand
+" :let g:VCSCommandCommitOnWrite = 0
+:let g:VCSCommandCVSEdit = 'split'
+:let g:VCSCommandCVSplit = 'horizontal'
+:let g:VCSCommandCVSDiffOpt = 'uN'
+
+" set ,z to maximise current window height-wise
+map <silent> ,z :resize 99<CR>
+" set .z to maximise current window width-wise
+map <silent> .z :vertical resize 250<CR>
+
+" set ,x to minimise current window height-wise
+map <silent> ,x :resize 0<CR>
+"set .x to resize window widthwise
+map <silent> .x :vertical resize 0<CR>
+
+" set ,; to write current file
+map ,; :w<CR>
+
+" highlight leading non-tab space
+:highlight LeadTabSpace ctermbg = yellow
+:match LeadTabSpace /^[ ]\+/
+
+" this will highlight any trailing whitespace in any file, since there's no
+" excuse for it :)
+:highlight TrailWhiteSpace ctermbg=blue
+:match TrailWhiteSpace /[ \t]\+$/
+map <silent> .s :match TrailWhiteSpace /[ \t]\+$/<CR>
