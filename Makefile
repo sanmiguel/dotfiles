@@ -1,4 +1,4 @@
-.PHONY: zsh bash vim git kerl ripit
+.PHONY: oh-my-zsh bash vim git kerl ripit
 
 ripit:
 	ln -nsf $(PWD)/ripit/ripit.symlink ~/.ripit
@@ -14,10 +14,10 @@ vim:
 	ln -nsf $(PWD)/vim/vimrc.symlink ~/.vimrc
 	ln -nsf $(PWD)/vim/vimrc-after.symlink ~/.vimrc-after
 
-zsh:
-	ln -nsf $(PWD)/zsh/zshrc.symlink ~/.zshrc
-	ln -nsf $(PWD)/zsh/zshenv.symlink ~/.zshenv
+oh-my-zsh:
+	ln -nsf $(PWD)/oh-my-zsh/zshrc.symlink ~/.zshrc
+	ln -nsf $(PWD)/oh-my-zsh/zshenv.symlink ~/.zshenv
 
-shell: zsh
+shell: oh-my-zsh
 
 all: shell vim git ripit
