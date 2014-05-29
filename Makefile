@@ -1,4 +1,4 @@
-.PHONY: oh-my-zsh bash vim git kerl ripit
+.PHONY: prezto oh-my-zsh bash vim git kerl ripit
 
 ripit:
 	ln -nsf $(PWD)/ripit/ripit.symlink ~/.ripit
@@ -17,6 +17,14 @@ vim:
 oh-my-zsh:
 	ln -nsf $(PWD)/oh-my-zsh/zshrc.symlink ~/.zshrc
 	ln -nsf $(PWD)/oh-my-zsh/zshenv.symlink ~/.zshenv
+
+prezto:
+	ln -nsf $(PWD)/prezto/zshenv ~/.zshenv
+	ln -nsf $(PWD)/prezto/zprofile ~/.zprofile
+	ln -nsf $(PWD)/prezto/zshrc ~/.zshrc
+	ln -nsf $(PWD)/prezto/zpreztorc ~/.zpreztorc
+	ln -nsf $(PWD)/prezto/zlogin ~/.zlogin
+	ln -nsf $(PWD)/prezto/zlogout ~/.zlogout
 
 shell: oh-my-zsh
 
