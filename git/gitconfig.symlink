@@ -16,3 +16,7 @@
 	notify-command = terminal-notifier -message \"$DESCRIPTION\" -title \"$TITLE\"
 [merge]
 	tool = vimdiff
+[branch]
+	autosetuprebase = always
+[github]
+	user = sanmiguel
