@@ -19,6 +19,8 @@ oh-my-zsh:
 	ln -nsf $(PWD)/oh-my-zsh/zshenv.symlink ~/.zshenv
 
 prezto:
+	# Install prezto
+	ln -nsf $(PWD)/prezto/prezto-install ~/.zprezto
 	ln -nsf $(PWD)/prezto/zshenv ~/.zshenv
 	ln -nsf $(PWD)/prezto/zprofile ~/.zprofile
 	ln -nsf $(PWD)/prezto/zshrc ~/.zshrc
