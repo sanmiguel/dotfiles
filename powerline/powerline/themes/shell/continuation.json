@@ -1,12 +1,12 @@
 {
-	"default_module": "powerline.segments.shell",
-	"segments": {
-		"left": [
-			{
-				"name": "continuation"
-			}
-		],
-		"right": [
-		]
-	}
+    "default_module": "powerline.segments.shell",
+    "segments": {
+        "left": [
+            {
+                "name": "continuation"
+            }
+        ],
+        "right": [
+        ]
+    }
 }
