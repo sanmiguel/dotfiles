@@ -18,6 +18,13 @@ oh-my-zsh:
 	ln -nsf $(PWD)/oh-my-zsh/zshrc.symlink ~/.zshrc
 	ln -nsf $(PWD)/oh-my-zsh/zshenv.symlink ~/.zshenv
 
+prezto-deps:
+	if [ ! -d ~/.zprezto ]; then \
+		git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto; \
+	else \
+		( cd ~/.zprezto; git pull ; git submodule update --init --recursive ) \
+	fi
+
 prezto:
 	# Install prezto
 	ln -nsf $(PWD)/prezto/prezto-install ~/.zprezto
@@ -27,6 +34,9 @@ prezto:
 	ln -nsf $(PWD)/prezto/zpreztorc ~/.zpreztorc
 	ln -nsf $(PWD)/prezto/zlogin ~/.zlogin
 	ln -nsf $(PWD)/prezto/zlogout ~/.zlogout
+
+unprezto:
+	rm ~/.zshenv ~/.zprofile ~/.zshrc ~/.zpreztorc ~/.zlogin ~/.zlogout
 
 shell: oh-my-zsh
 
