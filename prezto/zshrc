@@ -5,10 +5,13 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+module_path=($module_path /usr/local/lib/zpython)
+
+. ~/git/powerline/powerline/bindings/zsh/powerline.zsh
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
-

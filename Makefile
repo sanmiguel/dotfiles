@@ -1,4 +1,4 @@
-.PHONY: prezto oh-my-zsh bash vim git kerl ripit
+.PHONY: powerline prezto oh-my-zsh bash vim git kerl ripit
 
 ripit:
 	ln -nsf $(PWD)/ripit/ripit.symlink ~/.ripit
@@ -37,6 +37,10 @@ prezto:
 
 unprezto:
 	rm ~/.zshenv ~/.zprofile ~/.zshrc ~/.zpreztorc ~/.zlogin ~/.zlogout
+
+powerline:
+	[ ! -d ~/.config ] && mkdir ~/.config || echo
+	ln -nsf $(PWD)/powerline/powerline ~/.config/powerline
 
 shell: oh-my-zsh
 
