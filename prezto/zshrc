@@ -7,8 +7,13 @@
 
 module_path=($module_path /usr/local/lib/zpython)
 
-. ~/git/powerline/powerline/bindings/zsh/powerline.zsh
-
+_POWERLINE_DIR=~/git/powerline
+if [ -d $_POWERLINE_DIR ]; then
+    . $_POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
+    PREZTO_PROMPT="off"
+else
+    PREZTO_PROMPT="on"
+fi
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
