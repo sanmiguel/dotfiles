@@ -177,17 +177,20 @@ fun! SetupVAM()
 endfun
 call SetupVAM()
 
-" It's probably worth investigating if ordering is important here...
 " Plugins: Vim Utilities
-"call vam#ActivateAddons(['github:tpope/vim-vividchalk'], {'auto_install' : 0})
-"colorscheme vividchalk
-"call vam#ActivateAddons(['github:flazz/vim-colorschemes',
-"     \ 'github:altercation/vim-colors-solarized'], {'auto_install' : 0})
-
 VAMActivate github:altercation/vim-colors-solarized
+let g:solarized_termcolors=256    "default value is 16
+let g:solarized_contrast="high"    " high | normal | low
+"let g:solarized_visibility="low"    " high | normal | low
+" let g:solarized_diffmode="normal"  " high | normal | Low
+" let g:solarized_termtrans=1  " 0 | 1
+" let g:solarized_hitrail=0    " 0 | 1
 set background=dark
-let g:solarized_termcolors=256
 colorscheme solarized
+
+
+let g:session_autosave = 'no'
+VAMActivate github:xolox/vim-misc github:xolox/vim-session
 
 "" SuperTab
 VAMActivate Supertab
@@ -206,6 +209,7 @@ VAMActivate golden-ratio
 let g:ref_open="vsplit"
 "call vam#ActivateAddons(['github:tpope/vim-markdown'], {'auto_install' : 0})
 VAMActivate fugitive ack ref github:tpope/vim-markdown instant-markdown
+VAMActivate github:sanmiguel/helpex.vim
 VAMActivate github:mattn/webapi-vim github:mattn/gist-vim
 
 "" Plugins: Unite
@@ -233,6 +237,8 @@ VAMActivate
     \ github:vim-erlang/vim-dialyzer
     \ github:vim-erlang/vim-erlang-runtime
     \ github:vim-erlang/vim-erlang-skeletons
+
+let g:erl_author='<michael.coles@gmail.com>'
 
 let g:erlang_tags_ignore = "_rel"
 let g:erlang_tags_outfile = ".git/erlang.tags"
