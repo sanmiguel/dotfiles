@@ -5,12 +5,16 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+fpath=(~/git/kerl/zsh_completion $fpath)
 module_path=($module_path /usr/local/lib/zpython)
 
-_POWERLINE_DIR=~/git/powerline
+zmodload zsh/zpython
+
+_POWERLINE_DIR=$(zpython "import pkg_resources; dist = pkg_resources.get_distribution(\"Powerline\"); print dist.location")
 if [ -d $_POWERLINE_DIR ]; then
     . $_POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
     PREZTO_PROMPT="off"
+    VIRTUAL_ENV_DISABLE_PROMPT="on"
 else
     PREZTO_PROMPT="on"
 fi
@@ -20,3 +24,4 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+path=(~/bin $path)
