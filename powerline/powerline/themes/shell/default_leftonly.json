@@ -26,13 +26,16 @@
                 "name": "virtualenv"
             },
             {
+                "name": "cwd",
+                "args": {
+                    "dir_limit_depth": 2
+                }
+            },
+            {
                 "name": "branch"
             },
             {
-                "name": "cwd",
-                "args": {
-                    "dir_limit_depth": 3
-                }
+                "name": "divergence"
             },
             {
                 "module": "powerline.segments.shell",
