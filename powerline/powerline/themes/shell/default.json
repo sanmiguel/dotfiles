@@ -32,7 +32,21 @@
             {
                 "name": "cwd",
                 "args": {
-                    "dir_limit_depth": 3
+                    "dir_limit_depth": 2
+                }
+            },
+            {
+                "name": "vcs_info",
+                "args": {
+                    "included_info": [
+                        "clean",
+                        "working_tree:new",
+                        "working_tree:modified",
+                        "working_tree:deleted",
+                        "index:new",
+                        "index:modified",
+                        "index:deleted"
+                            ]
                 }
             },
             {
@@ -47,6 +61,9 @@
             },
             {
                 "name": "branch"
+            },
+            {
+                "name": "kerl"
             }
         ]
     }
