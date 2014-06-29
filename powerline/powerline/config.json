@@ -24,7 +24,7 @@
             }
         },
         "shell": {
-            "colorscheme": "solarized",
+            "colorscheme": "default",
             "theme": "default",
             "local_themes": {
                 "continuation": "continuation",
@@ -36,7 +36,7 @@
             "theme": "default"
         },
         "vim": {
-            "colorscheme": "default",
+            "colorscheme": "solarized",
             "theme": "default",
             "local_themes": {
                 "cmdwin": "cmdwin",
