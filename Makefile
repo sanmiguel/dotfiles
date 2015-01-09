@@ -20,12 +20,12 @@ oh-my-zsh:
 
 prezto-deps:
 	if [ ! -d ~/.zprezto ]; then \
-		git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto; \
+		git clone --recursive https://github.com/sanmiguel/prezto.git ~/.zprezto; \
 	else \
 		( cd ~/.zprezto; git pull ; git submodule update --init --recursive ) \
 	fi
 
-prezto:
+prezto: prezto-deps
 	# Install prezto
 	ln -nsf $(PWD)/prezto/prezto-install ~/.zprezto
 	ln -nsf $(PWD)/prezto/zshenv ~/.zshenv
@@ -42,6 +42,6 @@ powerline:
 	[ ! -d ~/.config ] && mkdir ~/.config || echo
 	ln -nsf $(PWD)/powerline/powerline ~/.config/powerline
 
-shell: oh-my-zsh
+shell: prezto
 
 all: shell vim git ripit
