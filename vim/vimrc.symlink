@@ -6,7 +6,7 @@ filetype indent plugin on
 set background=dark
 
 set clipboard+=unnamed
-set completeopt=menuone,preview
+set completeopt=menuone ",preview
 
 " List matches when tab-completing commands
 set wildmenu
