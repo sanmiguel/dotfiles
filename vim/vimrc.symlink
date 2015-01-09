@@ -166,7 +166,7 @@ fun! SetupVAM()
   let g:vim_addon_manager = c
   let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
   " most used options you may want to use:
-  " let c.log_to_buf = 1
+  let c.log_to_buf = 1
   " let c.auto_install = 0
   let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
   if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
@@ -176,6 +176,8 @@ fun! SetupVAM()
   call vam#ActivateAddons([], {'auto_install' : 0})
 endfun
 call SetupVAM()
+
+let plugins = []
 
 " Plugins: Vim Utilities
 VAMActivate github:altercation/vim-colors-solarized
@@ -188,13 +190,17 @@ let g:solarized_contrast="high"    " high | normal | low
 set background=dark
 colorscheme solarized
 
-
+call add(plugins, {'name': 'github:xolox/vim-session', 'tag': 'common'})
+call add(plugins, {'name': 'github:xolox/vim-misc', 'tag': 'common'})
 let g:session_autosave = 'no'
-VAMActivate github:xolox/vim-misc github:xolox/vim-session
 
+call vam#Scripts(plugins, {'tag_regex': 'common'})
 "" SuperTab
 VAMActivate Supertab
 "call vam#ActivateAddons(['github:tsaleh/vim-align'], {'auto_install' : 0})
+
+VAMActivate matchit.zip
+"VAMActivate matchit
 
 "" vv included for Powerline
 set laststatus=2
@@ -208,10 +214,15 @@ VAMActivate golden-ratio
 "" Plugins: External Utilities
 let g:ref_open="vsplit"
 "call vam#ActivateAddons(['github:tpope/vim-markdown'], {'auto_install' : 0})
-VAMActivate fugitive ack ref github:tpope/vim-markdown instant-markdown
-VAMActivate github:sanmiguel/helpex.vim
+VAMActivate fugitive ack ref github:tpope/vim-markdown " instant-markdown
+"VAMActivate github:sanmiguel/helpex.vim
+let g:gist_update_on_write=2 " Only update gists on :w!
+let g:gist_post_private=1
 VAMActivate github:mattn/webapi-vim github:mattn/gist-vim
-
+VAMActivate github:jaxbot/github-issues.vim
+let g:github_upstream_issues = 1
+let g:github_access_token = "dac8b59ef29a95e25ccd2dc44485cb5e194a23bc"
+""
 "" Plugins: Unite
 "nnoremap <leader>K :<C-u>Unite ref/erlang -buffer-name=erlang_docs -vertical -start-insert<CR>
 "let g:unite_source_grep_command = 'ack'
@@ -226,24 +237,27 @@ VAMActivate github:puppetlabs/puppet-syntax-vim github:smerrill/vagrant-vim gith
 VAMActivate vim-elixir
 
 "" Plugins: Erlang
-" Deprecated?
-"call vam#ActivateAddons(['github:vim-erlang/vim-erlang_tools'], {'auto_install' : 0})
-    "\ github:vim-erlang/vim-erlang-omnicomplete
-VAMActivate
-    \ github:vim-erlang/vim-rebar
-    \ github:hcs42/vim-erlang-omnicomplete
-    \ github:vim-erlang/vim-erlang-compiler
-    \ github:tpope/vim-dispatch
-    \ github:vim-erlang/vim-dialyzer
-    \ github:vim-erlang/vim-erlang-runtime
-    \ github:vim-erlang/vim-erlang-skeletons
+let erlang_addons = [
+    \ 'github:vim-erlang/vim-rebar',
+    \ 'github:vim-erlang/vim-erlang-omnicomplete',
+    \ 'github:vim-erlang/vim-erlang-compiler',
+    \ 'github:vim-erlang/vim-dialyzer',
+    \ 'github:vim-erlang/vim-erlang-runtime',
+    \ 'github:vim-erlang/vim-erlang-skeletons',
+    \ 'github:vim-erlang/erlang-motions.vim',
+    \ 'github:vim-erlang/vim-erlang-tags'
+  \ ]
 
 let g:erl_author='<michael.coles@gmail.com>'
+let g:erlang_tags_ignore = ["_rel", "debian"]
 
-let g:erlang_tags_ignore = "_rel"
-let g:erlang_tags_outfile = ".git/erlang.tags"
-VAMActivate github:vim-erlang/vim-erlang-tags
-
+let ft_addons = [
+  \ {'on_ft': '^erlang$', 'activate': erlang_addons}
+\ ]
+au FileType * for l in filter(copy(ft_addons), 'has_key(v:val, "on_ft") && '.string(expand('<amatch>')).' =~ v:val.on_ft')
+    \ | call vam#ActivateAddons(l.activate, {'force_loading_plugins_now':1}) | endfor
+au BufNewFile,BufRead * for l in filter(copy(ft_addons), 'has_key(v:val, "on_name") && '.string(expand('<amatch>')).' =~ v:val.on_name')
+    \ | call vam#ActivateAddons(l.activate, {'force_loading_plugins_now':1}) | endfor
 
 " Scratchpad
 " Stuff for tag searches
