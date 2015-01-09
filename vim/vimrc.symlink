@@ -76,7 +76,7 @@ endif
 ",V reloads it making changes
 
 map ,v :tabe ~/.vimrc<CR>
-map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:source ~/.vimrc-after<CR>:exe ":echo 'w00t!: vimrc reloaded'"<CR>
+map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>
 
 "set mouse active
 set mouse=a
