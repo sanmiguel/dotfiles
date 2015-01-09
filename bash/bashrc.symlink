@@ -3,14 +3,6 @@
 if [ "$TERM" = "dumb" ]; then
 	# if we're a dumb terminal, do nothing -- it'll all get taken care of later
 	return
-elif [ $TERM != "screen" ]; then
-	s=$(screen -ls | grep Detached | awk '{print $1}')
-	if [ "$s" = "" ]; then
-		# no screen sessions
-		screen -S $(date +%Y%m%d-%H%M%S)
-	else
-		screen -RR
-	fi
 fi
 
 # init the colourisation variables
