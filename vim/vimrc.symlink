@@ -262,3 +262,11 @@ au BufNewFile,BufRead * for l in filter(copy(ft_addons), 'has_key(v:val, "on_nam
 " Scratchpad
 " Stuff for tag searches
 au FileType erlang set include=^\s*-\s*include
+
+" highlight characters after char 83
+highlight OverLength cterm=bold,standout
+au BufEnter * match OverLength /\%>83v.\+/
+
+" set up formatoptions how I like it
+set formatoptions-=o
+set formatoptions+=r
