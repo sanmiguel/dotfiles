@@ -60,6 +60,9 @@
                 "name": "last_pipe_status"
             },
             {
+                "name": "divergence"
+            },
+            {
                 "name": "branch"
             },
             {
