@@ -209,6 +209,7 @@ VAMActivate powerline github:zhaocai/linepower.vim
 VAMActivate activity-log editorconfig-vim unimpaired
 
 let g:golden_ratio_exclude_nonmodifiable = 1
+let g:golden_ratio_autocommand = 0
 VAMActivate golden-ratio
 
 "" Plugins: External Utilities
@@ -221,7 +222,10 @@ let g:gist_post_private=1
 VAMActivate github:mattn/webapi-vim github:mattn/gist-vim
 VAMActivate github:jaxbot/github-issues.vim
 let g:github_upstream_issues = 1
-let g:github_access_token = "dac8b59ef29a95e25ccd2dc44485cb5e194a23bc"
+if filereadable("~/.vimrc.auth")
+    source "~/.vimrc.auth"
+endif
+
 ""
 "" Plugins: Unite
 "nnoremap <leader>K :<C-u>Unite ref/erlang -buffer-name=erlang_docs -vertical -start-insert<CR>
@@ -239,8 +243,8 @@ VAMActivate vim-elixir
 "" Plugins: Erlang
 let erlang_addons = [
     \ 'github:vim-erlang/vim-rebar',
-    \ 'github:vim-erlang/vim-erlang-omnicomplete',
     \ 'github:vim-erlang/vim-erlang-compiler',
+    \ 'github:vim-erlang/vim-erlang-omnicomplete',
     \ 'github:vim-erlang/vim-dialyzer',
     \ 'github:vim-erlang/vim-erlang-runtime',
     \ 'github:vim-erlang/vim-erlang-skeletons',
@@ -248,8 +252,11 @@ let erlang_addons = [
     \ 'github:vim-erlang/vim-erlang-tags'
   \ ]
 
+
 let g:erl_author='<michael.coles@gmail.com>'
 let g:erlang_tags_ignore = ["_rel", "debian"]
+
+let g:erlang_make_options = '--outdir ../ebin --xref'
 
 let ft_addons = [
   \ {'on_ft': '^erlang$', 'activate': erlang_addons}
