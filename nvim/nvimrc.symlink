@@ -1,0 +1,64 @@
+syntax on
+set laststatus=2
+set showtabline=2
+set background=dark
+
+set ignorecase
+set smartcase
+
+set clipboard+=unnamed " Copy to/paste from system clipboard
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
+" TODO Move this to somewhere erlang/elixir specific
+set suffixes+=.beam
+
+set showcmd
+set showmatch
+
+set diffopt+=vertical
+
+set directory=~/.vim/backup,~/tmp,/var/tmp,/tmp
+
+" Plugins
+call plug#begin('~/.nvim/plugged')
+
+" Vim: colorschemes, themes, appearance
+Plug 'altercation/vim-colors-solarized'
+Plug 'bling/vim-airline'
+
+" System: Additional resources
+Plug 'mileszs/ack.vim'
+Plug 'thinca/vim-ref'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'Shougo/unite.vim'
+
+" Services: web integrations
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
+" TODO 'jaxbot/github-issues.vim'
+
+" Languages: erlang
+Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
+Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
+Plug 'vim-erlang/vim-erlang-skeletons', {'for': 'erlang'}
+Plug 'vim-erlang/vim-erlang-tags', {'for': 'erlang'}
+
+" Languages: elixir
+Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
+
+" Languages: python
+
+call plug#end()
+
+" vim-colors-solarized options
+let g:solarized_contrast="high"    " high | normal | low
+colorscheme solarized
+
+" vim-airline options
+let g:airline_powerline_fonts=1
+let g:airline_theme = 'solarized'
+
+set formatoptions-=o
