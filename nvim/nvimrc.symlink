@@ -18,6 +18,8 @@ set suffixes+=.beam
 set showcmd
 set showmatch
 
+set wildmode=list:longest
+
 set diffopt+=vertical
 
 set directory=~/.vim/backup,~/tmp,/var/tmp,/tmp
