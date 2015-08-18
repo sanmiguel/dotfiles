@@ -56,12 +56,10 @@ Plug 'sanmiguel/helpex.vim', {'for': 'elixir'}
 
 call plug#end()
 
-" vim-colors-solarized options
-let g:solarized_contrast="high"    " high | normal | low
-colorscheme solarized
-
 " vim-airline options
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'solarized'
 
 set formatoptions-=o
+
+au VimEnter * :colorscheme solarized
