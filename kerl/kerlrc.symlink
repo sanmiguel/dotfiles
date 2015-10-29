@@ -1,4 +1,6 @@
-KERL_CONFIGURE_OPTIONS="--enable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit --with-ssl=/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include/ --without-odbc"
+#KERL_CONFIGURE_OPTIONS="--enable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit --with-ssl=/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include/ --without-odbc"
+KERL_CONFIGURE_OPTIONS="--enable-darwin-64bit --enable-hipe --enable-vm-probes --with-dynamic-trace=dtrace --enable-kernel-poll --enable-threads --enable-smp-support"
+KERL_CONFIGURE_DISABLE_APPLICATIONS="odbc"
 KERL_INSTALL_MANPAGES=yes
 
 KERL_INSTALL_DIR=~/kerl
