@@ -34,24 +34,6 @@
                 "args": {
                     "dir_limit_depth": 2
                 }
-            },
-            {
-                "name": "vcs_info",
-                "args": {
-                    "included_info": [
-                        "clean",
-                        "working_tree:new",
-                        "working_tree:modified",
-                        "working_tree:deleted",
-                        "index:new",
-                        "index:modified",
-                        "index:deleted"
-                            ]
-                }
-            },
-            {
-                "module": "powerline.segments.shell",
-                "name": "jobnum"
             }
         ],
         "right": [
@@ -60,13 +42,8 @@
                 "name": "last_pipe_status"
             },
             {
-                "name": "divergence"
-            },
-            {
-                "name": "branch"
-            },
-            {
-                "name": "kerl"
+                "name": "powerline_gitstatus.gitstatus",
+                "priority": 40
             }
         ]
     }
