@@ -10,8 +10,7 @@ git:
 	ln -nsf $(PWD)/git/gitconfig.symlink ~/.gitconfig
 
 nvim:
-	ln -nsf $(PWD)/nvim/nvim.symlink ~/.nvim
-	ln -nsf $(PWD)/nvim/nvimrc.symlink ~/.nvimrc
+	ln -nsf $(PWD)/nvim/nvim.symlink ~/.config/nvim
 
 vim:
 	ln -nsf $(PWD)/vim/vim.symlink ~/.vim
