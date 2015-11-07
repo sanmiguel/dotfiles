@@ -84,7 +84,7 @@ set wildignorecase
 set wildignore+=*.beam
 
 " Lovingly ripped off from github.com/aerosol/dotfiles
-function! s:erlang_settings()
+function! s:erlang_ft_setting()
     set suffixesadd+=.erl
     set suffixesadd+=.hrl
     set suffixes+=.beam
@@ -95,27 +95,39 @@ function! s:erlang_settings()
     set path+=deps/**
     let g:erlang_tags_ignore = ".eunit"
 
-    " TODO Experimental neomake/erlang options
+    " Experimental neomake/erlang options
     " TODO Need to pick up the path to this script on-the-fly
-    " TODO Perhaps these could be w:.. instead?
     let g:neomake_erlang_flycheck_maker = {
         \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
         \ 'args': [],
         \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
         \ }
-    " TODO can we do this per window with a w:neomake_erlang_eunit_maker ?
-    " If so we can simply pre-set a var for what we expect the test suite to
-    " be called based on the filename, then use that here.
-    " That way we can pre-populate with e.g. '%:t:r' but allow it to be
-    " set to something else should the user want to run a different test
-    " suite, or multiple suites.
-    " TODO Does neomake pick up on-the-fly changes to this variable?
-    let g:neomake_erlang_eunit_maker = {
+    " TODO Perhaps we should look for eunit suites that call this module?
+    let g:neomake_erlang_eunit_this_maker = {
         \ 'exe': 'rebar',
-        \ 'args': ['eunit', '%:t:r'],
+        \ 'args': ['eunit', 'skip_deps=true', 'suites=' . expand('%:t:r')],
+        \ 'append_file': 0
         \ }
 
-    let g:neomake_erlang_enabled_makers = ['erlc']
+    " TODO Extend eunit maker with errorformat
+    " TODO Extend eunit maker to look for tests that call this module?
+    " TODO Add eqc maker
+    " TODO Add dialyzer maker
+    let g:neomake_erlang_dialyzer_maker = {
+        \ 'exe': 'make',
+        \ 'args': ['dialyzer'],
+        \ 'append_file': 0
+        \ }
+    " TODO Add xref maker
+    " TODO Add ct maker
+
+    " Run each maker in order, one at a time
+    let g:neomake_serialize = 1
+    " What to run when calling `:Neomake`
+    " TODO This runs in alphabetical order...?
+    " TODO Raise an issue
+    let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit_this', 'dialyzer']
+
     " TODO Experimental vim-surround setup
     " This enables cs"- to turn "x" into <<"x">>
     let b:surround_45 = "<<\"\r\">>"
@@ -123,7 +135,7 @@ function! s:erlang_settings()
 
 endfunction
 augroup erlang
-    autocmd FileType erlang call s:erlang_settings()
+    autocmd FileType erlang call s:erlang_ft_setting()
     autocmd BufWritePost *.erl,*.hrl,*.config Neomake flycheck
 augroup END
 au VimEnter * :colorscheme solarized
