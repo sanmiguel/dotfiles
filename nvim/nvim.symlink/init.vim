@@ -32,7 +32,8 @@ let g:airline_theme = 'powerlineish'
 let g:airline#extensions#branch#displayed_head_limit = 10
 
 " Plugins
-call plug#begin('~/.nvim/plugged')
+let g:plug_dir = expand('~/.config/nvim/plugged')
+call plug#begin(g:plug_dir)
 
 " Vim: colorschemes, themes, appearance
 Plug 'altercation/vim-colors-solarized'
@@ -98,7 +99,7 @@ function! s:erlang_settings()
     " TODO Need to pick up the path to this script on-the-fly
     " TODO Perhaps these could be w:.. instead?
     let g:neomake_erlang_flycheck_maker = {
-        \ 'exe': '/Users/sanmiguel/.nvim/plugged/vim-erlang-compiler/compiler/erlang_check.erl',
+        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
         \ 'args': [],
         \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
         \ }
