@@ -114,7 +114,8 @@ set wildignorecase
 set wildignore+=*.beam
 
 " Lovingly ripped off from github.com/aerosol/dotfiles
-function! s:erlang_ft_setting()
+" This is called once, set only globals
+function! s:erlang_settings()
     set suffixesadd+=.erl
     set suffixesadd+=.hrl
     set suffixes+=.beam
@@ -128,31 +129,12 @@ function! s:erlang_ft_setting()
     " Experimental neomake/erlang options
     " TODO Need to pick up the path to this script on-the-fly
     "let g:neomake_open_list = 2 " 2 = open but hold cursor pos
+    " TODO Maybe we can use '%:p:h'.'/ebin' ?
     let g:neomake_erlang_flycheck_maker = {
         \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
-        \ 'args': [],
+        \ 'args': ["--outdir", "ebin"],
         \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
         \ }
-    " TODO Perhaps we should look for eunit suites that call this module?
-
-    let eunit_efm = ''
-    let eunit_efm .= '%E%m: %.%#...*failed*,'
-    let eunit_efm .= '%C%>in function %m (%f\, line %l),'
-    let eunit_efm .= '%Z**error,%Z**throw,%Z**exit'
-
-    " TODO This barfs on .config files because they are also ft=erlang lol
-    let g:neomake_erlang_eunit_maker = {
-        \ 'exe': 'rebar',
-        \ 'args': ['-q', 'eunit', 'skip_deps=true', 'suites=' . expand('%:t:r')],
-        \ 'buffer_output': 1,
-        \ 'append_file': 0,
-        \ 'errorformat': eunit_efm,
-        \ }
-
-    let g:neomake_erlang_eunit_dev_maker = deepcopy(g:neomake_erlang_eunit_maker)
-    let g:neomake_erlang_eunit_dev_maker.exe = 'cat'
-    let g:neomake_erlang_eunit_dev_maker.args = ['rebar-out.log', 'noexist']
-
     "let g:neomake_logfile = './neomake.log'
 
     " TODO Extend eunit maker with errorformat
@@ -166,6 +148,12 @@ function! s:erlang_ft_setting()
                 \ }
     " TODO Add xref maker
     " TODO Add ct maker
+    let g:neomake_erlang_ct_maker = {
+                \ 'exe': 'rebar',
+                \ 'args': ['-q', 'ct'],
+                \ 'buffer_output': 1,
+                \ 'append_file': 0
+                \ }
     " TODO Add typer maker
     " TODO Add dialyzer maker
     let g:neomake_erlang_dialyzer_maker = {
@@ -180,16 +168,81 @@ function! s:erlang_ft_setting()
     " TODO This runs in alphabetical order...?
     " TODO Raise an issue
     " let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'eqc', 'dialyzer']
+    let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'eqc', 'dialyzer', 'ct1']
 
     " TODO Experimental vim-surround setup
     " This enables cs"- to turn "x" into <<"x">>
     let b:surround_45 = "<<\"\r\">>"
     " TODO But how to do the inverse?
-
 endfunction
+
+" This is called when opening every erlang file
+function! s:erlang_buf_settings()
+    " Determine what kind of erlang file this is:
+    " .config
+    " _SUITE.erl
+    " _eqc.erl
+    " .erl <- may have eunit tests
+    let subft = "unknown"
+    let fname = expand('%:t')
+    " TODO Figure out something decent to do for regular erlang files
+    " e.g. is it a fair assumption that for foo.erl there should be
+    " foo_SUITE.erl? Maybe we can check for that, and default to nothing?
+    " TODO The BufWritePost later on should only happen if this is set...
+    let b:neomake_erlang_ct1_maker = {
+                \ 'exe': 'rebar',
+                \ 'args': ['-q', 'ct'],
+                \ 'buffer_output': 1,
+                \ 'append_file': 0
+                \ }
+    let suite=fname
+    if fname =~ ".*_SUITE\.erl"
+        " TODO I wonder if it's possible to have a function that searches
+        " backward in the file from cursor position to find the function head
+        " (when editing a _SUITE.erl) and calls 'rebar ct suite=foo case=bar'.
+        let suite = substitute(fname, "_SUITE.erl", "", "")
+        call add(b:neomake_erlang_ct1_maker.args, 'suite='.suite)
+    elseif fname =~ "\.erl"
+        let suite = substitute(fname, ".erl", "", "")
+        let suitesrc = substitute(fname, ".erl", "_SUITE.erl", "")
+        if filereadable("test/".suitesrc)
+            call add(b:neomake_erlang_ct1_maker.args, 'suite='.suite)
+        else
+            unlet b:neomake_erlang_ct1_maker " TODO Re-enable
+        endif
+    endif
+    " TODO Perhaps we should look for eunit suites that call this module?
+    let eunit_efm = ''
+    let eunit_efm .= '%E%m: %.%#...*failed*,'
+    let eunit_efm .= '%C%>in function %m (%f\, line %l),'
+    let eunit_efm .= '%Z**error,%Z**throw,%Z**exit'
+    let b:neomake_erlang_eunit_maker = {
+        \ 'exe': 'rebar',
+        \ 'args': ['-q', 'eunit', 'skip_deps=true', 'suites=' . expand('%:t:r')],
+        \ 'buffer_output': 1,
+        \ 'append_file': 0,
+        \ 'errorformat': eunit_efm,
+        \ }
+    let b:neomake_erlang_eunit_dev_maker = deepcopy(b:neomake_erlang_eunit_maker)
+    let b:neomake_erlang_eunit_dev_maker.exe = 'cat'
+    let b:neomake_erlang_eunit_dev_maker.args = ['rebar-out.log', 'noexist']
+
+    " TODO Some management of enabled_makers
+endfunction
+
+let s:my_erl_globals_done = 0
+function! s:erlang_ft_settings()
+    if !s:my_erl_globals_done
+        call s:erlang_settings()
+    endif
+    call s:erlang_buf_settings()
+    let s:my_erl_globals_done = 1
+endfunction
+
 augroup erlang
-    autocmd FileType erlang call s:erlang_ft_setting()
-    autocmd BufWritePost *.erl,*.hrl,*.config Neomake flycheck
+    autocmd FileType erlang call s:erlang_ft_settings()
+    autocmd BufWritePost *.erl,*.hrl Neomake flycheck
+    autocmd BufWritePost *_SUITE.erl Neomake ct1
 augroup END
 
 function s:elixir_ft_setting()
