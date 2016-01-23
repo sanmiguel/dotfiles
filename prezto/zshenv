@@ -12,7 +12,11 @@ fi
 
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 
-. ~/kerl/r16b02/activate # TODO Solve this using the kerl module
+[ -f ~/.kerlrc ] \
+    && source ~/.kerlrc \
+    && [ ! -z "$KERL_INSTALL" ] \
+    && [ ! -z "$KERL_INSTALL_DIR" ] \
+    && . ${KERL_INSTALL_DIR}/${KERL_INSTALL}/activate
 # Problem: when invoking commands from e.g. vim with ':!cmd' the shell in which
 # it is executed only loads this file, not zshrc. Which means it uses the standard
 # system erlang installation not the kerl-controlled one.
