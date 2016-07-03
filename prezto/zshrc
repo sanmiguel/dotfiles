@@ -27,3 +27,8 @@ path=(~/bin $path)
 path=($path /usr/local/opt/go/libexec/bin)
 
 export EDITOR="nvim"
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+# added by travis gem
+[ -f /Users/sanmiguel/.travis/travis.sh ] && source /Users/sanmiguel/.travis/travis.sh
