@@ -25,3 +25,5 @@ fi
 # Customize to your needs...
 path=(~/bin $path)
 path=($path /usr/local/opt/go/libexec/bin)
+
+export EDITOR="nvim"
