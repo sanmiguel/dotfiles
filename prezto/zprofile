@@ -48,6 +48,9 @@ path=(
   $path
 )
 
+# Set the GOPATH for go
+export GOPATH=$HOME/git/go
+
 #
 # Less
 #
