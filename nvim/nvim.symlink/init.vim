@@ -34,7 +34,12 @@ let g:loaded_erlang_compiler = 1
 set noshowmode " Disable showing editor mode - airline tells us
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
+let g:airline_theme = 'powerlineish'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#branch#displayed_head_limit = 10
+let g:airline#extensions#whitespace#mixed_indent_algo = 2
+let g:airline#extensions#whitespace#mixed_indent_format = 'mix-i[%s]'
+let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-i-file[%s]'
 let g:airline_mode_map = {
             \ '__' : '-',
             \ 'n'  : 'N',
@@ -75,6 +80,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/unite.vim'
 Plug 'neomake/neomake'
 "Plug 'dhruvasagar/vim-dotoo'
+Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 
 " Services: web integrations
 let g:gist_get_multiplefile = 1
@@ -227,6 +233,9 @@ function! s:erlang_buf_settings()
     let b:neomake_erlang_eunit_dev_maker.exe = 'cat'
     let b:neomake_erlang_eunit_dev_maker.args = ['rebar-out.log', 'noexist']
 
+    set expandtab
+    set shiftwidth=4
+    set tabstop=4
     " TODO Some management of enabled_makers
 endfunction
 
@@ -242,7 +251,7 @@ endfunction
 augroup erlang
     autocmd FileType erlang call s:erlang_ft_settings()
     autocmd BufWritePost *.erl,*.hrl Neomake flycheck
-    autocmd BufWritePost *_SUITE.erl Neomake ct1
+    "autocmd BufWritePost *_SUITE.erl Neomake ct1
 augroup END
 
 function s:elixir_ft_setting()
