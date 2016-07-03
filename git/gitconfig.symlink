@@ -6,16 +6,21 @@
 	status = auto
 	ui = auto
 [core]
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/nvim
 [help]
 	autocorrect = 1
 [diff]
-	tool = vimdiff2
+	tool = nvim -d
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    path = nvim
 [dude]
 	interval = 30
 	notify-command = terminal-notifier -message \"$DESCRIPTION\" -title \"$TITLE\"
 [merge]
-	tool = vimdiff
+	tool = nvim -d
 [branch]
 	autosetuprebase = always
 [github]
