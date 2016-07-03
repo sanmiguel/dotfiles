@@ -25,6 +25,8 @@ zstyle ':prezto:*:*' color 'yes'
 # The order matters.
 zstyle ':prezto:load' pmodule \
   'environment' \
+  'osx' \
+  'homebrew' \
   'terminal' \
   'editor' \
   'history' \
