@@ -19,6 +19,7 @@ fi
 
 export EDITOR='nano'
 export VISUAL='nano'
+export HOMEBREW_EDITOR='/usr/local/bin/nvim'
 export PAGER='less'
 
 #
