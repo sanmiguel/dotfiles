@@ -81,6 +81,7 @@ Plug 'Shougo/unite.vim'
 Plug 'neomake/neomake'
 "Plug 'dhruvasagar/vim-dotoo'
 Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
+Plug 'tpope/vim-fugitive' | Plug 'sanmiguel/potential-memory'
 
 " Services: web integrations
 let g:gist_get_multiplefile = 1
