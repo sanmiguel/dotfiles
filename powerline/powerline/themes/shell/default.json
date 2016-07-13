@@ -1,50 +1,39 @@
 {
-    "default_module": "powerline.segments.common",
-    "segment_data": {
-        "hostname": {
-            "before": " ",
-            "args": {
-                "only_if_ssh": true
-            }
-        },
-        "virtualenv": {
-            "before": "ⓔ  "
-        },
-        "branch": {
-            "before": " "
-        }
-    },
-    "segments": {
-        "left": [
-            {
-                "module": "powerline.segments.shell",
-                "name": "mode"
-            },
-            {
-                "name": "hostname"
-            },
-            {
-                "name": "user"
-            },
-            {
-                "name": "virtualenv"
-            },
-            {
-                "name": "cwd",
-                "args": {
-                    "dir_limit_depth": 2
-                }
-            }
-        ],
-        "right": [
-            {
-                "module": "powerline.segments.shell",
-                "name": "last_pipe_status"
-            },
-            {
-                "name": "powerline_gitstatus.gitstatus",
-                "priority": 40
-            }
-        ]
-    }
+	"segments": {
+		"left": [
+			{
+				"function": "powerline.segments.shell.mode"
+			},
+			{
+				"function": "powerline.segments.common.net.hostname",
+				"priority": 10
+			},
+			{
+				"function": "powerline.segments.common.env.user",
+				"priority": 30
+			},
+			{
+				"function": "powerline.segments.common.env.virtualenv",
+				"priority": 50
+			},
+			{
+				"function": "powerline.segments.shell.cwd",
+				"priority": 10
+			},
+			{
+				"function": "powerline.segments.shell.jobnum",
+				"priority": 20
+			}
+		],
+		"right": [
+			{
+				"function": "powerline.segments.shell.last_pipe_status",
+				"priority": 10
+			},
+			{
+				"function": "powerline.segments.common.vcs.branch",
+				"priority": 40
+			}
+		]
+	}
 }

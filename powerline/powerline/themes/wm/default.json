@@ -1,31 +1,29 @@
 {
-    "default_module": "powerline.segments.common",
-    "segments": {
-        "right": [
-            {
-                "name": "weather",
-                "priority": 50
-            },
-            {
-                "name": "date"
-            },
-            {
-                "name": "date",
-                "args": {
-                    "format": "%H:%M",
-                    "istime": true
-                },
-                "before": "⌚ "
-            },
-            {
-                "name": "email_imap_alert",
-                "before": "✉ ",
-                "priority": 10,
-                "args": {
-                    "username": "",
-                    "password": ""
-                }
-            }
-        ]
-    }
+	"segments": {
+		"right": [
+			{
+				"function": "powerline.segments.common.wthr.weather",
+				"priority": 50
+			},
+			{
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			},
+			{
+				"function": "powerline.segments.common.mail.email_imap_alert",
+				"priority": 10,
+				"args": {
+					"username": "",
+					"password": ""
+				}
+			}
+		]
+	}
 }
