@@ -12,6 +12,8 @@ fi
 
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 
+path=( /usr/local/bin $path )
+
 [ -f ~/.kerlrc ] \
     && source ~/.kerlrc \
     && [ ! -z "$KERL_INSTALL" ] \
