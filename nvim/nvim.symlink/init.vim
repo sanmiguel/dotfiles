@@ -58,7 +58,8 @@ call plug#begin(g:plug_dir)
 
 " Vim: colorschemes, themes, appearance
 Plug 'altercation/vim-colors-solarized'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
 
 " System: Additional resources
 Plug 'tpope/vim-unimpaired'
@@ -68,7 +69,7 @@ Plug 'thinca/vim-ref'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/unite.vim'
-Plug 'benekastah/neomake'
+Plug 'neomake/neomake'
 "Plug 'dhruvasagar/vim-dotoo'
 
 " Services: web integrations
@@ -81,7 +82,7 @@ Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-skeletons', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-tags', {'for': 'erlang'}
 " TODO: Only including this to get the erlang_check.erl for now
-"Plug 'vim-erlang/vim-erlang-compiler', {'for': 'erlang'}
+Plug 'vim-erlang/vim-erlang-compiler', {'for': 'none'}
 
 " Languages: elixir
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
