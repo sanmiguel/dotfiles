@@ -29,7 +29,6 @@ let g:loaded_erlang_compiler = 1
 set noshowmode " Disable showing editor mode - airline tells us
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-let g:airline_theme = 'powerlineish'
 let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline_mode_map = {
             \ '__' : '-',
@@ -186,5 +185,5 @@ augroup erlang
     autocmd FileType erlang call s:erlang_ft_setting()
     autocmd BufWritePost *.erl,*.hrl,*.config Neomake flycheck
 augroup END
-au VimEnter * :colorscheme solarized
-au VimEnter * :AirlineRefresh
+
+colorscheme solarized
