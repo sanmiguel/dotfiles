@@ -21,7 +21,12 @@ set diffopt+=vertical
 
 set completeopt+=longest
 
+set title
+
 set directory=~/.vim/backup,~/tmp,/var/tmp,/tmp
+
+" Easier way to leave INS mode in :terminal windows
+tno <silent> <Esc><Esc> <C-\><C-n>
 
 let g:loaded_erlang_compiler = 1
 
@@ -72,6 +77,7 @@ Plug 'neomake/neomake'
 "Plug 'dhruvasagar/vim-dotoo'
 
 " Services: web integrations
+let g:gist_get_multiplefile = 1
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'jaxbot/github-issues.vim'
 
@@ -85,7 +91,7 @@ Plug 'vim-erlang/vim-erlang-compiler', {'for': 'none'}
 
 " Languages: elixir
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
-Plug 'sanmiguel/helpex.vim', {'for': 'elixir'}
+Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 
 " Languages: go
 Plug 'fatih/vim-go', {'for': 'go'}
@@ -121,7 +127,7 @@ function! s:erlang_ft_setting()
 
     " Experimental neomake/erlang options
     " TODO Need to pick up the path to this script on-the-fly
-    let g:neomake_open_list = 2 " 2 = open but hold cursor pos
+    "let g:neomake_open_list = 2 " 2 = open but hold cursor pos
     let g:neomake_erlang_flycheck_maker = {
         \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
         \ 'args': [],
@@ -173,7 +179,7 @@ function! s:erlang_ft_setting()
     " What to run when calling `:Neomake`
     " TODO This runs in alphabetical order...?
     " TODO Raise an issue
-    let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'eqc', 'dialyzer']
+    " let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'eqc', 'dialyzer']
 
     " TODO Experimental vim-surround setup
     " This enables cs"- to turn "x" into <<"x">>
@@ -184,6 +190,29 @@ endfunction
 augroup erlang
     autocmd FileType erlang call s:erlang_ft_setting()
     autocmd BufWritePost *.erl,*.hrl,*.config Neomake flycheck
+augroup END
+
+function s:elixir_ft_setting()
+    let g:neomake_open_list = 2
+    " TODO Find a way to just use this from vim-elixir plugin
+    let mix_test_efm =   '%E  %n) %m,'
+    let mix_test_efm .=  '%+G     ** %m,'
+    let mix_test_efm .=  '%+G     stacktrace:,'
+    let mix_test_efm .=  '%C     %f:%l,'
+    let mix_test_efm .=  '%+G       (%\\w%\\+) %f:%l: %m,'
+    let mix_test_efm .=  '%+G       %f:%l: %.%#,'
+    let mix_test_efm .=  '** (%\\w%\\+) %f:%l: %m'
+    let g:neomake_elixir_mixtest_maker = {
+        \ 'exe': 'mix',
+        \ 'args': ['test'],
+        \ 'append_file': 0,
+        \ 'errorformat': mix_test_efm
+        \ }
+endfunction
+
+augroup elixir
+    autocmd FileType elixir call s:elixir_ft_setting()
+    autocmd BufWritePost *.ex,*.exs Neomake mixtest
 augroup END
 
 colorscheme solarized
