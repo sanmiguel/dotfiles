@@ -23,4 +23,4 @@ path=( /usr/local/bin $path )
 # it is executed only loads this file, not zshrc. Which means it uses the standard
 # system erlang installation not the kerl-controlled one.
 # A way to load the kerl module here would help, but may be totally wrong.
-path=( ~/kex/elixir-1.0.2/bin $path)
+eval "$(exenv init -)"
