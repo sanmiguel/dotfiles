@@ -215,8 +215,14 @@ function! s:erlang_buf_settings()
     " _SUITE.erl
     " _eqc.erl
     " .erl <- may have eunit tests
-    let subft = "unknown"
     let fname = expand('%:t')
+
+    let b:neomake_erlang_flycheck_maker = {
+        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
+        \ 'args': ["--outdir", expand('%:p:h:h')."/ebin"],
+        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
+        \ }
+
     " TODO Figure out something decent to do for regular erlang files
     " e.g. is it a fair assumption that for foo.erl there should be
     " foo_SUITE.erl? Maybe we can check for that, and default to nothing?
