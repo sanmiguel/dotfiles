@@ -214,6 +214,7 @@ function! s:erlang_buf_settings()
     " .config
     " _SUITE.erl
     " _eqc.erl
+    " _tests.erl
     " .erl <- may have eunit tests
     let fname = expand('%:t')
 
