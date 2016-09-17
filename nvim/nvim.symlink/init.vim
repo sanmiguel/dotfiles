@@ -252,8 +252,104 @@ function! s:erlang_ft_settings()
     if !s:my_erl_globals_done
         call s:erlang_globals()
     endif
+    " Figure out which executable we should call
+    let [maker_type, maker_exe] = s:find_erlang_project_type()
+
+    if maker_type == "rebar"
+        call s:erlang_rebar_settings(maker_exe)
+    elseif maker_type == "rebar3"
+        call s:erlang_rebar3_settings(maker_exe)
+    endif
+
     call s:erlang_buf_settings()
     let s:my_erl_globals_done = 1
+endfunction
+
+" :Neomake [makers]
+" Run a make command with the current file as input
+" if no makers, use default makers for 'filetype'
+
+" :Neomake! [makers]
+" Run a make command with no file as input.
+" If no makers specified, use default top-level makers will be used.
+" If no top-level default, 'makeprg' will be used.
+
+function! s:erlang_rebar_settings(exec)
+    " Supported rebar 2.5.1, 2.6.1
+    " NB: The notion of single-file compilation does not exist with rebar:
+    " it's all or nothing. This leaves us in a slightly odd place to run a set
+    " of makers regularly.
+    " NB: We use 'flycheck' from the vim-erlang-compiler project to provide
+    " quick compilation of a single file
+
+    " TODO flycheck: compile a single file (i.e. '%') quickly
+    " TODO rebar compile: entire project (might only be necessary as a pre-req
+    " to other steps, and rebar might always take care of it for us. Include
+    " for completeness)
+    let g:neomake_erlang_compile_maker = {
+                \ 'exe': a:exec,
+                \ 'args': ['compile'],
+                \ 'append_file' : 0,
+                \ 'buffer_output': 1
+                \ }
+
+    " TODO eunit (or CT) might be used to start EQC/PropEr tests
+    " TODO rebar eunit: current file
+    " TODO rebar eunit: entire project
+    " TODO rebar qc: current file
+    " TODO rebar qc: entire project
+    " TODO rebar ct: current file
+    " TODO rebar ct: entire project
+    " TODO rebar xref
+    " TODO rebar dialyze: might require a build-plt step first
+    " TODO read cover analysis
+
+    " TODO: enabled makers:
+    " There are 2 main entrypoints we want here, for different uses:
+    "  1.  compile and test the current file ONLY:
+    "   This should be what gets done on BufWrite - it can take a while so we
+    "   will want to think about some kind of job-queueing for it but TODO
+    "   Maybe neomake takes care of that for us?
+    "   - flycheck
+    "   - eunit single
+    "   - ct single
+    "   - qc single
+    "  2. compile and test the entire project:
+    "   - compile
+    "   - eunit
+    "   - ct
+    "   - qc
+    "   - xref
+    "   - dialyze
+    "   - cover ?!
+endfunction
+
+function! s:erlang_rebar3_settings(exec)
+    let eunit_efm  = '%E  %n) %m,'
+    " TODO This is awful, but it kinda sorta works.
+    let eunit_efm .= '%Z%[ ]%#%%%% %.%#/_build/test/lib/%[%^/]%#/%f:%l:in %.%#,'
+    " TODO When you match on '%f' in a line, it puts that filename in the
+    " buflist and the matching index in a:entry.bufnr
+    " Until we figure out how to do that ourselves, this workaround will
+    " suffice.
+    let eunit_efm .= '%Z%[ ]%#%%%% %f:%l:in %.%#,'
+    let eunit_efm .= '%+C%[ ]%#%m'
+    " let eunit_efm .= '%+C%[ ]%#expected: %m,'
+    " let eunit_efm .= '%+C%[ ]%#got: %m,'
+    " let eunit_efm .= '%C%[ ]%#Failure/Error: %m'
+
+    " NB: Use 'mapexpr' to filter our ANSI colour sequences.
+    let g:neomake_erlang_eunit_maker = {
+        \ 'exe': 'rebar3',
+        \ 'args': ['eunit'],
+        \ 'buffer_output': 1,
+        \ 'append_file': 0,
+        \ 'errorformat': eunit_efm,
+        \ 'mapexpr': 'substitute(v:val, "\\[[01]\\(;[0-9]*\\)\\?m", "", "g")',
+        \ }
+endfunction
+
+function! s:erlang_flycheck_settings()
 endfunction
 
 augroup erlang
