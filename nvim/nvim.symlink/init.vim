@@ -183,6 +183,31 @@ function! s:erlang_globals()
     " TODO But how to do the inverse?
 endfunction
 
+function! s:find_erlang_project_type()
+    " Figure out what kind of erlang project this is based on what files we
+    " find:
+    " [./rebar3 , rebar.config, rebar.lock] -> rebar3
+    " [./rebar, rebar.config, rebar.config.lock] -> rebar
+    " Otherwise, do not set anything else custom for erlang (!!)
+    if filereadable("rebar.config")
+        " rebar, but 2 or 3?
+        if filereadable("./rebar3")
+            return ["rebar3", "./rebar3"]
+        elseif filereadable("./rebar")
+            return ["rebar", "./rebar"]
+        elseif filereadable("./rebar.lock")
+            return ["rebar3", "rebar3"]
+        elseif filereadable("./rebar.config.lock")
+            return ["rebar", "rebar"]
+        else
+            " TODO This should ultimately change to "rebar3" by default
+            return ["rebar", "rebar"]
+        endif
+    endif
+    " TODO Failsafe for e.g. standalone scripts
+    return ["unknown", ""]
+endfunction
+
 " This is called when opening every erlang file
 function! s:erlang_buf_settings()
     " Determine what kind of erlang file this is:
