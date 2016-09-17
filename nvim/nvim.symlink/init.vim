@@ -134,15 +134,15 @@ function! s:erlang_globals()
     let g:erlang_tags_ignore = ".eunit"
 
     " Experimental neomake/erlang options
-    " TODO Need to pick up the path to this script on-the-fly
-    "let g:neomake_open_list = 2 " 2 = open but hold cursor pos
-    " TODO Maybe we can use '%:p:h'.'/ebin' ?
-    let g:neomake_erlang_flycheck_maker = {
-        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
-        \ 'args': ["--outdir", "ebin"],
-        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
-        \ }
+
+    " Enable this to have neomake log its actions:
     "let g:neomake_logfile = './neomake.log'
+
+    " Control how neomake uses the loclist:
+    " 0 = do not open
+    " 1 = open and jump to first
+    " 2 = open but hold cursor pos
+    let g:neomake_open_list = 2
 
     " TODO Extend eunit maker with errorformat
     " TODO Extend eunit maker to look for tests that call this module?
