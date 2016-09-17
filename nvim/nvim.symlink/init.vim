@@ -122,7 +122,7 @@ set wildignore+=*.beam
 
 " Lovingly ripped off from github.com/aerosol/dotfiles
 " This is called once, set only globals
-function! s:erlang_settings()
+function! s:erlang_globals()
     set suffixesadd+=.erl
     set suffixesadd+=.hrl
     set suffixes+=.beam
@@ -243,7 +243,7 @@ endfunction
 let s:my_erl_globals_done = 0
 function! s:erlang_ft_settings()
     if !s:my_erl_globals_done
-        call s:erlang_settings()
+        call s:erlang_globals()
     endif
     call s:erlang_buf_settings()
     let s:my_erl_globals_done = 1
