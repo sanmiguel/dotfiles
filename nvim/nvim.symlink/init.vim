@@ -243,25 +243,7 @@ function! s:erlang_buf_settings()
             unlet b:neomake_erlang_ct1_maker " TODO Re-enable
         endif
     endif
-    " TODO Perhaps we should look for eunit suites that call this module?
-    let eunit_efm = ''
-    let eunit_efm .= '%E%m: %.%#...*failed*,'
-    let eunit_efm .= '%C%>in function %m (%f\, line %l),'
-    let eunit_efm .= '%Z**error,%Z**throw,%Z**exit'
-    let b:neomake_erlang_eunit_maker = {
-        \ 'exe': 'rebar',
-        \ 'args': ['-q', 'eunit', 'skip_deps=true', 'suites=' . expand('%:t:r')],
-        \ 'buffer_output': 1,
-        \ 'append_file': 0,
-        \ 'errorformat': eunit_efm,
-        \ }
-    let b:neomake_erlang_eunit_dev_maker = deepcopy(b:neomake_erlang_eunit_maker)
-    let b:neomake_erlang_eunit_dev_maker.exe = 'cat'
-    let b:neomake_erlang_eunit_dev_maker.args = ['rebar-out.log', 'noexist']
 
-    set expandtab
-    set shiftwidth=4
-    set tabstop=4
     " TODO Some management of enabled_makers
 endfunction
 
