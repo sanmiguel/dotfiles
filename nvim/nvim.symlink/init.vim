@@ -123,8 +123,6 @@ set wildignore+=*.beam
 " Lovingly ripped off from github.com/aerosol/dotfiles
 " This is called once, set only globals
 function! s:erlang_globals()
-    set suffixesadd+=.erl
-    set suffixesadd+=.hrl
     set suffixes+=.beam
     "" TODO These will need tweaking if it's a rebar3 project
     " The presence of multiple build dirs is troublesome (i.e. profiles)
@@ -210,6 +208,8 @@ endfunction
 
 " This is called when opening every erlang file
 function! s:erlang_buf_settings()
+    set suffixesadd+=.erl
+    set suffixesadd+=.hrl
     " Determine what kind of erlang file this is:
     " .config
     " _SUITE.erl
