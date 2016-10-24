@@ -254,10 +254,10 @@ function! s:erlang_buf_settings()
     " TODO Some management of enabled_makers
 endfunction
 
-let s:my_erl_globals_done = 0
 function! s:erlang_ft_settings()
-    if !s:my_erl_globals_done
+    if !exists('s:my_erl_globals_done')
         call s:erlang_globals()
+        let s:my_erl_globals_done = 1
     endif
     " Figure out which executable we should call
     let [maker_type, maker_exe] = s:find_erlang_project_type()
@@ -269,7 +269,6 @@ function! s:erlang_ft_settings()
     endif
 
     call s:erlang_buf_settings()
-    let s:my_erl_globals_done = 1
 endfunction
 
 " :Neomake [makers]
