@@ -302,6 +302,11 @@ function! s:erlang_rebar_settings(exec)
 
     " TODO eunit (or CT) might be used to start EQC/PropEr tests
     " TODO rebar eunit: current file
+    let b:neomake_erlang_eunit_maker = {
+                \ 'exe': a:exec,
+                \ 'args': ['eunit', 'suites=' . expand('%:t:r')],
+                \ 'append_file': 0
+                \}
     " TODO rebar eunit: entire project
     " TODO rebar qc: current file
     " TODO rebar qc: entire project
