@@ -23,4 +23,3 @@ path=( /usr/local/bin $path )
 # it is executed only loads this file, not zshrc. Which means it uses the standard
 # system erlang installation not the kerl-controlled one.
 # A way to load the kerl module here would help, but may be totally wrong.
-eval "$(exenv init -)"
