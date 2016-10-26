@@ -9,8 +9,8 @@ module_path=($module_path /usr/local/lib/zpython)
 
 zmodload zsh/zpython
 
-_POWERLINE_DIR=$(zpython "import pkg_resources; dist = pkg_resources.get_distribution(\"powerline-status\"); print dist.location")
-if [ -d $_POWERLINE_DIR ]; then
+_POWERLINE_DIR=$(python -c "import pkg_resources; dist = pkg_resources.get_distribution(\"powerline-status\"); print dist.location")
+if [ -n "$_POWERLINE_DIR" -a -d $_POWERLINE_DIR ]; then
     . $_POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
     PREZTO_PROMPT="off"
     VIRTUAL_ENV_DISABLE_PROMPT="on"
