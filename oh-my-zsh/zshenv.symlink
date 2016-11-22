@@ -1,6 +1,1 @@
 # kerl
-#if [ -f ~/bin/activate ]; then
-#    . ~/bin/activate
-#fi
-export NODE_ENV=development
-export RUBYOPT=-Ku
