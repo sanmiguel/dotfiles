@@ -166,6 +166,11 @@ function! s:erlang_globals()
         \ 'args': ['dialyzer'],
         \ 'append_file': 0
         \ }
+    let g:neomake_erlang_flycheck_maker = {
+        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
+        \ 'args': [],
+        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
+        \ }
 
     " Run each maker in order, one at a time
     let g:neomake_serialize = 1
@@ -218,11 +223,8 @@ function! s:erlang_buf_settings()
     " .erl <- may have eunit tests
     let fname = expand('%:t')
 
-    let b:neomake_erlang_flycheck_maker = {
-        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
-        \ 'args': ["--outdir", expand('%:p:h:h')."/ebin"],
-        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
-        \ }
+    " FIXME Re-enable this to get re-compiled artifacts in ebin
+    " let b:neomake_erlang_flycheck_args = ["--outdir", expand('%:p:h:h')."/ebin"],
 
     " TODO Figure out something decent to do for regular erlang files
     " e.g. is it a fair assumption that for foo.erl there should be
