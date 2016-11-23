@@ -129,7 +129,7 @@ function! s:erlang_globals()
     " but perhaps it's sufficient for 90% of cases to only include _build/dev?
     set path+=src
     set path+=deps/**
-    let g:erlang_tags_ignore = ".eunit"
+    let g:erlang_tags_ignore = [ ".eunit", ".qc", "logs" ]
 
     " Experimental neomake/erlang options
 
