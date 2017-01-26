@@ -40,6 +40,9 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#whitespace#mixed_indent_algo = 2
 let g:airline#extensions#whitespace#mixed_indent_format = 'mix-i[%s]'
 let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-i-file[%s]'
+let g:airline#extensions#neomake#jobs_symbol = ''
+let g:airline#extensions#neomake#error_symbol = ''
+let g:airline#extensions#neomake#warning_symbol = ''
 let g:airline_mode_map = {
             \ '__' : '-',
             \ 'n'  : 'N',
@@ -80,6 +83,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/unite.vim'
 Plug 'neomake/neomake'
+"let g:neomake_error_sign = {
+"            \ 'text': '',
+"            \ 'texthl': 'NeomakeErrorSign'
+"            \ }
+"let g:neomake_warning_sign = {
+"            \ 'text': '',
+"            \ 'texthl': 'NeomakeWarningSign'
+"            \ }
 "Plug 'dhruvasagar/vim-dotoo'
 Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 Plug 'tpope/vim-fugitive' | Plug 'sanmiguel/potential-memory'
@@ -182,8 +193,6 @@ function! s:erlang_globals()
     " Run each maker in order, one at a time
     let g:neomake_serialize = 1
     " What to run when calling `:Neomake`
-    " TODO This runs in alphabetical order...?
-    " TODO Raise an issue
     " let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'eqc', 'dialyzer']
     let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'ct', 'eqc', 'dialyzer']
 
