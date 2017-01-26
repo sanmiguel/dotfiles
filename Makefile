@@ -1,4 +1,4 @@
-.PHONY: powerline prezto oh-my-zsh bash nvim vim git kerl ripit
+.PHONY: powerline prezto oh-my-zsh bash nvim vim git kerl ripit slate
 
 ripit:
 	ln -nsf $(PWD)/ripit/ripit.symlink ~/.ripit
@@ -6,6 +6,8 @@ ripit:
 kerl:
 	ln -nsf $(PWD)/kerl/kerlrc.symlink ~/.kerlrc
 
+slate:
+	ln -nsf $(PWD)/slate/slate.symlink ~/.slate
 git:
 	ln -nsf $(PWD)/git/gitconfig.symlink ~/.gitconfig
 
