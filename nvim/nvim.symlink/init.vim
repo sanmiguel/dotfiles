@@ -77,7 +77,6 @@ function! s:airline_seps(...)
     if a:0
         let sep = a:1
     endif
-    echom "Setting airline seps to " . sep
     let [g:airline_left_sep, g:airline_right_sep] = get(lr_pairs, sep)
 endfunction
 call s:airline_seps()
