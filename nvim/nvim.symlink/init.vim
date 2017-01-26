@@ -60,7 +60,7 @@ function! s:airline_seps(...)
         \ 'matrix-small':    ['', ''],
         \ 'matrix-large':    ['', ''],
         \ 'jaws':            ['', '']
-        \}                     
+        \}
     let singles = {
         \ 'branch': '',
         \ 'linenr': '',
