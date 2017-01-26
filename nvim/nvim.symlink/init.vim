@@ -66,6 +66,7 @@ let g:plug_dir = expand('~/.config/nvim/plugged')
 call plug#begin(g:plug_dir)
 
 " Vim: colorschemes, themes, appearance
+Plug 'iCyMind/NeoSolarized'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
