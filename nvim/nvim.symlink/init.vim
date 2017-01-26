@@ -72,8 +72,7 @@ function! s:airline_seps(...)
         \ 'lego-top': '',
         \ 'lego-side': ''
         \ }
-
-    let sep = 'downslope-solid'
+    let sep = 'matrix-large'
     if a:0
         let sep = a:1
     endif
