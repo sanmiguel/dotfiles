@@ -15,6 +15,8 @@ set shiftwidth=4
 set showcmd
 set showmatch
 
+set number
+
 set wildmode=list:longest
 
 set diffopt+=vertical
