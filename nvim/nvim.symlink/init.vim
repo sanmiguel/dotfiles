@@ -53,6 +53,8 @@ function! s:airline_seps(...)
         \ 'downslope-line':  ['', ''],
         \ 'upslope-solid':   ['', ''],
         \ 'upslope-line':    ['', ''],
+        \ 'slope-lr-solid':  ['', ''],
+        \ 'slope-lr-line':   ['', ''],
         \ 'flame-solid':     ['', ''],
         \ 'flame-line':      ['', ''],
         \ 'matrix-small':    ['', ''],
@@ -76,6 +78,7 @@ function! s:airline_seps(...)
     if a:0
         let sep = a:1
     endif
+    " TODO Handle unknown keys
     let [g:airline_left_sep, g:airline_right_sep] = get(lr_pairs, sep)
 endfunction
 call s:airline_seps()
