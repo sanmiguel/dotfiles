@@ -42,6 +42,48 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#whitespace#mixed_indent_algo = 2
 let g:airline#extensions#whitespace#mixed_indent_format = 'mix-i[%s]'
 let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-i-file[%s]'
+
+function! s:airline_seps(...)
+    let lr_pairs = {
+        \ 'arrow-solid':     ['', ''],
+        \ 'arrow-line':      ['' ,''],
+        \ 'round-solid':     ['', ''],
+        \ 'round-line':      ['', ''],
+        \ 'downslope-solid': ['', ''],
+        \ 'downslope-line':  ['', ''],
+        \ 'upslope-solid':   ['', ''],
+        \ 'upslope-line':    ['', ''],
+        \ 'flame-solid':     ['', ''],
+        \ 'flame-line':      ['', ''],
+        \ 'matrix-small':    ['', ''],
+        \ 'matrix-large':    ['', ''],
+        \ 'jaws':            ['', '']
+        \}                     
+    let singles = {
+        \ 'branch': '',
+        \ 'linenr': '',
+        \ 'lock'  : '',
+        \ 'count' : '',
+        \ 'inferno-left':  '',
+        \ 'hexagon-solid': '',
+        \ 'hexagon-line': '',
+        \ 'lego-sideways-oblique': '',
+        \ 'lego-upwards-oblique': '',
+        \ 'lego-top': '',
+        \ 'lego-side': ''
+        \ }
+
+    let sep = 'downslope-solid'
+    if a:0
+        let sep = a:1
+    endif
+    echom "Setting airline seps to " . sep
+    let [g:airline_left_sep, g:airline_right_sep] = get(lr_pairs, sep)
+endfunction
+call s:airline_seps()
+
+command! -nargs=1 SetAirlineSep call s:airline_seps(<f-args>)
+
 let g:airline#extensions#neomake#jobs_symbol = ''
 let g:airline#extensions#neomake#error_symbol = ''
 let g:airline#extensions#neomake#warning_symbol = ''
