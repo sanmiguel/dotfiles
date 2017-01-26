@@ -103,6 +103,9 @@ let g:gist_get_multiplefile = 1
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'jaxbot/github-issues.vim'
 
+let g:todoist_api_token = "~/.config/todoist/api.token"
+Plug '~/git/sanmiguel/todoist.vim' ", {'do': ''}  Need to install the python lib
+
 " Languages: erlang
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
