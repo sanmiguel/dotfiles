@@ -145,6 +145,11 @@ function! s:erlang_globals()
     " TODO Extend eunit maker with errorformat
     " TODO Extend eunit maker to look for tests that call this module?
     " TODO Add eqc maker
+    let g:neomake_erlang_eunit_maker = {
+                \ 'exe': 'rebar',
+                \ 'args': ['eunit'],
+                \ 'append_file': 0
+                \}
     let g:neomake_erlang_eqc_maker = {
                 \ 'exe': 'rebar',
                 \ 'args': ['-q', 'qc'],
@@ -171,6 +176,7 @@ function! s:erlang_globals()
         \ 'args': [],
         \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
         \ }
+    let g:neomake_erlang_flycheck_args = ['--outdir', 'ebin', '--load', 'longnames', 'foo@127.0.0.1', 'dev1@127.0.0.1', '--cookie', 'riak']
 
     " Run each maker in order, one at a time
     let g:neomake_serialize = 1
@@ -178,7 +184,7 @@ function! s:erlang_globals()
     " TODO This runs in alphabetical order...?
     " TODO Raise an issue
     " let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'eqc', 'dialyzer']
-    let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'eqc', 'dialyzer', 'ct1']
+    let g:neomake_erlang_enabled_makers = ['flycheck', 'eunit', 'ct', 'eqc', 'dialyzer']
 
     " TODO Experimental vim-surround setup
     " This enables cs"- to turn "x" into <<"x">>
@@ -242,6 +248,8 @@ function! s:erlang_buf_settings()
         " backward in the file from cursor position to find the function head
         " (when editing a _SUITE.erl) and calls 'rebar ct suite=foo case=bar'.
         let suite = substitute(fname, "_SUITE.erl", "", "")
+        let b:neomake_erlang_ct_args = deepcopy(g:neomake_erlang_ct_maker.args)
+        call add(b:neomake_erlang_ct_args, 'suite='.suite)
         call add(b:neomake_erlang_ct1_maker.args, 'suite='.suite)
     elseif fname =~ "\.erl"
         let suite = substitute(fname, ".erl", "", "")
@@ -303,6 +311,8 @@ function! s:erlang_rebar_settings(exec)
 
     " TODO eunit (or CT) might be used to start EQC/PropEr tests
     " TODO rebar eunit: current file
+    let b:neomake_erlang_eunit_args = deepcopy(g:neomake_erlang_eunit_maker.args)
+    call add(b:neomake_erlang_eunit_args, 'suites=' . expand('%:t:r'))
     let b:neomake_erlang_eunit_maker = {
                 \ 'exe': a:exec,
                 \ 'args': ['eunit', 'suites=' . expand('%:t:r')],
@@ -394,4 +404,5 @@ augroup elixir
     autocmd BufWritePost *.ex,*.exs Neomake mixtest
 augroup END
 
-colorscheme solarized
+set termguicolors
+colorscheme NeoSolarized
