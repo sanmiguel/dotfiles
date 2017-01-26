@@ -98,6 +98,17 @@ Plug 'neomake/neomake'
 "Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 "Plug 'tpope/vim-fugitive' | Plug 'sanmiguel/potential-memory'
 
+" TODO: Try these out, from this list: https://github.com/neovim/neovim/wiki/Related-projects#plugins
+" Plug 'c0r73x/neotags.nvim'
+" Plug 'kassio/neoterm' " Maybe for running tests?
+" Plug 'tek/proteome.nvim' " Project management
+" Plug 'pgdouyon/vim-accio' " Possible neomake replacement
+" Plug 'mhinz/vim-grepper' " :Ack replacement?
+" Plug 'janko-m/vim-test' " Probably requires extending for erlang?
+" Plug 'jalvesaq/vimcmdline' " Maybe a way to interact with a node easily?
+" Plug 'eugen0329/vim-esearch' " For interactive find/replace, refactoring
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 " Services: web integrations
 let g:gist_get_multiplefile = 1
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
