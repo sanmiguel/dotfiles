@@ -1,0 +1,3 @@
+[submodule "erl/recon"]
+	path = erl/recon
+	url = https://github.com/ferd/recon.git
