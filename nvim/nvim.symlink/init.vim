@@ -441,6 +441,8 @@ function! s:erlang_rebar3_settings(exec)
         \ 'errorformat': eunit_efm,
         \ 'mapexpr': 'substitute(v:val, "\\[[01]\\(;[0-9]*\\)\\?m", "", "g")',
         \ }
+
+    let g:neomake_erlang_flycheck_args = ['--outdir', system('rebar3 path') ]
 endfunction
 
 function! s:erlang_flycheck_settings()
