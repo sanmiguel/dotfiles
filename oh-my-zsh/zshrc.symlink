@@ -4,15 +4,19 @@ export PATH=$HOME/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/sanmiguel/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+LESS='-RiFX'
+
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=( status background_jobs custom_kerl )
-POWERLEVEL9K_CUSTOM_KERL="if [ -z \"\$(kerl prompt)\" ]; then echo \"(none)\"; else echo \$(kerl prompt) ; fi"
+POWERLEVEL9K_CUSTOM_KERL="if [ -z \"\$(kerl prompt)\" ]; then echo \"(none)\"; else echo \"\$(kerl prompt)\" ; fi"
 POWERLEVEL9K_CUSTOM_KERL_BACKGROUND="blue"
 POWERLEVEL9K_CUSTOM_KERL_FOREGROUND="white"
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-#POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=""
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=""
+POWERLEVEL9K_MODE='awesome-fontconfig'
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 
