@@ -36,7 +36,7 @@ let g:loaded_erlang_compiler = 1
 set noshowmode " Disable showing editor mode - airline tells us
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'sanmiguelito'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#whitespace#mixed_indent_algo = 2
@@ -74,7 +74,7 @@ function! s:airline_seps(...)
         \ 'lego-top': '',
         \ 'lego-side': ''
         \ }
-    let sep = 'matrix-large'
+    let sep = 'slope-lr-solid'
     if a:0
         let sep = a:1
     endif
@@ -151,6 +151,7 @@ Plug 'neomake/neomake'
 " Plug 'jalvesaq/vimcmdline' " Maybe a way to interact with a node easily?
 " Plug 'eugen0329/vim-esearch' " For interactive find/replace, refactoring
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'bling/vim-bufferline'
 
 " Services: web integrations
 let g:gist_get_multiplefile = 1
