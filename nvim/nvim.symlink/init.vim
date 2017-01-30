@@ -241,7 +241,7 @@ function! s:erlang_globals()
     " TODO Add dialyzer maker
     let g:neomake_erlang_dialyzer_maker = {
         \ 'exe': 'make',
-        \ 'args': ['dialyzer'],
+        \ 'args': ['DIALYZER_FLAGS=-Wunmatched_return --fullpath', 'dialyzer'],
         \ 'append_file': 0
         \ }
     let g:neomake_erlang_flycheck_maker = {
@@ -269,6 +269,10 @@ function! s:find_erlang_project_type()
     " [./rebar3 , rebar.config, rebar.lock] -> rebar3
     " [./rebar, rebar.config, rebar.config.lock] -> rebar
     " Otherwise, do not set anything else custom for erlang (!!)
+    " TODO Include steps for basho's tools.mk - there are some special configs
+    " we can leverage in these setups: look for tools.mk + Makefile, NB this
+    " can be used in conjunction with a rebar2 project, and may augment the
+    " standard set of tasks
     if filereadable("rebar.config")
         " rebar, but 2 or 3?
         if filereadable("./rebar3")
