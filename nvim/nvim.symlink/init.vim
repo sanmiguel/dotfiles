@@ -422,7 +422,25 @@ function! s:erlang_rebar_settings(exec)
     "   - cover ?!
 endfunction
 
+function! s:erlang_srcdir()
+    return expand('%:p:h')
+endfunction
+function! s:erlang_app(srcdir)
+    " Adjacent to srcfile should be a .app.src
+    " TODO Check cache for appname from srcdir
+    let appsrc = glob(a:srcdir . '/*.app.src')
+    " TODO appsrc == "" if not found
+    " TODO Might be up n levels - traverse if not found
+    let appname = fnamemodify(appsrc, ':t:r:r')
+    return appname
+endfunction
+
 function! s:erlang_rebar3_settings(exec)
+    let srcdir = s:erlang_srcdir()
+    let appname = s:erlang_app(srcdir)
+    let appebin = system(['rebar3', 'path', '--app', appname])
+
+    let g:neomake_erlang_flycheck_args = ['--outdir', appebin ]
     let eunit_efm  = '%E  %n) %m,'
     " TODO This is awful, but it kinda sorta works.
     let eunit_efm .= '%Z%[ ]%#%%%% %.%#/_build/test/lib/%[%^/]%#/%f:%l:in %.%#,'
