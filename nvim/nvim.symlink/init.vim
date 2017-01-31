@@ -32,6 +32,8 @@ tno <silent> <Esc><Esc> <C-\><C-n>
 
 vmap // y/<C-R>"<CR>
 
+" Prevent erlang compiler fully loading - we only pull it in for its flycheck
+" script. Sorry Csaba!
 let g:loaded_erlang_compiler = 1
 
 " vim-airline options
@@ -472,7 +474,7 @@ endfunction
 
 augroup erlang
     autocmd FileType erlang call s:erlang_ft_settings()
-    autocmd BufWritePost *.erl,*.hrl Neomake flycheck
+    autocmd BufWritePost *.erl Neomake flycheck
     "autocmd BufWritePost *_SUITE.erl Neomake ct1
 augroup END
 
