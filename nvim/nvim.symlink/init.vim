@@ -30,6 +30,8 @@ set directory=~/.vim/backup,~/tmp,/var/tmp,/tmp
 " Easier way to leave INS mode in :terminal windows
 tno <silent> <Esc><Esc> <C-\><C-n>
 
+vmap // y/<C-R>"<CR>
+
 let g:loaded_erlang_compiler = 1
 
 " vim-airline options
