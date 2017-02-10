@@ -1,0 +1,124 @@
+" rebar3 specific makers
+
+let s:exe = 'rebar3'
+
+function! s:profile()
+    if exists('b:rebar3_profile')
+        return b:rebar3_profile
+    endif
+    if exists('g:rebar3_profile')
+        return g:rebar3_profile
+    endif
+    return 'default'
+endfunction
+
+function! neomake#makers#ft#erlang#rebar3#EnabledMakers()
+    return [ 'flycheck', 'compile', 'ct', 'eunit']
+endfunction
+
+function! neomake#makers#ft#erlang#rebar3#compile()
+    return {
+        \ 'exe': 'rebar3',
+        \ 'args': ['compile'],
+        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
+        \ }
+endfunction
+
+function! s:postprocess(entry)
+    " Invalidate lines matching '===>'
+    if a:entry.text =~ '===>'
+        let a:entry.valid = -1
+    endif
+endfunction
+
+" NB: This has be a globally accessible function, as maker.mapexpr is passed
+" directly to map() as a string, not a funcref
+function! neomake#makers#ft#erlang#rebar3#mapexpr(line)
+    " Remove ANSI colors
+    let monochrome = substitute(a:line,  "\\\[\[01]\\(;[0-9]*\\)\\?m", "", "g")
+    " Delete _build/{profile}/lib/{myapp}/(ebin|test)
+    if !exists('b:erlang_app')
+        return monochrome
+    endif
+    let ebinpat = '_build/.\+/lib/'.b:erlang_app.'/ebin'
+    let testpat = '_build/.\+/lib/'.b:erlang_app.'/test'
+    let localised = substitute(monochrome, ebinpat , "src", "g")
+    let localised = substitute(localised, testpat, "test", "g")
+    return localised
+endfunction
+
+function! neomake#makers#ft#erlang#rebar3#ctmapexpr(line)
+    let clean = neomake#makers#ft#erlang#rebar3#mapexpr(a:line)
+    if exists('b:erlang_module')
+        let pat = '%%% ' . b:erlang_module . ' .*: FAILED'
+        if clean =~ pat
+            let clean = substitute(clean, b:erlang_module, expand('%'), "")
+        endif
+    endif
+    return clean
+endfunction
+    
+
+function! neomake#makers#ft#erlang#rebar3#flycheck()
+    " TODO Use s:profile() to get the path correctly
+"    let g:neomake_erlang_flycheck_maker = {
+"        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
+"        \ 'args': [],
+"        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
+"        \ }
+    return {
+        \ 'exe': 'rebar3',
+        \ 'args': ['as', s:profile(), 'compile'],
+        \ 'errorformat': '%-G===> ,%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
+        \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#mapexpr(v:val)',
+        \ 'append_file': 0
+        \ }
+endfunction
+
+function! neomake#makers#ft#erlang#rebar3#ct()
+    let efm  = '%-G===>%.%#,'
+    let efm .= '%E%%%%%% %f ==> %l: FAILED,'
+    let efm .= '%C%%%%%% %f ==> %m\,,'
+    let efm .= '%Z %#\[{file\,"%.%#"}\,,'
+    let efm .= '%Z %#{line\,%l}]}\,,'
+    let efm .= '%-G %#%m'
+    let maker = {
+        \ 'exe': 'rebar3',
+        \ 'args': ['ct'],
+        \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#ctmapexpr(v:val)',
+        \ 'append_file': 0,
+        \ 'postprocess': function('s:postprocess'),
+        \ 'errorformat': efm
+        \ }
+    if exists('b:erlang_module')
+                \ && b:erlang_module =~ '_SUITE'
+        call extend(maker.args, ['--suite', b:erlang_module])
+    endif
+    return maker
+endfunction
+
+function! neomake#makers#ft#erlang#rebar3#eunit()
+    let eunit_efm  = '%E  %n) %m,'
+    " TODO This is awful, but it kinda sorta works.
+    " TODO Make this programmatic - we can figure out the paths to look for
+    " from the rebar3 vars we now have.
+    let eunit_efm .= '%Z%[ ]%#%%%% %.%#/_build/test/lib/%[%^/]%#/%f:%l:in %.%#,'
+    " TODO When you match on '%f' in a line, it puts that filename in the
+    " buflist and the matching index in a:entry.bufnr
+    " Until we figure out how to do that ourselves, this workaround will
+    " suffice.
+    let eunit_efm .= '%Z%[ ]%#%%%% %f:%l:in %.%#,'
+    let eunit_efm .= '%+C%[ ]%#%m'
+    " let eunit_efm .= '%+C%[ ]%#expected: %m,'
+    " let eunit_efm .= '%+C%[ ]%#got: %m,'
+    " let eunit_efm .= '%C%[ ]%#Failure/Error: %m'
+    " TODO What profile to use for eunit
+    return {
+        \ 'exe': 'rebar3',
+        \ 'args': ['eunit'],
+        \ 'buffer_output': 1,
+        \ 'append_file': 0,
+        \ 'errorformat': eunit_efm,
+        \ 'mapexpr': 'substitute(v:val, "\\[[01]\\(;[0-9]*\\)\\?m", "", "g")',
+        \ }
+endfunction
