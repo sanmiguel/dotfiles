@@ -27,8 +27,7 @@ function! s:find_erlang_project_type()
         elseif filereadable("./rebar.config.lock")
             return ["rebar", "rebar"]
         else
-            " TODO This should ultimately change to "rebar3" by default
-            return ["rebar", "rebar"]
+            return ["rebar3", "rebar3"]
         endif
     endif
     " TODO Failsafe for e.g. standalone scripts
