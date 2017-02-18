@@ -92,10 +92,9 @@ function! neomake#makers#ft#erlang#rebar3#customct()
 endfunction
 
 function! neomake#makers#ft#erlang#rebar3#ct()
-    let efm = neomake#makers#ft#erlang#rebar3#compile().errorformat
-    let efm .= ',%-G===>%.%#,'
+    let efm = '%-G===>%.%#,'
     let efm .= '%E%%%%%% %f ==> %s: FAILED,'
-    let efm .= '%C%%%%%% %f ==> %m\,,'
+    let efm .= '%C%%%%%% %f ==> %m,'
     let efm .= '%C %#%m,'
     let efm .= '%+GFailed %m,'
     let efm .= '%+GResults written to %m,'
