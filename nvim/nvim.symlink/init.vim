@@ -289,13 +289,13 @@ endfunction
 " Run a make command with no file as input.
 " If no makers specified, use default top-level makers will be used.
 " If no top-level default, 'makeprg' will be used.
-let g:neomake_verbose = 3
-let g:neomake_logfile = './neomake.log'
+" let g:neomake_verbose = 3
+" let g:neomake_logfile = './neomake.log'
 
 augroup erlang
     autocmd FileType erlang call s:erlang_buflocals()
     autocmd BufWritePost *.erl,*.hrl Neomake flycheck
-    "autocmd BufWritePost *_SUITE.erl Neomake ct1
+    autocmd BufWritePost *_SUITE.erl Neomake ct
 augroup END
 
 function s:elixir_ft_setting()
