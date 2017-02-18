@@ -68,7 +68,7 @@ function! neomake#makers#ft#erlang#rebar3#flycheck()
         \ }
 endfunction
 
-function! neomake#makers#ft#erlang#rebar3#ct()
+function! neomake#makers#ft#erlang#rebar3#customct()
     let efm  = '%-G===>%.%#,'
     let efm .= '%-G %#,'
     let efm .= '%f::%s:%m,'
@@ -79,6 +79,30 @@ function! neomake#makers#ft#erlang#rebar3#ct()
     let maker = {
         \ 'exe': 'rebar3',
         \ 'args': ['as', 'tools', 'ct'],
+        \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#ctmapexpr(v:val)',
+        \ 'append_file': 0,
+        \ 'postprocess': function('s:postprocess'),
+        \ 'errorformat': efm
+        \ }
+    "if exists('b:erlang_module')
+    "            \ && b:erlang_module =~ '_SUITE'
+    "    call extend(maker.args, ['--suite', b:erlang_module])
+    "endif
+    return maker
+endfunction
+
+function! neomake#makers#ft#erlang#rebar3#ct()
+    let efm = neomake#makers#ft#erlang#rebar3#compile().errorformat
+    let efm .= ',%-G===>%.%#,'
+    let efm .= '%E%%%%%% %f ==> %s: FAILED,'
+    let efm .= '%C%%%%%% %f ==> %m\,,'
+    let efm .= '%C %#%m,'
+    let efm .= '%+GFailed %m,'
+    let efm .= '%+GResults written to %m,'
+    let efm .= '%-G %#%m'
+    let maker = {
+        \ 'exe': 'rebar3',
+        \ 'args': ['ct'],
         \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#ctmapexpr(v:val)',
         \ 'append_file': 0,
         \ 'postprocess': function('s:postprocess'),
