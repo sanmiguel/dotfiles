@@ -29,10 +29,10 @@ function! s:postprocess(entry)
     if a:entry.text =~ '===>'
         let a:entry.valid = -1
     endif
-    " Remove the trailing \$ from a:entry.pattern
+    " Remove the \V and trailing \$ from a:entry.pattern
     " This is kinda a workaround but it means we can search for test case
     " names when they get logged direct from the loclist
-    let newpat = substitute(a:entry.pattern, '\\\$$', "", "g")
+    let newpat = substitute(a:entry.pattern, '\\V\|\\\$$', "", "g")
     let a:entry.pattern = newpat
 endfunction
 
@@ -94,10 +94,10 @@ endfunction
 function! neomake#makers#ft#erlang#rebar3#ct()
     let efm = '%-G===>%.%#,'
     let efm .= '%E%%%%%% %f ==> %s: FAILED,'
-    let efm .= '%C%%%%%% %f ==> %m,'
-    let efm .= '%C %#%m,'
     let efm .= '%+GFailed %m,'
     let efm .= '%+GResults written to %m,'
+    let efm .= '%C%%%%%% %f ==> %m,'
+    let efm .= '%C %#%m,'
     let efm .= '%-G %#%m'
     let maker = {
         \ 'exe': 'rebar3',
