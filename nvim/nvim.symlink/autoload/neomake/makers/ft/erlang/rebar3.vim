@@ -29,11 +29,16 @@ function! s:postprocess(entry)
     if a:entry.text =~ '===>'
         let a:entry.valid = -1
     endif
+    " Remove the trailing \$ from a:entry.pattern
+    " This is kinda a workaround but it means we can search for test case
+    " names when they get logged direct from the loclist
+    let newpat = substitute(a:entry.pattern, '\\\$$', "", "g")
+    let a:entry.pattern = newpat
 endfunction
 
 " NB: This has be a globally accessible function, as maker.mapexpr is passed
 " directly to map() as a string, not a funcref
-function! neomake#makers#ft#erlang#rebar3#mapexpr(line)
+function! neomake#makers#ft#erlang#rebar3#flycheckmapexpr(line)
     " Remove ANSI colors
     let monochrome = substitute(a:line,  "\\\[\[01]\\(;[0-9]*\\)\\?m", "", "g")
     " Delete _build/{profile}/lib/{myapp}/(ebin|test)
@@ -47,18 +52,6 @@ function! neomake#makers#ft#erlang#rebar3#mapexpr(line)
     return localised
 endfunction
 
-function! neomake#makers#ft#erlang#rebar3#ctmapexpr(line)
-    let clean = neomake#makers#ft#erlang#rebar3#mapexpr(a:line)
-    if exists('b:erlang_module')
-        let pat = '%%% ' . b:erlang_module . ' .*: FAILED'
-        if clean =~ pat
-            let clean = substitute(clean, b:erlang_module, expand('%'), "")
-        endif
-    endif
-    return clean
-endfunction
-    
-
 function! neomake#makers#ft#erlang#rebar3#flycheck()
     " TODO Use s:profile() to get the path correctly
 "    let g:neomake_erlang_flycheck_maker = {
@@ -70,33 +63,45 @@ function! neomake#makers#ft#erlang#rebar3#flycheck()
         \ 'exe': 'rebar3',
         \ 'args': ['as', s:profile(), 'compile'],
         \ 'errorformat': '%-G===> ,%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
-        \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#mapexpr(v:val)',
+        \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#flycheckmapexpr(v:val)',
         \ 'append_file': 0
         \ }
 endfunction
 
 function! neomake#makers#ft#erlang#rebar3#ct()
     let efm  = '%-G===>%.%#,'
-    let efm .= '%E%%%%%% %f ==> %l: FAILED,'
-    let efm .= '%C%%%%%% %f ==> %m\,,'
-    let efm .= '%Z %#\[{file\,"%.%#"}\,,'
-    let efm .= '%Z %#{line\,%l}]}\,,'
+    let efm .= '%-G %#,'
+    let efm .= '%f::%s:%m,'
+    let efm .= '%f:%l:%m,'
+    let efm .= '%+GFailed %m,'
+    let efm .= '%+GResults written to %m,'
     let efm .= '%-G %#%m'
     let maker = {
         \ 'exe': 'rebar3',
-        \ 'args': ['ct'],
+        \ 'args': ['as', 'tools', 'ct'],
         \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#ctmapexpr(v:val)',
         \ 'append_file': 0,
         \ 'postprocess': function('s:postprocess'),
         \ 'errorformat': efm
         \ }
-    if exists('b:erlang_module')
-                \ && b:erlang_module =~ '_SUITE'
-        call extend(maker.args, ['--suite', b:erlang_module])
-    endif
+    "if exists('b:erlang_module')
+    "            \ && b:erlang_module =~ '_SUITE'
+    "    call extend(maker.args, ['--suite', b:erlang_module])
+    "endif
     return maker
 endfunction
 
+function! neomake#makers#ft#erlang#rebar3#ctmapexpr(line)
+    let clean = neomake#makers#ft#erlang#rebar3#flycheckmapexpr(a:line)
+    if exists('b:erlang_module')
+        let pat = '%%% ' . b:erlang_module . ' ==>'
+        if clean =~ pat
+            let clean = substitute(clean, b:erlang_module, expand('%'), "")
+        endif
+    endif
+    return clean
+endfunction
+    
 function! neomake#makers#ft#erlang#rebar3#eunit()
     let eunit_efm  = '%E  %n) %m,'
     " TODO This is awful, but it kinda sorta works.
