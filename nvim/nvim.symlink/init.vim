@@ -156,6 +156,8 @@ Plug 'neomake/neomake'
 " Plug 'eugen0329/vim-esearch' " For interactive find/replace, refactoring
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'bling/vim-bufferline'
+" Plug 'wellle/targets.vim' " Provides additional text objects for 'operator'
+" Plug 'kana/vim-textobj-function' " Text objects for functions
 
 " Services: web integrations
 let g:gist_get_multiplefile = 1
