@@ -134,7 +134,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 
 " System: Additional resources
-Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
@@ -142,16 +141,10 @@ let g:ref_open = 'vsplit'
 Plug 'thinca/vim-ref'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'Shougo/unite.vim'
 Plug 'neomake/neomake'
-"let g:neomake_error_sign = {
-"            \ 'text': '',
-"            \ 'texthl': 'NeomakeErrorSign'
-"            \ }
-"let g:neomake_warning_sign = {
-"            \ 'text': '',
-"            \ 'texthl': 'NeomakeWarningSign'
-"            \ }
+
+"Plug 'editorconfig/editorconfig-vim'
+"Plug 'Shougo/unite.vim'
 "Plug 'dhruvasagar/vim-dotoo'
 "Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 "Plug 'tpope/vim-fugitive' | Plug 'sanmiguel/potential-memory'
