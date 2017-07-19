@@ -266,9 +266,9 @@ function! s:erlang_buflocals()
     let b:erlang_srcdir = s:erlang_srcdir()
     let b:erlang_app = s:erlang_app(s:erlang_srcdir())
     let fname = expand('%:t')
-    if fname =~ ".*_SUITE\.erl"
+    "if fname =~ ".*_SUITE\.erl"
         let b:rebar3_profile = 'test'
-    endif
+    "endif
 
     set suffixesadd+=.erl
     set suffixesadd+=.hrl
