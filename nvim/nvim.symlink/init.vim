@@ -134,6 +134,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 
 " System: Additional resources
+Plug 'skywind3000/quickmenu.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
@@ -205,6 +206,14 @@ set switchbuf+=useopen,usetab
 set wildmode=list:longest,list:full
 set wildignorecase
 set wildignore+=*.beam
+
+" TODO Quickmenu.vim configuration
+" This is going to take a while to get right
+" <F12> isn't viable (along with any other <Fx> key) because OSX eats it
+" <c-\> ?
+noremap <silent><C-\> :call quickmenu#toggle(0)<cr>
+
+
 
 " Lovingly ripped off from github.com/aerosol/dotfiles
 " This is called once, set only globals
