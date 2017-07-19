@@ -1,7 +1,17 @@
 syntax on
 set laststatus=2
 set showtabline=2
+
 set background=dark
+" This is a dirty hack but might work for now
+let iterm_profile = expand("$ITERM_PROFILE")
+" TODO It would also be nice to tweak airline theme too?
+" Or maybe the theme I use is just poorly configured for light background
+if iterm_profile == 'Default light'
+    set background=light
+endif
+
+set mouse=a
 
 set ignorecase
 set smartcase
