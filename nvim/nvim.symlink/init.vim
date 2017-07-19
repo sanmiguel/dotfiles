@@ -193,6 +193,9 @@ Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 " Languages: go
 Plug 'fatih/vim-go', {'for': 'go'}
 
+" Languages: pony
+Plug 'jakwings/vim-pony', {'for': 'pony'}
+
 " Languages: python
 
 call plug#end()
