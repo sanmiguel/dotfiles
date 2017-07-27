@@ -13,6 +13,10 @@ function! s:profile()
 endfunction
 
 function! neomake#makers#ft#erlang#rebar3#EnabledMakers()
+    if exists('b:erlang_module')
+                \ && b:erlang_module =~ '_SUITE'
+        return [ 'flycheck', 'ctsuite' ]
+    endif
     return [ 'flycheck', 'compile', 'ct', 'eunit']
 endfunction
 
@@ -27,6 +31,9 @@ endfunction
 function! s:postprocess(entry)
     " Invalidate lines matching '===>'
     if a:entry.text =~ '===>'
+        let a:entry.valid = -1
+    endif
+    if a:entry.text == '' && a:entry.pattern == ''
         let a:entry.valid = -1
     endif
     " Remove the \V and trailing \$ from a:entry.pattern
@@ -54,17 +61,10 @@ endfunction
 
 function! neomake#makers#ft#erlang#rebar3#flycheck()
     " TODO Use s:profile() to get the path correctly
-"    let g:neomake_erlang_flycheck_maker = {
-"        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
-"        \ 'args': [],
-"        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
-"        \ }
     return {
-        \ 'exe': 'rebar3',
-        \ 'args': ['as', s:profile(), 'compile'],
-        \ 'errorformat': '%-G===> ,%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
-        \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#flycheckmapexpr(v:val)',
-        \ 'append_file': 0
+        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
+        \ 'args': ['--nooutdir'],
+        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
         \ }
 endfunction
 
@@ -111,6 +111,29 @@ function! neomake#makers#ft#erlang#rebar3#ct()
     "            \ && b:erlang_module =~ '_SUITE'
     "    call extend(maker.args, ['--suite', b:erlang_module])
     "endif
+    return maker
+endfunction
+
+function! neomake#makers#ft#erlang#rebar3#ctsuite()
+    let efm = '%-G===>%.%#,'
+    let efm .= '%E%%%%%% %f ==> %s: FAILED,'
+    let efm .= '%+GFailed %m,'
+    let efm .= '%+GResults written to %m,'
+    let efm .= '%C%%%%%% %f ==> %m,'
+    let efm .= '%C %#%m,'
+    let efm .= '%-G %#%m'
+    let maker = {
+        \ 'exe': 'rebar3',
+        \ 'args': ['ct'],
+        \ 'mapexpr': 'neomake#makers#ft#erlang#rebar3#ctmapexpr(v:val)',
+        \ 'append_file': 0,
+        \ 'postprocess': function('s:postprocess'),
+        \ 'errorformat': efm
+        \ }
+    if exists('b:erlang_module')
+                \ && b:erlang_module =~ '_SUITE'
+        call extend(maker.args, ['--suite', b:erlang_module])
+    endif
     return maker
 endfunction
 

@@ -65,6 +65,10 @@ function! neomake#makers#ft#erlang#ct()
     return s:maker('ct')
 endfunction
 
+function! neomake#makers#ft#erlang#ctsuite()
+    return s:maker('ctsuite')
+endfunction
+
 "function! neomake#makers#ft#erlang#flycheck()
 "    return {
 "        \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',

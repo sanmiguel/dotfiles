@@ -44,6 +44,24 @@ function! neomake#makers#ft#erlang#rebar#ct()
         \ }
 endfunction
 
+" TODO This needs validating really
+function! neomake#makers#ft#erlang#rebar#ctsuite()
+    " TODO: how to support:
+    "  - :Neomake ct   <- to run CT for *this* file
+    "  - :Neomake! ct  <- to run CT for project?
+    " TODO FIXME errorformat
+    let maker = {
+        \ 'exe': 'rebar',
+        \ 'args': ['ct'],
+        \ 'errorformat': ''
+        \ }
+    if exists('b:erlang_module')
+                \ && b:erlang_module =~ '_SUITE'
+        call extend(maker.args, ['--suite', b:erlang_module])
+    endif
+    return maker
+endfunction
+
 " TODO rebar eunit: entire project
 " TODO rebar qc: current file
 " TODO rebar qc: entire project
