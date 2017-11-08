@@ -94,6 +94,30 @@ let g:airline_theme = 'solarized'
 
 " Quickmenu:
 
+" Language: elixir + autocmd + neomake
+function s:elixir_ft_setting()
+    let g:neomake_open_list = 2
+    " TODO Find a way to just use this from vim-elixir plugin
+    let mix_test_efm =   '%E  %n) %m,'
+    let mix_test_efm .=  '%+G     ** %m,'
+    let mix_test_efm .=  '%+G     stacktrace:,'
+    let mix_test_efm .=  '%C     %f:%l,'
+    let mix_test_efm .=  '%+G       (%\\w%\\+) %f:%l: %m,'
+    let mix_test_efm .=  '%+G       %f:%l: %.%#,'
+    let mix_test_efm .=  '** (%\\w%\\+) %f:%l: %m'
+    let g:neomake_elixir_mixtest_maker = {
+        \ 'exe': 'mix',
+        \ 'args': ['test'],
+        \ 'append_file': 0,
+        \ 'errorformat': mix_test_efm
+        \ }
+endfunction
+
+augroup elixir
+    autocmd FileType elixir call s:elixir_ft_setting()
+    autocmd BufWritePost *.ex,*.exs Neomake mixtest
+augroup END
+
 " Language: erlang + autocmd + neomake
 augroup erlang
     autocmd FileType erlang call s:erlang_buflocals()
