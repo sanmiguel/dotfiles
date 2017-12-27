@@ -30,7 +30,7 @@ set directory=~/.cache/nvim,/tmp " Where nvim will put swap files
 set diffopt+=vertical " Default diff split to vertical
 
 " More obvious way to leave INS-mode in a :terminal buffer
-tno <silent> <Esc><Esc> <C-\><C-n>
+tnoremap <silent> <Esc><Esc> <C-\><C-n>
 
 set expandtab " Because we are not animals
 set tabstop=4 " How many spaces displayed for a tab
