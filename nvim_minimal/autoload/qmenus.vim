@@ -14,7 +14,7 @@ function! CurrentNeomakers()
         let item = [ 'Neomake ' . m.name, 'Neomake ' . m.name ]
         call extend(items, { m.name: item })
     endfor
-    return deepcopy(items)
+    return {'items': deepcopy(items)}
 endfunction
 
 " If you want to add a new menu, add its title in this list, then you can use
@@ -31,30 +31,35 @@ let s:qmenuids = ['fugitive', 'vim-test', 'neomake', 'vim-notes']
 " TODO: Allow special keys in these dicts to control the other allowed fields
 " in quickmenu datatypes, e.g. 'ft', description etc
 let g:custom_quickmenus = {
-            \ 'neomake': function('CurrentNeomakers'),
+            \ 'neomake': {
+            \  'fn': function('CurrentNeomakers')
+            \ },
             \ 'fugitive': {
+            \  'items': {
             \   'Gstatus': [ ':Gstatus', 'Show the working tree status' ] ,
             \   'Gdiff':   [ ':Gdiff', 'Show changes from index' ],
             \   'Gcommit': [ ':Gcommit', 'Commit the currently staged changes' ],
             \   'Gcommit amend': [ ':Gcommit --amend', 'Add the currently staged changes to the last commit']
-            \ },
+            \ }},
             \ 'vim-test': {
+            \  'items': {
             \   'TestNearest': [ ':TestNearest', 'Runs nearest test case' ],
             \   'TestFile': [ ':TestFile', 'Runs the current test file' ],
             \   'TestSuite': [ ':TestSuite', 'Runs the whole test suite' ],
             \   'TestLast': [ ':TestLast', 'Re-runs the last run test' ],
             \   'TestVisit': [ ':TestVisit', 'Visits the last run test' ]
-            \ },
+            \ }},
             \ 'vim-notes': {
-            \ 'Note': [ 'Note', 'Create a new untitled note' ],
-            \ 'NoteFromSelectedText': [ 'NoteFromSelectedText', 'Creates a note from the selected text' ]
-            \ }
+            \  'items': {
+            \   'Note': [ 'Note', 'Create a new untitled note' ],
+            \   'NoteFromSelectedText': [ 'NoteFromSelectedText', 'Creates a note from the selected text' ]
+            \ }}
             \ }
 
 function! qmenus#load()
     " call MakerMenu()
-    call s:maps()
     call SetupConfiguredMenus()
+    call s:maps()
 endfunction
 
 " Since quickmenu's API requires so much gymnastics to figure out which
@@ -100,7 +105,10 @@ endfunction
 " whenever we pick the menu. This requires an exported function to call from a
 " menu or a key mapping.
 function! qmenus#update(menu)
-    let Updfunc = g:custom_quickmenus[a:menu]
+    " TODO reset the menu...
+    " TODO Use s:append_menu_items properly
+    call qmenus#reset(a:menu)
+    let Updfunc = g:custom_quickmenus[a:menu]['fn']
     let items = Updfunc()
     call s:append_menu_items(a:menu, items)
 endfunction
@@ -121,7 +129,7 @@ endfunction
 
 function! s:maps()
     noremap <C-H> :call qmenus#bottom('fugitive')<CR>
-    noremap <LocalLeader>0 :call quickmenu#toggle(0)<cr>
+    noremap <C-T> :call qmenus#bottom('vim-test')<CR>
     noremap <LocalLeader><LocalLeader> :call quickmenu#bottom(99)<CR>
 endfunction
 
@@ -167,29 +175,30 @@ function! SetupConfiguredMenus()
     endfor
 endfunction
 
-function! s:setup_menu(name, Menuspec)
-    if type(a:Menuspec) == v:t_func
+function! s:setup_menu(name, menuspec)
+    if has_key(a:menuspec, 'fn')
         let cmd = 'call qmenus#update('.string(a:name).')'
                     \ . '| call qmenus#bottom('.string(a:name).')'
-        call s:append_menu_items(99, {a:name: [ cmd, a:name]})
+        call s:append_menu_items(99, [a:name, cmd, a:name])
     else
         let cmd = 'call qmenus#bottom('. string(a:name) .')'
-        call s:append_menu_items(99, {a:name: [ cmd, a:name ]})
-        call s:append_menu_items(a:name, a:Menuspec)
+        call s:append_menu_items(99, [a:name, cmd, a:name])
+        call s:append_menu_items(a:name, a:menuspec)
     endif
 endfunction
 
 function! s:append_menu_items(menu, menuspec)
-    if type([]) == type(a:menuspec)
-        for [ name, cmd, desc ] in g:custom_quickmenus[key]
-            call qmenus#append(a:menu, name, cmd, desc)
-        endfor
-    elseif type(a:menuspec) == v:t_dict
-        for name in keys(a:menuspec)
-            let [ cmd, desc ] = a:menuspec[name]
-            call qmenus#append(a:menu, name, cmd, desc)
-        endfor
+    if type(a:menuspec) == v:t_list
+        let [name, cmd, desc] = a:menuspec
+        call qmenus#append(a:menu, name, cmd, desc)
+        return
+    elseif ! has_key(a:menuspec, 'items')
+        return
     endif
+    for name in keys(a:menuspec['items'])
+        let [ cmd, desc ] = a:menuspec['items'][name]
+        call qmenus#append(a:menu, name, cmd, desc)
+    endfor
 endfunction
 
 function! s:append_meta_menu(menu, Menufunc)
