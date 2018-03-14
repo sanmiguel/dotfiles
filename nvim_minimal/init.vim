@@ -44,6 +44,9 @@ endif
 set termguicolors   " Use 24-bit colour where possible
 set background=dark " Use a dark background (some colorschemes obey this)
 
+" Turn off line numbers in terminal
+autocmd TermOpen * setlocal nonumber
+
 " Python pre-requisites: Use pyenv to install python2 and python3, to create
 " segregated python runtimes for neovim to use:
 " NB: Unfortunately if you upgrade pyenv via homebrew later, you'll have to
