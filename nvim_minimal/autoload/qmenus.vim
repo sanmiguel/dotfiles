@@ -209,19 +209,6 @@ function! s:append_meta_menu(menu, Menufunc)
     call s:append_menu_items(a:menu, items)
 endfunction
 
-function! RebindNeomakeMetamenu(menuid)
-    let makers = CurrentNeomakers()
-    call quickmenu#current(a:menuid)
-    call quickmenu#reset()
-    call s:append_menu_items(makers)
-    call quickmenu#current(0)
-endfunction
-
-function! Metamenu()
-    call quickmenu#current(99)
-    call quickmenu#append('metamakers', 'call RebindNeomakeMetamenu(98) | call quickmenu#bottom(98)', 'some description of metamakers menu')
-endfunction
-
 "function! AppendIngestMakers()
 "    call quickmenu#current(0)
 "    call quickmenu#header('Ingest makers')
