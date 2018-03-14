@@ -115,7 +115,8 @@ colorscheme NeoSolarized
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'solarized'
 
-" Quickmenu:
+" Quickmenus:
+call qmenus#load() " See autoload/qmenus.vim
 
 " Language: elixir + autocmd + neomake
 function s:elixir_ft_setting()
