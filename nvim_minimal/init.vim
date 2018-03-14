@@ -186,6 +186,7 @@ augroup END
 " Language: erlang + autocmd + neomake
 augroup erlang
     autocmd FileType erlang call s:erlang_buflocals()
+    autocmd BufWritePost *.erl,*.hrl Neomake flycheck
 augroup END
 function! s:erlang_buflocals()
     " TODO Skip also if filename ~= "fugitive://"
