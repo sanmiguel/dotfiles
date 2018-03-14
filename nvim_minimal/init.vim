@@ -80,18 +80,50 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
 " System: External resources
 Plug 'tpope/vim-fugitive'     " :h fugitive
+" This adds some helpful things when dealing with Github (.com or enterprise)
+" but requires some configuration - see https://github.com/tpope/vim-rhubarb#installation
+" for full instructions
+let g:github_enterprise_urls = ['https://algithub.pd.alertlogic.net']
+Plug 'tpope/vim-rhubarb'      " :h rhubarb
 Plug 'airblade/vim-gitgutter' " :h GitGutter
 Plug 'mileszs/ack.vim' " :h ack | Can be configured for grep, ag, ack
 Plug 'thinca/vim-ref'  " :h ref-introduction
 		       " e.g. :Ref erlang lists:foldl
+" TODO: enable vim-mundo again
+" Plug 'simnalamburt/vim-mundo'
+let g:notes_directories = ['~/.cache/vim-notes']
+let g:notes_conceal_code = 0
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 
 Plug 'neomake/neomake' " :h neomake-contents
+let g:deoplete#enable_at_startup = 1
+" TODO There seems to be some weirdnesses around using deoplete:
+" rogue python processes, excessive file handles, and sometimes it just
+" doesn't work at all. Investigate!
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" TODO Add Python plugin
+Plug 'zchee/deoplete-jedi'
+
+" Git runtime files: an earlier version of these is shipped with vim, but
+" this is the official distribution now:
+" [NB: 'runtime files' e.g. syntax and highlight definitions for commit
+" messages]
+Plug 'tpope/vim-git'
+
+" readline style input even in vim commandline: where has this plugin
+" been...?!
+Plug 'tpope/vim-rsi'
+
+Plug 'janko-m/vim-test'
 
 " System: Additional controls
 Plug 'tpope/vim-unimpaired' " :help unimpaired
 Plug 'tpope/vim-surround'   " :help surround
 " quickmenu does nothing without configuration, which we'll do later
 Plug 'skywind3000/quickmenu.vim'
+" Shortcuts for filetype-sensitive comment toggling:
+" in erlang, only recognises single-% comments
+Plug 'tpope/vim-commentary'
 
 " Language: erlang
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
@@ -117,6 +149,12 @@ colorscheme NeoSolarized
 " Airline: configuration
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'solarized'
+
+" vim-test:
+let test#strategy = {'nearest': 'neovim',
+    \ 'file': 'neovim',
+    \ 'suite': 'neovim'
+    \}
 
 " Quickmenus:
 call qmenus#load() " See autoload/qmenus.vim
