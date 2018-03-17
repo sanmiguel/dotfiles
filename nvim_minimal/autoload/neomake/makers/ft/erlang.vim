@@ -37,6 +37,7 @@ endfunction
 let [ s:proj_type, s:exe ] = s:find_erlang_project_type()
 
 function! s:maker(rg)
+    " TODO Do nothing if s:exe == ''
     let Fn = function('neomake#makers#ft#erlang#'. s:exe . '#' . a:rg)
     return Fn()
 endfunction
