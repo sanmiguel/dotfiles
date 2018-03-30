@@ -56,7 +56,8 @@ let g:custom_quickmenus = {
             \   'Gstatus': [ ':Gstatus', 'Show the working tree status' ] ,
             \   'Gdiff':   [ ':Gdiff', 'Show changes from index' ],
             \   'Gcommit': [ ':Gcommit', 'Commit the currently staged changes' ],
-            \   'Gcommit amend': [ ':Gcommit --amend', 'Add the currently staged changes to the last commit']
+            \   'Gcommit amend': [ ':Gcommit --amend --reuse-message=HEAD', 
+                                    \ 'Add the currently staged changes to the last commit']
             \ }},
             \ 'vim-test': {
             \  'items': {
