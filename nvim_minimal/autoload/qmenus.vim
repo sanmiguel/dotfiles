@@ -6,6 +6,10 @@ if exists('g:loaded_qmenus')
 endif
 let g:loaded_qmenus = 1
 
+" This function generates the content for the Neomake menu dynamically.
+" AFAIK it *must* come before the reference to it in g:custom_quickmenus
+" below.
+" TODO: Clean it up.
 function! CurrentNeomakers()
     let ft = &filetype
     let makers = neomake#GetEnabledMakers(ft)
@@ -20,8 +24,10 @@ endfunction
 " If you want to add a new menu, add its title in this list, then you can use
 "   s:qmenuid('mymenu')
 " to get its numerical ID.
+" TODO Enforce the ordering of s:qmenuids when building top-level menu
 let s:qmenuids = ['fugitive', 'vim-test', 'neomake', 'vim-notes']
 " Static-ish configuration for menus
+" TODO: update this description once TODOs below are TODOne
 " Each should either be a dict, where each key is a menu name and its value is
 " a dict of name -> [ command, description ] list-pairs
 " or a Funcref to a function that returns such a dict.
@@ -30,6 +36,17 @@ let s:qmenuids = ['fugitive', 'vim-test', 'neomake', 'vim-notes']
 " filetype.
 " TODO: Allow special keys in these dicts to control the other allowed fields
 " in quickmenu datatypes, e.g. 'ft', description etc
+" TODO: add 'docs' markup key to allow quick link to docs for a section:
+" directly invoke ':help <subject>' where possible, otherwise maybe open the
+" README from the plugin dir?
+" TODO: 'bottom' vs 'toggle' option
+" TODO: Header
+" TODO: 'for' &filetype
+" TODO: Should we support both 'fn' and 'items'? Static entries + dynamic
+" ones?
+" TODO: Change items and outer structure here to List, so that ordering can be
+" preserved.
+" [ {'neomake': { ... }}, {'fugitive': {'item': [ {'Gstatus': ... }]}} ]
 let g:custom_quickmenus = {
             \ 'neomake': {
             \  'fn': function('CurrentNeomakers')
@@ -39,7 +56,8 @@ let g:custom_quickmenus = {
             \   'Gstatus': [ ':Gstatus', 'Show the working tree status' ] ,
             \   'Gdiff':   [ ':Gdiff', 'Show changes from index' ],
             \   'Gcommit': [ ':Gcommit', 'Commit the currently staged changes' ],
-            \   'Gcommit amend': [ ':Gcommit --amend', 'Add the currently staged changes to the last commit']
+            \   'Gcommit amend': [ ':Gcommit --amend --reuse-message=HEAD', 
+                                    \ 'Add the currently staged changes to the last commit']
             \ }},
             \ 'vim-test': {
             \  'items': {
@@ -53,8 +71,20 @@ let g:custom_quickmenus = {
             \  'items': {
             \   'Note': [ 'Note', 'Create a new untitled note' ],
             \   'NoteFromSelectedText': [ 'NoteFromSelectedText', 'Creates a note from the selected text' ]
+            \ }},
+            \ 'sessions': {
+            \  'items': {
+            \   'SSave': [ 'SSave', 'Save current session' ],
+            \   'SLoad': [ 'SLoad | Obsession', 'Load session' ]
             \ }}
             \ }
+" TODO Menus:
+"  - useful [neo]vim switches ('set invnumber', 'set smartcase' etc)
+"  - try to include a menu for each plugin that has commands
+"  - vim-erlang: tags, skeletons, compiler..?
+"   - rebar3 menu? Maybe we could do something entertaining like auto-gen a
+"   menu based on rebar3's help output...?
+"  - auto-generate a 'make' menu based on... tab-completion for 'make'...?!
 
 function! qmenus#load()
     " call MakerMenu()
@@ -207,19 +237,6 @@ function! s:append_meta_menu(menu, Menufunc)
     call qmenus#header(a:menu, a:menu)
     let items = Menufunc()
     call s:append_menu_items(a:menu, items)
-endfunction
-
-function! RebindNeomakeMetamenu(menuid)
-    let makers = CurrentNeomakers()
-    call quickmenu#current(a:menuid)
-    call quickmenu#reset()
-    call s:append_menu_items(makers)
-    call quickmenu#current(0)
-endfunction
-
-function! Metamenu()
-    call quickmenu#current(99)
-    call quickmenu#append('metamakers', 'call RebindNeomakeMetamenu(98) | call quickmenu#bottom(98)', 'some description of metamakers menu')
 endfunction
 
 "function! AppendIngestMakers()

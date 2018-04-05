@@ -27,6 +27,8 @@ set title " Set the window title automatically
 
 set directory=~/.cache/nvim,/tmp " Where nvim will put swap files
 
+set splitright " Default vertical splits to open on the right
+set splitbelow " Default horizontal splits to open below
 set diffopt+=vertical " Default diff split to vertical
 
 " More obvious way to leave INS-mode in a :terminal buffer
@@ -43,6 +45,14 @@ endif
 
 set termguicolors   " Use 24-bit colour where possible
 set background=dark " Use a dark background (some colorschemes obey this)
+
+" NB: Requires neovim-remote
+" When running e.g. 'git commit' inside an nvim terminal, this will cause it
+" to open the commit message buffer in the current nvim instance (rather than
+" a nested nvim inside the neovim-terminal...)
+if has('nvim')
+    let $VISUAL = 'nvr -cc split --remote-wait'
+endif
 
 " Turn off line numbers in terminal
 autocmd TermOpen * setlocal nonumber
@@ -67,8 +77,8 @@ autocmd TermOpen * setlocal nonumber
 " pip install neovim flake8
 " pyenv which python # <- g:python3_host_prog
 " Once you've carried out these commands, uncomment these:
-" let g:python_host_prog = '/usr/local/opt/pyenv/versions/neovim2/bin/python'
-" let g:python3_host_prog = '/usr/local/opt/pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '/usr/local/opt/pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/usr/local/opt/pyenv/versions/neovim3/bin/python'
 
 " Plugins: https://github.com/junegunn/vim-plug#installation
 let g:plug_dir = expand('~/.config/nvim/plugged')
@@ -78,7 +88,14 @@ Plug 'iCyMind/NeoSolarized'
 " Fancy status lines (see 'g:airline_*' settings below)
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
+" Vim session control
+Plug 'tpope/vim-obsession'
+
+" Improve NetRW windows
+Plug 'tpope/vim-vinegar'
+
 " System: External resources
+" Git-related:
 Plug 'tpope/vim-fugitive'     " :h fugitive
 " This adds some helpful things when dealing with Github (.com or enterprise)
 " but requires some configuration - see https://github.com/tpope/vim-rhubarb#installation
@@ -86,6 +103,12 @@ Plug 'tpope/vim-fugitive'     " :h fugitive
 let g:github_enterprise_urls = ['https://algithub.pd.alertlogic.net']
 Plug 'tpope/vim-rhubarb'      " :h rhubarb
 Plug 'airblade/vim-gitgutter' " :h GitGutter
+
+" Startup screen:
+" TODO Find a way to pull notifications from Github/GH Enterprise and display
+" them as a list - that might encourage me to actually use them!
+Plug 'mhinz/vim-startify'
+
 Plug 'mileszs/ack.vim' " :h ack | Can be configured for grep, ag, ack
 Plug 'thinca/vim-ref'  " :h ref-introduction
 		       " e.g. :Ref erlang lists:foldl
@@ -96,6 +119,7 @@ let g:notes_conceal_code = 0
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 
 Plug 'neomake/neomake' " :h neomake-contents
+
 let g:deoplete#enable_at_startup = 1
 " TODO There seems to be some weirdnesses around using deoplete:
 " rogue python processes, excessive file handles, and sometimes it just
@@ -143,14 +167,27 @@ Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 
 call plug#end()
 
+" =======================================
+" Plugin Configurations
+" =======================================
+
 " This has to come after the plugins are loaded
 colorscheme NeoSolarized
 
 " Airline: configuration
+let g:airline#extensions#neomake#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'solarized'
 
-" vim-test:
+let g:startify_commands = [
+    \ ':help reference',
+    \ ['Vim Reference', 'h ref'],
+    \ {'h': 'h ref'},
+    \ {'m': ['My magical function', 'call Magic()']},
+    \ ]
+
+" VimTest:
+let test#runners = {'Erlang': ['commontest', 'eunit']}
 let test#strategy = {'nearest': 'neovim',
     \ 'file': 'neovim',
     \ 'suite': 'neovim'
@@ -205,6 +242,7 @@ function! s:erlang_buflocals()
     set suffixesadd+=.hrl
     let fname = expand('%:t')
 endfunction
+
 function! s:erlang_globals()
     if exists('s:my_erl_globals_done')
         return
