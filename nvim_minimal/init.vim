@@ -46,6 +46,14 @@ endif
 set termguicolors   " Use 24-bit colour where possible
 set background=dark " Use a dark background (some colorschemes obey this)
 
+" NB: Requires neovim-remote
+" When running e.g. 'git commit' inside an nvim terminal, this will cause it
+" to open the commit message buffer in the current nvim instance (rather than
+" a nested nvim inside the neovim-terminal...)
+if has('nvim')
+    let $VISUAL = 'nvr -cc split --remote-wait'
+endif
+
 " Turn off line numbers in terminal
 autocmd TermOpen * setlocal nonumber
 
@@ -158,6 +166,10 @@ Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
 Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 
 call plug#end()
+
+" =======================================
+" Plugin Configurations
+" =======================================
 
 " This has to come after the plugins are loaded
 colorscheme NeoSolarized
