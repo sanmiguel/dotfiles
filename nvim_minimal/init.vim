@@ -174,7 +174,7 @@ let g:startify_commands = [
     \ {'m': ['My magical function', 'call Magic()']},
     \ ]
 
-" vim-test:
+" VimTest:
 let test#runners = {'Erlang': ['commontest', 'eunit']}
 let test#strategy = {'nearest': 'neovim',
     \ 'file': 'neovim',
