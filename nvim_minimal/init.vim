@@ -90,6 +90,7 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
 " Vim session control
 Plug 'tpope/vim-obsession'
+set sessionoptions-=buffers
 
 " Improve NetRW windows
 Plug 'tpope/vim-vinegar'
@@ -105,8 +106,6 @@ Plug 'tpope/vim-rhubarb'      " :h rhubarb
 Plug 'airblade/vim-gitgutter' " :h GitGutter
 
 " Startup screen:
-" TODO Find a way to pull notifications from Github/GH Enterprise and display
-" them as a list - that might encourage me to actually use them!
 Plug 'mhinz/vim-startify'
 
 Plug 'mileszs/ack.vim' " :h ack | Can be configured for grep, ag, ack
@@ -179,6 +178,16 @@ let g:airline#extensions#neomake#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'solarized'
 
+let g:startify_lists = [
+      \ { 'header': ['   Sessions'],       'type': 'sessions' },
+      \ { 'header': ['   ALGithub Notifications'],
+      \   'type': {-> startifier#gh_nfns('https://algithub.pd.alertlogic.net/api/v3') }},
+      \ { 'header': ['   Github Notifications'],
+      \   'type': {-> startifier#gh_nfns('https://api.github.com') }},
+      \ { 'header': ['   MRU '.getcwd()], 'type': 'dir' }
+      \ ]
+
+let g:startify_fortune_use_unicode = 1
 let g:startify_commands = [
     \ ':help reference',
     \ ['Vim Reference', 'h ref'],
@@ -223,8 +232,9 @@ augroup END
 " Language: erlang + autocmd + neomake
 augroup erlang
     autocmd FileType erlang call s:erlang_buflocals()
-    autocmd BufWritePost *.erl,*.hrl Neomake flycheck
+    " autocmd BufWritePost *.erl,*.hrl Neomake flycheck
 augroup END
+
 function! s:erlang_buflocals()
     " TODO Skip also if filename ~= "fugitive://"
     if !exists('s:my_erl_globals_done')
@@ -277,7 +287,12 @@ function! s:erlang_globals()
     let g:surround_60 = "<<\"\r\">>"
     let g:surround_62 = "<<\"\r\">>"
     " TODO But how to do the inverse?
+
+    " EXPERIMENTAL:
+    " Disable the auto-flycheck on BufWritePost for now, replace with 
+    command! W w | Neomake flycheck
 endfunction
+
 function! s:erlang_srcdir()
     return expand('%:p:h')
 endfunction
