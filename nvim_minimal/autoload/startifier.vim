@@ -27,7 +27,7 @@ function! s:format_gh_nfn(i, val)
     let n = a:val
     let l = "[". n.repo ."] " . n.title
     " TODO Proper action to display the issue/pull-request
-    let c = "!open ". n.url
+    let c = "call startifier#gh_nfn_menu('". n.url ."')"
     return {"line": l, "cmd": c}
 endfunction
 
@@ -38,4 +38,30 @@ function! startifier#gh_nfns(base)
     return items != [] 
                 \ ? items 
                 \ : [{'line': 'None. Refresh?', 'cmd': 'Startify'}] 
+endfunction
+
+function! startifier#gh_issue_from_nfn(nurl)
+    " TODO: Use rhubarb#request(nurl) to fetch issue data,
+    " then use html_url to open in browser
+    let json = rhubarb#request(a:nurl)
+    if type(json) == v:t_dict && has_key(json, 'number')
+        let issuenr = json.number
+    endif
+endfunction
+
+function! startifier#gh_nfn_menu(nurl)
+    let json = rhubarb#request(a:nurl)
+    if type(json) != v:t_dict
+        echom "Unknown response from github for notification: " . string(json)
+    endif
+    let issuenr = json.number
+
+    let menu = 'startify_'.string(issuenr)
+    let menuspec = {
+                \ 'items': {
+                \   'Open in browser': [ ':!open ' . json.html_url, 'Opens the issue in the browser' ]
+                \ }
+                \ }
+    call qmenus#set(menu, menuspec)
+    call qmenus#toggle(menu)
 endfunction
