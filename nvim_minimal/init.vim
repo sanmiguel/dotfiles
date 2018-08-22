@@ -180,7 +180,8 @@ colorscheme NeoSolarized
 " Airline: configuration
 let g:airline#extensions#neomake#enabled = 1
 let g:airline_powerline_fonts=1
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'atomic'
+let [g:airline_left_sep, g:airline_right_sep] = ['', '']
 
 let g:startify_lists = [
       \ { 'header': ['   Sessions'],       'type': 'sessions' },
