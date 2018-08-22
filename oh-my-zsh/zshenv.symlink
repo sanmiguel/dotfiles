@@ -1,2 +1,6 @@
-# kerl
-. ~/kerl/R16B02_basho10/activate
+if [[ $- != *i* ]]; then
+    # Set up a primitive environment for [neo]vim terminals to use
+    export MIX_ENV=dev
+    export ASDF_DIR=/usr/local/opt/asdf
+    . ${ASDF_DIR}/asdf.sh
+fi

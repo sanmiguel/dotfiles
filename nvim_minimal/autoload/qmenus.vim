@@ -57,7 +57,9 @@ let g:custom_quickmenus = {
             \   'Gdiff':   [ ':Gdiff', 'Show changes from index' ],
             \   'Gcommit': [ ':Gcommit', 'Commit the currently staged changes' ],
             \   'Gcommit amend': [ ':Gcommit --amend --reuse-message=HEAD', 
-                                    \ 'Add the currently staged changes to the last commit']
+                                    \ 'Add the currently staged changes to the last commit'],
+            \   'GitGutter': [ ':GitGutter', 'Refresh the GitGutter markers' ],
+            \   'Git push': [ ':Git push', 'Push the current branch (requires upstream to be set)' ]
             \ }},
             \ 'vim-test': {
             \  'items': {
@@ -85,6 +87,7 @@ let g:custom_quickmenus = {
 "   - rebar3 menu? Maybe we could do something entertaining like auto-gen a
 "   menu based on rebar3's help output...?
 "  - auto-generate a 'make' menu based on... tab-completion for 'make'...?!
+"  - auto-generate the sessions menu based on the startify sessions list
 
 function! qmenus#load()
     " call MakerMenu()
@@ -141,6 +144,11 @@ function! qmenus#update(menu)
     let Updfunc = g:custom_quickmenus[a:menu]['fn']
     let items = Updfunc()
     call s:append_menu_items(a:menu, items)
+endfunction
+
+" Declaratively add a new menu using a menuspec (see g:custom_quickmenus)
+function! qmenus#set(menu, menuspec)
+    call s:setup_menu(a:menu, a:menuspec)
 endfunction
 
 " Quickmenu has a pretty annoying API that makes you work harder than you
