@@ -107,6 +107,7 @@ Plug 'tpope/vim-fugitive'     " :h fugitive
 let g:github_enterprise_urls = ['https://algithub.pd.alertlogic.net']
 Plug 'tpope/vim-rhubarb'      " :h rhubarb
 Plug 'airblade/vim-gitgutter' " :h GitGutter
+Plug 'whiteinge/diffconflicts' " :h DiffConflicts
 
 " Startup screen:
 Plug 'mhinz/vim-startify'
