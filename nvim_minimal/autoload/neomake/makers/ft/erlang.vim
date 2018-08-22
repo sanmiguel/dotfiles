@@ -8,9 +8,6 @@
 let s:proj_type = 'unknown'
 
 function! s:find_erlang_project_type()
-    if exists('s:exe')
-        return [ s:proj_type, s:exe ]
-    endif
     " Figure out what kind of erlang project this is based on what files we
     " find:
     " [./rebar3 , rebar.config, rebar.lock] -> rebar3
@@ -18,12 +15,12 @@ function! s:find_erlang_project_type()
     " Otherwise, do not set anything else custom for erlang (!!)
     if filereadable("rebar.config")
         " rebar, but 2 or 3?
-        if filereadable("./rebar3")
-            return ["rebar3", "./rebar3"]
+        if filereadable("./rebar.lock")
+            return ["rebar3", "rebar3"]
         elseif filereadable("./rebar")
             return ["rebar", "./rebar"]
-        elseif filereadable("./rebar.lock")
-            return ["rebar3", "rebar3"]
+        elseif filereadable("./rebar3")
+            return ["rebar3", "./rebar3"]
         elseif filereadable("./rebar.config.lock")
             return ["rebar", "rebar"]
         else
@@ -38,7 +35,7 @@ let [ s:proj_type, s:exe ] = s:find_erlang_project_type()
 
 function! s:maker(rg)
     " TODO Do nothing if s:exe == ''
-    let Fn = function('neomake#makers#ft#erlang#'. s:exe . '#' . a:rg)
+    let Fn = function('neomake#makers#ft#erlang#'. s:proj_type . '#' . a:rg)
     return Fn()
 endfunction
 
