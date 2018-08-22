@@ -8,4 +8,4 @@ KERL_INSTALL_DIR=~/kerl
 KERL_INSTALL=R16B02_basho10
 
 KERL_BUILD_BACKEND=git
-OTP_GITHUB_URL=http://github.com/basho/otp
+OTP_GITHUB_URL=http://github.com/erlang/otp
