@@ -112,9 +112,9 @@ Plug 'whiteinge/diffconflicts' " :h DiffConflicts
 " Startup screen:
 Plug 'mhinz/vim-startify'
 
-Plug 'mileszs/ack.vim' " :h ack | Can be configured for grep, ag, ack
-Plug 'thinca/vim-ref'  " :h ref-introduction
-		       " e.g. :Ref erlang lists:foldl
+Plug 'mileszs/ack.vim'  " :h ack | Can be configured for grep, ag, ack
+Plug 'thinca/vim-ref'   " :h ref-introduction
+                        " e.g. :Ref erlang lists:foldl
 " TODO: enable vim-mundo again
 " Plug 'simnalamburt/vim-mundo'
 let g:notes_directories = ['~/.cache/vim-notes']
