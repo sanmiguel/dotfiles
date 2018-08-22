@@ -233,6 +233,7 @@ augroup END
 " Language: erlang + autocmd + neomake
 augroup erlang
     autocmd FileType erlang call s:erlang_buflocals()
+    autocmd BufEnter *.erl call s:erlang_bufenter()
     " autocmd BufWritePost *.erl,*.hrl Neomake flycheck
 augroup END
 
@@ -246,12 +247,14 @@ function! s:erlang_buflocals()
     let b:erlang_module = expand('%:t:r')
     let b:erlang_srcdir = s:erlang_srcdir()
     let b:erlang_app = s:erlang_app(s:erlang_srcdir())
-    let fname = expand('%:t')
     let b:rebar3_profile = 'test'
 
     set suffixesadd+=.erl
     set suffixesadd+=.hrl
-    let fname = expand('%:t')
+endfunction
+
+function! s:erlang_bufenter()
+    let @m = b:erlang_module
 endfunction
 
 function! s:erlang_globals()
@@ -265,6 +268,7 @@ function! s:erlang_globals()
     " The presence of multiple build dirs is troublesome (i.e. profiles)
     " but perhaps it's sufficient for 90% of cases to only include _build/dev?
     set path+=src
+    set path+=include
     " TODO Paths should change based on project type: rebar rebar3 etc
     set path+=deps/**
     set path+=_build/default/lib
@@ -290,7 +294,7 @@ function! s:erlang_globals()
     " TODO But how to do the inverse?
 
     " EXPERIMENTAL:
-    " Disable the auto-flycheck on BufWritePost for now, replace with 
+    " Disable the auto-flycheck on BufWritePost for now, replace with
     command! W w | Neomake flycheck
 endfunction
 
