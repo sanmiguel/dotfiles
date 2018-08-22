@@ -88,6 +88,9 @@ Plug 'iCyMind/NeoSolarized'
 " Fancy status lines (see 'g:airline_*' settings below)
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
+" Highlight instances of the current word
+Plug 'RRethy/vim-illuminate'
+
 " Vim session control
 Plug 'tpope/vim-obsession'
 set sessionoptions-=buffers
