@@ -104,7 +104,7 @@ Plug 'tpope/vim-fugitive'     " :h fugitive
 " This adds some helpful things when dealing with Github (.com or enterprise)
 " but requires some configuration - see https://github.com/tpope/vim-rhubarb#installation
 " for full instructions
-let g:github_enterprise_urls = ['https://algithub.pd.alertlogic.net']
+let g:github_enterprise_urls = ["https://algithub.pd.alertlogic.net"]
 Plug 'tpope/vim-rhubarb'      " :h rhubarb
 Plug 'airblade/vim-gitgutter' " :h GitGutter
 Plug 'whiteinge/diffconflicts' " :h DiffConflicts
