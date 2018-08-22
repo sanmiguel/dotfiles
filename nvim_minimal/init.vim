@@ -185,10 +185,6 @@ let [g:airline_left_sep, g:airline_right_sep] = ['', '']
 
 let g:startify_lists = [
       \ { 'header': ['   Sessions'],       'type': 'sessions' },
-      \ { 'header': ['   ALGithub Notifications'],
-      \   'type': {-> startifier#gh_nfns('https://algithub.pd.alertlogic.net/api/v3') }},
-      \ { 'header': ['   Github Notifications'],
-      \   'type': {-> startifier#gh_nfns('https://api.github.com') }},
       \ { 'header': ['   MRU '.getcwd()], 'type': 'dir' }
       \ ]
 
