@@ -15,9 +15,9 @@ endfunction
 function! neomake#makers#ft#erlang#rebar3#EnabledMakers()
     if exists('b:erlang_module')
                 \ && b:erlang_module =~ '_SUITE'
-        return [ 'flycheck', 'ctsuite' ]
+        return [ 'flycheck', 'tags', 'ctsuite' ]
     endif
-    return [ 'flycheck', 'compile', 'ct', 'eunit']
+    return [ 'flycheck', 'tags', 'compile', 'eunitmodule', 'ct', 'eunit']
 endfunction
 
 function! neomake#makers#ft#erlang#rebar3#compile()
@@ -59,12 +59,22 @@ function! neomake#makers#ft#erlang#rebar3#flycheckmapexpr(line)
     return localised
 endfunction
 
+function! s:flycheck_postprocess(entry)
+    if a:entry.text =~ 'Warning: '
+        let a:entry.type = 'W'
+        let a:entry.text = substitute(a:entry.text, 'Warning: ', '', "g")
+    else
+        let a:entry.type = 'E'
+    endif
+endfunction
+
 function! neomake#makers#ft#erlang#rebar3#flycheck()
     " TODO Use s:profile() to get the path correctly
     return {
         \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
-        \ 'args': ['--nooutdir'],
-        \ 'errorformat': '%f:%l: %tarning: %m,%f:%l: %m,%f: %m',
+        \ 'args': ['--nooutdir', '--as-test'],
+        \ 'errorformat': '%f:%l: %m,%f: %m',
+        \ 'postprocess': function('s:flycheck_postprocess')
         \ }
 endfunction
 
@@ -172,4 +182,12 @@ function! neomake#makers#ft#erlang#rebar3#eunit()
         \ 'errorformat': eunit_efm,
         \ 'mapexpr': 'substitute(v:val, "\\[[01]\\(;[0-9]*\\)\\?m", "", "g")',
         \ }
+endfunction
+
+function! neomake#makers#ft#erlang#rebar3#eunitmodule()
+    let maker = deepcopy(neomake#makers#ft#erlang#rebar3#eunit())
+    if exists('b:erlang_module')
+        call extend(maker.args, ['--module', b:erlang_module])
+    endif
+    return maker
 endfunction

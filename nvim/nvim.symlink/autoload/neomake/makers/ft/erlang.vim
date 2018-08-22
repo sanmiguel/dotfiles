@@ -57,6 +57,10 @@ function! neomake#makers#ft#erlang#eunit()
     return s:maker('eunit')
 endfunction
 
+function! neomake#makers#ft#erlang#eunitmodule()
+    return s:maker('eunitmodule')
+endfunction
+
 function! neomake#makers#ft#erlang#compile()
     return s:maker('compile')
 endfunction
@@ -67,6 +71,26 @@ endfunction
 
 function! neomake#makers#ft#erlang#ctsuite()
     return s:maker('ctsuite')
+endfunction
+
+function! neomake#makers#ft#erlang#tags()
+    " TODO Need a better way to manage tags files - some central place for
+    " them, based on (git-remote + branch)
+    " TODO Need to ignore at least _build/*/lib/${appname}
+    " Or maybe we simply make sure we put ./src/* and ./apps/*/src/* first..?
+    " TODO Need to control the order of directories (or their presence at all)
+    " when building 'tags' file: _checkouts takes precedence
+    " Maybe in rebar3 systems we can use 'rebar3 path' somehow?
+    let args = []
+    if exists('b:erlang_app')
+        call extend(args, ['--ignore', '_build/*/lib/'.b:erlang_app])
+    endif
+
+    return {
+        \ 'exe': g:plug_dir . '/vim-erlang-tags/bin/vim-erlang-tags.erl',
+        \ 'args': args,
+        \ 'append_file': 0
+        \ }
 endfunction
 
 "function! neomake#makers#ft#erlang#flycheck()
