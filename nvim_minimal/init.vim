@@ -77,8 +77,8 @@ autocmd TermOpen * setlocal nonumber
 " pip install neovim flake8
 " pyenv which python # <- g:python3_host_prog
 " Once you've carried out these commands, uncomment these:
-let g:python_host_prog = '/usr/local/opt/pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/usr/local/opt/pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = expand("~/.pyenv/versions/neovim2/bin/python")
+let g:python3_host_prog = expand("~/.pyenv/versions/neovim3/bin/python")
 
 " Plugins: https://github.com/junegunn/vim-plug#installation
 let g:plug_dir = expand('~/.config/nvim/plugged')
