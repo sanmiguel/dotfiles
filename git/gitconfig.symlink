@@ -28,4 +28,13 @@
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 [push]
-	default = simple
+	default = current
+[mergetool "diffconflicts"]
+	cmd = nvim -c DiffConflicts $MERGED $BASE $LOCAL $REMOTE
+	trustExitCode = true
+[mergetool]
+	keepBackup = false
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
