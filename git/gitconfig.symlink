@@ -9,13 +9,6 @@
 	editor = /usr/local/bin/nvim
 [help]
 	autocorrect = 1
-[diff]
-	tool = nvim -d
-[merge]
-    tool = vimdiff
-    conflictstyle = diff3
-[mergetool]
-    path = nvim
 [dude]
 	interval = 30
 	notify-command = terminal-notifier -message \"$DESCRIPTION\" -title \"$TITLE\"
