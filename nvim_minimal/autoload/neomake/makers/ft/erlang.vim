@@ -5,6 +5,9 @@
 " or maybe we can load a specific module from erlang/ which loads
 " the appropriate functions?
 
+" TODO Something in here gets funky with some projects: s:exe ends up set to
+" 'rebar3' while s:proj_type is still 'unknown' which shouldn't be possible
+" but happens anyway.
 let s:proj_type = 'unknown'
 
 function! s:find_erlang_project_type()

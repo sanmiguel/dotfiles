@@ -95,6 +95,11 @@ Plug 'RRethy/vim-illuminate'
 Plug 'tpope/vim-obsession'
 set sessionoptions-=buffers
 
+" TODO: Investigate dotted filetype syntax. Maybe we can define an eqc
+" ft that augments erlang? Might be helpful for erlang/eqc dev
+" Snippets
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
 " Improve NetRW windows
 Plug 'tpope/vim-vinegar'
 
@@ -129,7 +134,7 @@ let g:deoplete#enable_at_startup = 1
 " doesn't work at all. Investigate!
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " TODO Add Python plugin
-Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-jedi'
 
 " Git runtime files: an earlier version of these is shipped with vim, but
 " this is the official distribution now:
@@ -183,6 +188,13 @@ let g:airline_powerline_fonts=1
 let g:airline_theme = 'atomic'
 let [g:airline_left_sep, g:airline_right_sep] = ['', '']
 
+" deoplete: configuration
+call deoplete#custom#var('around', {
+            \   'mark_above': '[↑]',
+            \   'mark_below': '[↓]',
+            \   'mark_changes': '[*]',
+            \})
+let g:deoplete#enable_at_startup = 1
 let g:startify_lists = [
       \ { 'header': ['   Sessions'],       'type': 'sessions' },
       \ { 'header': ['   MRU '.getcwd()], 'type': 'dir' }
@@ -198,9 +210,11 @@ let g:startify_commands = [
 
 " VimTest:
 let test#runners = {'Erlang': ['commontest', 'eunit']}
-let test#strategy = {'nearest': 'neovim',
-    \ 'file': 'neovim',
-    \ 'suite': 'neovim'
+let test#neovim#term_position = "botright vertical"
+let test#strategy = {
+    \ 'nearest': 'neovim',
+    \ 'file':    'neovim',
+    \ 'suite':   'neovim'
     \}
 
 " Quickmenus:
@@ -291,6 +305,11 @@ function! s:erlang_globals()
     " This enables cs"< to turn "x" into <<"x">>
     let g:surround_60 = "<<\"\r\">>"
     let g:surround_62 = "<<\"\r\">>"
+    " Enable cs}o and cs}e to turn a tuple into {ok | error, body}
+    let g:surround_101 = "{error, \r}"
+    let g:surround_111 = "{ok, \r}"
+    " Enable cs}# to turn a tuple into a map
+    let g:surround_35 = "#{ \r }"
     " TODO But how to do the inverse?
 
     " EXPERIMENTAL:

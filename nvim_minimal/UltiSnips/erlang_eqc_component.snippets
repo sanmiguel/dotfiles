@@ -1,0 +1,25 @@
+# eqc_component command snippet
+# TODO: Use 'b' option
+snippet command "eqc_component command" b
+${1:command}($3) ->
+	$0.
+
+$1_pre(_S, [$3]) ->
+	true.
+
+$1_args(S) ->
+	[$2].
+
+$1_next(S, Res, [$3]) ->
+	${4:S}.
+
+$1_callouts(S, [$3]) ->
+	?EMPTY.
+
+endsnippet
+
+snippet mtcenv "foo"
+\begin{${1:enumerate}}
+    $0
+\end{$1}
+endsnippet

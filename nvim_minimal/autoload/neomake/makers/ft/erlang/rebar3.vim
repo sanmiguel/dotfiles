@@ -81,6 +81,7 @@ function! neomake#makers#ft#erlang#rebar3#flycheck()
         \ 'postprocess': function('s:flycheck_postprocess')
         \ }
 endfunction
+        " \ 'args': ['--outdir', '_build/test/lib/eee_kinesis/test', '--as-test'],
 
 function! neomake#makers#ft#erlang#rebar3#customct()
     let efm  = '%-G===>%.%#,'
