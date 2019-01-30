@@ -209,7 +209,7 @@ let g:startify_commands = [
     \ ]
 
 " VimTest:
-let test#runners = {'Erlang': ['commontest', 'eunit']}
+let test#runners = {'Erlang': ['commontest', 'eqc', 'eunit']}
 let test#neovim#term_position = "botright vertical"
 let test#strategy = {
     \ 'nearest': 'neovim',
