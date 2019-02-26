@@ -104,6 +104,10 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-vinegar'
 
 " System: External resources
+" fzf: install it from homebrew, then this will enable it:
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
 " Git-related:
 Plug 'tpope/vim-fugitive'     " :h fugitive
 " This adds some helpful things when dealing with Github (.com or enterprise)
