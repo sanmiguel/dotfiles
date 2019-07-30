@@ -8,9 +8,6 @@ export HOMEBREW_NO_ANALYTICS=1
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 
-# Path to asdf
-export ASDF_DIR=/usr/local/opt/asdf
-
 export LESS='-RiFX'
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -74,6 +71,12 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# TODO oh-my-zsh plugin for vimr:
+#  - if $VIM env vars are set
+#    - add "VIM" to prompt : bonus points for fancy logo/icon
+#    - alias 'nvim' to 'nvr' appropriately (see Drew's book)
+#    - ?
+
 # Include homebrew-managed zsh-completions
 export fpath=(/usr/local/share/zsh-completions $fpath)
 # Include homebrew-managed zsh-syntax-highlighting
@@ -90,6 +93,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # else
 #   export EDITOR='mvim'
 # fi
+export VISUAL="$commands[nvim]"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -134,17 +138,21 @@ pyenv_neovim_venv_setup() {
 
 asdf_post_upgrade_setup() {
     # elixir, erlang, rebar, ruby
-    asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir
-    asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang
-    asdf plugin-add rebar https://github.com/Stratus3D/asdf-rebar.git
-    asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+    asdf plugin-add elixir
+    asdf plugin-add erlang
+    asdf plugin-add rebar
+    asdf plugin-add ruby
+    asdf plugin-update --all
 
-    asdf install erlang 20.2
-    asdf install erlang 20.3.6
-    asdf install erlang 19.3.6.9
-    asdf install rebar 3.5.0
-    asdf install elixir 1.6.5
-    asdf install ruby 2.5.1
+    asdf install erlang 20.1.7
+    asdf install erlang 21.2.2
+    asdf install erlang 20.3.8.16
+    echo "Don't forget to install EQC in newly installed erlangs!"
+    asdf install rebar 3.6.2
+    asdf install rebar 3.7.5
+    asdf install rebar 3.8.0
+    asdf install elixir 1.8.1
+    asdf install ruby 2.6.1
 }
 
 

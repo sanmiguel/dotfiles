@@ -6,14 +6,14 @@
 	status = auto
 	ui = auto
 [core]
-	editor = /usr/local/bin/nvim
+	excludesfile = /Users/michaelcoles/git/sanmiguel/dotfiles/git/gitignore
 [help]
 	autocorrect = 1
 [dude]
 	interval = 30
 	notify-command = terminal-notifier -message \"$DESCRIPTION\" -title \"$TITLE\"
 [merge]
-	tool = nvim -d
+	tool = diffconflicts
 [branch]
 	autosetuprebase = always
 [github]

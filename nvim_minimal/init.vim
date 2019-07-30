@@ -115,6 +115,7 @@ Plug 'tpope/vim-fugitive'     " :h fugitive
 " for full instructions
 let g:github_enterprise_urls = ["https://algithub.pd.alertlogic.net"]
 Plug 'tpope/vim-rhubarb'      " :h rhubarb
+let g:gitgutter_override_sign_column_highlight = 0
 Plug 'airblade/vim-gitgutter' " :h GitGutter
 Plug 'whiteinge/diffconflicts' " :h DiffConflicts
 
@@ -184,6 +185,9 @@ call plug#end()
 " =======================================
 
 " This has to come after the plugins are loaded
+let g:neosolarized_italic = 1
+let g:neosolarized_contrast = "high"
+let g:neosolarized_diffmode = "high"
 colorscheme NeoSolarized
 
 " Airline: configuration
@@ -199,6 +203,29 @@ call deoplete#custom#var('around', {
             \   'mark_changes': '[*]',
             \})
 let g:deoplete#enable_at_startup = 1
+
+" Startify: configuration
+" TODO Extension for vim-startify: function to search for a session by it's
+" $PWD: then you can have a startup script that automatically resumes a
+" session if there's one for the $PWD
+" NB THis needs a way to turn it off - something you can pass from the CLI
+"
+" TODO When extending vim-startify, replace '[e]mpty buffer' with '[n]ew note'
+" TODO In issue view: quickmenu for taking action:
+"  - Reply
+"  - Create branch ('gh-${issue-nr}')
+"  - Create branch (prompt)
+"  - Close
+" TODO In pull-request view, add quickmenu for checking out for review:
+"  - Clone to /tmp/${repository.full_name}
+"  - Clone to ~/git/${repository.full_name}
+"  - Prompt for path to type manually
+" TODO Note 'hub clone user/repo' can work with Enterprise, but needs:
+" GITHUB_HOST=myenterprise.host.com hub clone user/repo
+" TODO hub checkout $PULL_URL
+" TODO ^^ git diff --numstat $base-branch
+" TODO ^^ open each changed buffer, run ':Gdiff master'
+
 let g:startify_lists = [
       \ { 'header': ['   Sessions'],       'type': 'sessions' },
       \ { 'header': ['   MRU '.getcwd()], 'type': 'dir' }
@@ -249,6 +276,11 @@ augroup elixir
 augroup END
 
 " Language: erlang + autocmd + neomake
+" TODO: Replace 'Neomake flycheck' here with a function that also cancels an
+" existing flycheck.
+" TODO: Maybe that should be an option in Neomake: only allow a single
+" instance of a given maker, so cancel an existing one before starting a
+" second ('maker.singleton'?)
 augroup erlang
     autocmd FileType erlang call s:erlang_buflocals()
     autocmd BufEnter *.erl call s:erlang_bufenter()

@@ -43,6 +43,8 @@ function! s:postprocess(entry)
     let a:entry.pattern = newpat
 endfunction
 
+" TODO Would be really nice to get a lint check on .app.src and .config files
+" by maybe using file:consult/1 on it?
 " NB: This has be a globally accessible function, as maker.mapexpr is passed
 " directly to map() as a string, not a funcref
 function! neomake#makers#ft#erlang#rebar3#flycheckmapexpr(line)
@@ -69,7 +71,9 @@ function! s:flycheck_postprocess(entry)
 endfunction
 
 function! neomake#makers#ft#erlang#rebar3#flycheck()
+    " TODO If in _checkouts, use _build for path
     " TODO Use s:profile() to get the path correctly
+    " TODO Fix errors as warnings output
     return {
         \ 'exe': g:plug_dir . '/vim-erlang-compiler/compiler/erlang_check.erl',
         \ 'args': ['--nooutdir', '--as-test'],
@@ -101,6 +105,8 @@ function! neomake#makers#ft#erlang#rebar3#customct()
     return maker
 endfunction
 
+" TODO Need to cater for group test failure outputs, which looks more like:
+" test/alstore_writer_SUITE.erl|^t_prop_ets_insert_lookup (group proptests)|  {{badmatch,false}, [{alstore_writer_SUITE,t_prop_ets_insert_lookup,1, [{file,"/Users/michaelcoles/git/alertlogic/piar/test/alstore_writer_SUITE.erl"}, {line,304}]}, {test_server,ts_tc,3,[{file,"test_server.erl"},{line,1529}]}, {test_server,run_test_case_eval1,6,[{file,"test_server.erl"},{line,1045}]}, {test_server,run_test_case_eval,9,[{file,"test_server.erl"},{line,977}]}]}
 function! neomake#makers#ft#erlang#rebar3#ct()
     let efm = '%-G===>%.%#,'
     let efm .= '%E%%%%%% %f ==> %s: FAILED,'
@@ -149,6 +155,8 @@ endfunction
 
 function! neomake#makers#ft#erlang#rebar3#ctmapexpr(line)
     let clean = neomake#makers#ft#erlang#rebar3#flycheckmapexpr(a:line)
+    " TODO Maybe we can replace stacktrace with something more meaningful?
+    " {file, File}, {line, L} -> File:L:
     if exists('b:erlang_module')
         let pat = '%%% ' . b:erlang_module . ' ==>'
         if clean =~ pat
@@ -173,6 +181,9 @@ function! neomake#makers#ft#erlang#rebar3#eunit()
     " let eunit_efm .= '%+C%[ ]%#expected: %m,'
     " let eunit_efm .= '%+C%[ ]%#got: %m,'
     " let eunit_efm .= '%C%[ ]%#Failure/Error: %m'
+    " TODO If we can isolate a 'module:fun[/arity]' string we can use
+    " taglist(string) to use tags to find the location
+    " !!!
     " TODO What profile to use for eunit
     return {
         \ 'exe': 'rebar3',

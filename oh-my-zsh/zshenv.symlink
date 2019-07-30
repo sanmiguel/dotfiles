@@ -1,6 +1,23 @@
+export ASDF_DIR="$HOME/.asdf"
+
 if [[ $- != *i* ]]; then
     # Set up a primitive environment for [neo]vim terminals to use
     export MIX_ENV=dev
-    export ASDF_DIR=/usr/local/opt/asdf
-    . ${ASDF_DIR}/asdf.sh
+
+    OMZ_ASDF_PLUGIN="${HOME}/.oh-my-zsh/plugins/asdf/asdf.plugin.zsh"
+    if [[ -f "${OMZ_ASDF_PLUGIN}" ]]; then
+        . ${OMZ_ASDF_PLUGIN}
+    fi
 fi
+
+if [[ -n "${ASDF_DIR}" ]]; then
+    export KERL_BASE_DIR=${ASDF_DIR}/installs/erlang
+fi
+
+export TERM=${TERM:=xterm-256color}
+if [ "$VIM" -a "$+commands[nvr]" ]; then
+    export VISUAL="$commands[nvr] -cc split --remote-wait"
+fi
+
+export PYENV_ROOT="/Users/michaelcoles/.pyenv"
+export path=( $HOME/bin $path )
