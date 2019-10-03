@@ -1,0 +1,6 @@
+KERL_CONFIGURE_OPTIONS="--enable-darwin-64bit --enable-hipe --enable-vm-probes --with-dynamic-trace=dtrace --enable-kernel-poll --enable-threads --enable-smp-support"
+KERL_CONFIGURE_DISABLE_APPLICATIONS="odbc"
+KERL_BUILD_BACKEND=git
+KERL_BUILD_DOCS=yes
+# KERL_BUILD_PLT=yes
+unset KERL_BUILD_PLT
