@@ -58,8 +58,15 @@ let g:custom_quickmenus = {
             \   'Gcommit': [ ':Gcommit', 'Commit the currently staged changes' ],
             \   'Gcommit amend': [ ':Gcommit --amend --reuse-message=HEAD', 
                                     \ 'Add the currently staged changes to the last commit'],
-            \   'GitGutter': [ ':GitGutter', 'Refresh the GitGutter markers' ],
+            \   'GitGutter': [ ':call qmenus#bottom("git-gutter")', 'Show GitGutter menu' ],
             \   'Git push': [ ':Git push', 'Push the current branch (requires upstream to be set)' ]
+            \ }},
+            \ 'git-gutter': {
+            \  'items': {
+            \   'Refresh': [ ':GitGutter', 'Refresh GitGutter markers' ],
+            \   'Preview Hunk': [ ':GitGutterPreviewHunk', 'Preview the current hunk' ],
+            \   'Stage Hunk': [ ':GitGutterStageHunk', 'Stage the current hunk' ],
+            \   'Revert Hunk': [ ':GitGutterUndoHunk', 'Revert the current hunk' ]
             \ }},
             \ 'vim-test': {
             \  'items': {
