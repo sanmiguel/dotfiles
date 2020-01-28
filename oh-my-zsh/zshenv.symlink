@@ -1,12 +1,12 @@
-export ASDF_DIR="$HOME/.asdf"
-
 if [[ $- != *i* ]]; then
+    # echo "Forcing ASDF setup"
     # Set up a primitive environment for [neo]vim terminals to use
     export MIX_ENV=dev
 
-    OMZ_ASDF_PLUGIN="${HOME}/.oh-my-zsh/plugins/asdf/asdf.plugin.zsh"
-    if [[ -f "${OMZ_ASDF_PLUGIN}" ]]; then
-        . ${OMZ_ASDF_PLUGIN}
+    # Don't mess about with the OMZ plugin, just source asdf ourselves
+    ASDF_DIR=${ASDF_DIR:=/usr/local/opt/asdf}
+    if [[ -f "$ASDF_DIR/asdf.sh" ]]; then
+        . "$ASDF_DIR/asdf.sh"
     fi
 fi
 
@@ -19,5 +19,5 @@ if [ "$VIM" -a "$+commands[nvr]" ]; then
     export VISUAL="$commands[nvr] -cc split --remote-wait"
 fi
 
-export PYENV_ROOT="/Users/michaelcoles/.pyenv"
+export PYENV_ROOT="${HOME}/.pyenv"
 export path=( $HOME/bin $path )
