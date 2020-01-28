@@ -19,7 +19,7 @@ POWERLEVEL9K_MODE='awesome-fontconfig'
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # TODO Set POWERLEVEL9K_CONTEXT_TEMPLATE to control context segment
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -64,8 +64,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-ONEPASS_ACCOUNTS=( alertlogic )
-plugins=(themes iterm2 aws 1password kerl git asdf pyenv ssh-agent mix-fast)
+plugins=(themes iterm2 aws git asdf pyenv ssh-agent mix-fast kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -132,7 +131,7 @@ pyenv_neovim_venv_setup() {
     pyenv activate $venv
     pip=$(pyenv which pip)
     $pip install --upgrade pip
-    $pip install neovim flake8
+    $pip install pynvim flake8
     source deactivate
 }
 
