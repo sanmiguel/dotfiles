@@ -6,7 +6,7 @@
 	status = auto
 	ui = auto
 [core]
-	excludesfile = /Users/michaelcoles/git/sanmiguel/dotfiles/git/gitignore
+	excludesfile = /Users/sanmiguel/dotfiles/git/gitignore
 [help]
 	autocorrect = 1
 [dude]
