@@ -108,6 +108,8 @@ Plug 'tpope/vim-vinegar'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
+" Plug 'git@bitbucket.org:sanmiguel/todoist.vim', {'branch': 'python3'}
+
 " Git-related:
 Plug 'tpope/vim-fugitive'     " :h fugitive
 " This adds some helpful things when dealing with Github (.com or enterprise)
@@ -132,14 +134,6 @@ let g:notes_conceal_code = 0
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 
 Plug 'neomake/neomake' " :h neomake-contents
-
-let g:deoplete#enable_at_startup = 1
-" TODO There seems to be some weirdnesses around using deoplete:
-" rogue python processes, excessive file handles, and sometimes it just
-" doesn't work at all. Investigate!
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" TODO Add Python plugin
-" Plug 'zchee/deoplete-jedi'
 
 " Git runtime files: an earlier version of these is shipped with vim, but
 " this is the official distribution now:
@@ -196,13 +190,6 @@ let g:airline_powerline_fonts=1
 let g:airline_theme = 'atomic'
 let [g:airline_left_sep, g:airline_right_sep] = ['', '']
 
-" deoplete: configuration
-call deoplete#custom#var('around', {
-            \   'mark_above': '[↑]',
-            \   'mark_below': '[↓]',
-            \   'mark_changes': '[*]',
-            \})
-let g:deoplete#enable_at_startup = 1
 
 " Startify: configuration
 " TODO Extension for vim-startify: function to search for a session by it's
