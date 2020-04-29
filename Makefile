@@ -22,6 +22,7 @@ vim:
 oh-my-zsh:
 	ln -nsf $(PWD)/oh-my-zsh/zshrc.symlink ~/.zshrc
 	ln -nsf $(PWD)/oh-my-zsh/zshenv.symlink ~/.zshenv
+	ln -nsf $(PWD)/oh-my-zsh/p10k.sh.symlink ~/.p10k.sh
 
 prezto-deps:
 	if [ ! -d ~/.zprezto ]; then \
