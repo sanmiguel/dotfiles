@@ -1,6 +1,7 @@
 [user]
 	name = sanmiguel
     email = michael.coles@gmail.com
+	signingkey = 4695BD5293264F5C
 [color]
 	diff = auto
 	status = auto
@@ -31,3 +32,5 @@
 	rebase = true
 [rebase]
 	autoStash = true
+[commit]
+	gpgsign = true
