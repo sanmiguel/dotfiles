@@ -1,0 +1,7 @@
+snippet exunit
+	defmodule ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} do
+		use ExUnit.Case, async: true
+
+		${0}
+	end
+endsnippet
