@@ -85,6 +85,13 @@ let g:custom_quickmenus = {
             \  'items': {
             \   'SSave': [ 'SSave', 'Save current session' ],
             \   'SLoad': [ 'SLoad | Obsession', 'Load session' ]
+            \ }},
+            \ 'ale': {
+            \  'items': {
+            \   'ALELint': [ 'ALELin', 'Linter' ],
+            \   'ALEGoToDefinition': ['ALEGoToDefinition', 'Jump to symbol under cursor'],
+            \   'ALEGoToDefinition split': ['ALEGoToDefinition -split', 'Jump to symbol under cursor in split'],
+            \   'ALEGoToDefinition vsplit': ['ALEGoToDefinition -vsplit', 'Jump to symbol under cursor in vsplit']
             \ }}
             \ }
 " TODO Menus:

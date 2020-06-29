@@ -115,7 +115,6 @@ Plug 'tpope/vim-fugitive'     " :h fugitive
 " This adds some helpful things when dealing with Github (.com or enterprise)
 " but requires some configuration - see https://github.com/tpope/vim-rhubarb#installation
 " for full instructions
-let g:github_enterprise_urls = ["https://algithub.pd.alertlogic.net"]
 Plug 'tpope/vim-rhubarb'      " :h rhubarb
 let g:gitgutter_override_sign_column_highlight = 0
 Plug 'airblade/vim-gitgutter' " :h GitGutter
@@ -170,7 +169,9 @@ Plug 'sanmiguel/vim-erlang-compiler', {'branch': 'mtc-compile-as-test',
 
 " Language: elixir
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
-Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
+" Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
+Plug 'elixir-lsp/elixir-ls'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -190,6 +191,12 @@ let g:airline_powerline_fonts=1
 let g:airline_theme = 'atomic'
 let [g:airline_left_sep, g:airline_right_sep] = ['', '']
 
+" ALE: configuration
+let g:ale_virtualtext_cursor = 1
+
+" Illuminate: highlight word under cursor
+let g:Illuminate_delay = 100
+hi illuminatedWord cterm=underline gui=underline
 
 " Startify: configuration
 " TODO Extension for vim-startify: function to search for a session by it's
@@ -235,6 +242,25 @@ let test#strategy = {
     \ 'suite':   'neovim'
     \}
 
+" ALE:
+let g:ale_linters = {
+            \ 'elixir': ['elixir-ls']
+            \ }
+
+let g:ale_elixir_elixir_ls_release = g:plug_dir . '/elixir-ls/release'
+let g:ale_elixir_elixir_ls_config = {
+            \ 'type': 'mix_task',
+            \ 'name': 'mix test',
+            \ "request": "launch",
+            \ "task": "test",
+            \ "taskArgs": ["--trace"],
+            \ "projectDir": "${workspaceRoot}",
+            \ "requireFiles": [
+            \   "test/**/test_helper.exs",
+            \   "test/**/*_test.exs"
+            \ ]
+            \ }
+
 " Quickmenus:
 call qmenus#load() " See autoload/qmenus.vim
 
@@ -255,11 +281,19 @@ function s:elixir_ft_setting()
         \ 'append_file': 0,
         \ 'errorformat': mix_test_efm
         \ }
+    nmap <silent> [e <Plug>(ale_previous_wrap)
+    nmap <silent> ]e <Plug>(ale_next_wrap)
+    setlocal omnifunc=ale#completion#OmniFunc
+    nmap <C-]> <Plug>(ale_go_to_definition)
+    nmap <C-W><C-]> call :ALEGoToDefinition -vsplit
+    let g:surround_101 = "{:error, \r}"
+    let g:surround_111 = "{:ok, \r}"
 endfunction
 
 augroup elixir
     autocmd FileType elixir call s:elixir_ft_setting()
-    autocmd BufWritePost *.ex,*.exs Neomake mixtest
+    " autocmd BufWritePost *.ex,*.exs Neomake mixtest
+    " autocmd BufWriteCmd *.ex,*.exs Neomake mix_format
 augroup END
 
 " Language: erlang + autocmd + neomake
