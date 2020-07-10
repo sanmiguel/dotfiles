@@ -1,0 +1,13 @@
+# UBNT
+--type-add=erlang:is:rebar.config
+--type-add=erlang:is:rebar.config.script
+--type-add=erlang:is:sys.config
+
+--type-set=log:ext:log
+
+--type-add=ct:match:_SUITE.erl
+
+--ignore-dir=deps
+--ignore-dir=_build
+--ignore-dir=cover
+--ignore-dir=.elixir_ls
