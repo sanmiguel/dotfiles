@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 
 zmodload zsh/zprof
 export TERM=xterm-256color
@@ -69,7 +76,7 @@ ZSH_DOTENV_FILE=.envrc
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(themes iterm2 aws git asdf pyenv ssh-agent mix-fast)
-plugins=( themes dotenv iterm2 git asdf pyenv ) #mix-fast ) #ssh-agent )
+plugins=( gh themes dotenv iterm2 git asdf pyenv ) #mix-fast ) #ssh-agent )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,7 +89,17 @@ source $ZSH/oh-my-zsh.sh
 #    - ?
 
 # Include homebrew-managed zsh-completions
-export fpath=(/usr/local/share/zsh-completions $fpath)
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+
+  pgbin=$(brew --prefix postgresql@10)/bin
+  if [ -d $pgbin ]; then 
+    export path=( $pgbin $path )
+  fi
+fi
 # Include homebrew-managed zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -116,8 +133,8 @@ export VISUAL="$commands[nvim]"
 # gets upgraded.
 
 pyenv_post_install_setup() {
-    version2=2.7.14
-    version3=3.6.4
+    version2=2.7.18
+    version3=3.8.3
     
     pyenv install ${version2}
     pyenv install ${version3}
@@ -169,3 +186,8 @@ asdf_post_upgrade_setup() {
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.iterm2_shell_integration.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

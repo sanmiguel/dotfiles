@@ -19,5 +19,10 @@ if [ "$VIM" -a "$+commands[nvr]" ]; then
     export VISUAL="$commands[nvr] -cc split --remote-wait"
 fi
 
+export GPG_TTY=$(tty)
+
 export PYENV_ROOT="${HOME}/.pyenv"
 export path=( $HOME/bin $path )
+
+# Manually set up pyenv
+[ -d $ZSH/plugins/pyenv ] && source $ZSH/plugins/pyenv/pyenv.plugin.zsh
