@@ -86,14 +86,24 @@ let g:custom_quickmenus = {
             \   'SSave': [ 'SSave', 'Save current session' ],
             \   'SLoad': [ 'SLoad | Obsession', 'Load session' ]
             \ }},
-            \ 'ale': {
+            \ 'bookmarks': {
             \  'items': {
-            \   'ALELint': [ 'ALELin', 'Linter' ],
-            \   'ALEGoToDefinition': ['ALEGoToDefinition', 'Jump to symbol under cursor'],
-            \   'ALEGoToDefinition split': ['ALEGoToDefinition -split', 'Jump to symbol under cursor in split'],
-            \   'ALEGoToDefinition vsplit': ['ALEGoToDefinition -vsplit', 'Jump to symbol under cursor in vsplit']
+            \    'BookmarkToggle': [ 'BookmarkToggle', 'Add or remove bookmark at current line' ],
+            \    'BookmarkAnnotate <TEXT>': [ 'BookmarkAnnotate', 'Add/edit/remove annotation at current line' ],
+            \    'BookmarkNext': [ 'BookmarkNext', 'Jump to the next bookmark downwards' ],
+            \    'BookmarkPrev': [ 'BookmarkPrev', 'Jump to the next bookmark upwards' ],
+            \    'BookmarkShowAll': [ 'BookmarkShowAll', 'Show bookmarks across all buffers in new window (toggle)' ],
+            \    'BookmarkClear': [ 'BookmarkClear', 'Removes bookmarks for current buffer' ],
+            \    'BookmarkClearAll': [ 'BookmarkClearAll', 'Removes bookmarks for all buffer' ],
+            \    'BookmarkMoveUp [<COUNT>]': [ 'BookmarkMoveUp', 'Move up the bookmark at current line by the specified amount of lines (default: 1)' ],
+            \    'BookmarkMoveDown [<COUNT>]': [ 'BookmarkMoveDown', 'Move down the bookmark at current line by the specified amount of lines (default: 1)' ],
+            \    'BookmarkMoveToLine <LINE>': [ 'BookmarkMoveToLine', 'Move the bookmark at current line to the specified <LINE>' ],
+            \    'BookmarkSave <FILE_PATH>': [ 'BookmarkSave', 'Saves all bookmarks to a file so you can load them back in later' ],
+            \    'BookmarkLoad <FILE_PATH>': [ 'BookmarkLoad', 'Loads bookmarks from a file (see :BookmarkSave)' ]
             \ }}
             \ }
+
+
 " TODO Menus:
 "  - useful [neo]vim switches ('set invnumber', 'set smartcase' etc)
 "  - try to include a menu for each plugin that has commands
