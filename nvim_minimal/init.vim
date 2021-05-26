@@ -120,6 +120,8 @@ let g:gitgutter_override_sign_column_highlight = 0
 Plug 'airblade/vim-gitgutter' " :h GitGutter
 Plug 'whiteinge/diffconflicts' " :h DiffConflicts
 
+Plug 'mattn/webapi-vim' | Plug 'mattn/vim-gist'
+
 " Startup screen:
 Plug 'mhinz/vim-startify'
 
@@ -132,7 +134,7 @@ let g:notes_directories = ['~/.cache/vim-notes']
 let g:notes_conceal_code = 0
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 
-Plug 'neomake/neomake' " :h neomake-contents
+" Plug 'neomake/neomake' " :h neomake-contents
 
 " Git runtime files: an earlier version of these is shipped with vim, but
 " this is the official distribution now:
@@ -154,6 +156,9 @@ Plug 'skywind3000/quickmenu.vim'
 " Shortcuts for filetype-sensitive comment toggling:
 " in erlang, only recognises single-% comments
 Plug 'tpope/vim-commentary'
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'MattesGroeger/vim-bookmarks'
 
 " Language: erlang
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
@@ -168,12 +173,18 @@ Plug 'sanmiguel/vim-erlang-compiler', {'branch': 'mtc-compile-as-test',
             \ 'for': 'none'}
 
 " Language: elixir
+Plug 'tpope/vim-projectionist'
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
 " Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 Plug 'elixir-lsp/elixir-ls'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
+Plug 'natebosch/vim-lsc'
 
 call plug#end()
+
+if !isdirectory(g:plug_dir)
+    execute 'PlugInstall'
+endif
 
 " =======================================
 " Plugin Configurations
@@ -186,10 +197,21 @@ let g:neosolarized_diffmode = "high"
 colorscheme NeoSolarized
 
 " Airline: configuration
-let g:airline#extensions#neomake#enabled = 1
+" let g:airline#extensions#neomake#enabled = 1
 let g:airline_powerline_fonts=1
-let g:airline_theme = 'atomic'
+let g:airline_theme = 'sanmiguelito'
 let [g:airline_left_sep, g:airline_right_sep] = ['', '']
+
+let g:airline_section_y = ''
+
+" vim-lsc: configuration
+let g:lsc_auto_map = {
+            \ 'defaults': v:true,
+            \ 'Completion': 'omnifunc'
+            \ }
+let g:lsc_server_commands = {'elixir': g:plug_dir . '/elixir-ls/release/language_server.sh'}
+
+autocmd CompleteDone * silent! pclose
 
 " ALE: configuration
 let g:ale_virtualtext_cursor = 1
@@ -197,6 +219,10 @@ let g:ale_virtualtext_cursor = 1
 " Illuminate: highlight word under cursor
 let g:Illuminate_delay = 100
 hi illuminatedWord cterm=underline gui=underline
+
+" vim-bookmarks:
+let g:bookmark_save_per_working_dir = 1
+" TODO: let g:bookmark_auto_save_file = '/some/path/that/is/backed/up'
 
 " Startify: configuration
 " TODO Extension for vim-startify: function to search for a session by it's
@@ -281,13 +307,16 @@ function s:elixir_ft_setting()
         \ 'append_file': 0,
         \ 'errorformat': mix_test_efm
         \ }
-    nmap <silent> [e <Plug>(ale_previous_wrap)
-    nmap <silent> ]e <Plug>(ale_next_wrap)
-    setlocal omnifunc=ale#completion#OmniFunc
-    nmap <C-]> <Plug>(ale_go_to_definition)
-    nmap <C-W><C-]> call :ALEGoToDefinition -vsplit
+    " nmap <silent> [e <Plug>(ale_previous_wrap)
+    " nmap <silent> ]e <Plug>(ale_next_wrap)
+    " setlocal omnifunc=ale#completion#OmniFunc
+    " nmap <C-]> <Plug>(ale_go_to_definition)
+    " nmap <C-W><C-]> call :ALEGoToDefinition -vsplit
     let g:surround_101 = "{:error, \r}"
     let g:surround_111 = "{:ok, \r}"
+    let g:surround_37 = "%{\r: }"
+    let g:surround_58 = "\r:"
+    let g:surround_59 = ":\r"
 endfunction
 
 augroup elixir
