@@ -54,6 +54,9 @@ if has('nvim')
     let $VISUAL = 'nvr -cc split --remote-wait'
 endif
 
+" Unmap the new default Y y$
+unmap Y
+
 " Turn off line numbers in terminal
 autocmd TermOpen * setlocal nonumber
 
