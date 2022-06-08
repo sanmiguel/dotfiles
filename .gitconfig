@@ -1,0 +1,6 @@
+[user]
+	name = sanmiguel
+    email = michael.coles@gmail.com
+
+[commit]
+    gpgsign = false
