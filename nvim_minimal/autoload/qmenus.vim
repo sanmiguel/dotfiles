@@ -100,6 +100,11 @@ let g:custom_quickmenus = {
             \    'BookmarkMoveToLine <LINE>': [ 'BookmarkMoveToLine', 'Move the bookmark at current line to the specified <LINE>' ],
             \    'BookmarkSave <FILE_PATH>': [ 'BookmarkSave', 'Saves all bookmarks to a file so you can load them back in later' ],
             \    'BookmarkLoad <FILE_PATH>': [ 'BookmarkLoad', 'Loads bookmarks from a file (see :BookmarkSave)' ]
+            \ }},
+            \ 'plug.vim': {
+            \  'items': {
+            \   'PlugUpdate': [ 'PlugUpdate', 'Update all plugins'],
+            \   'PlugUpgrade': [ 'PlugUpgrade', 'Upgrade all plugins']
             \ }}
             \ }
 
