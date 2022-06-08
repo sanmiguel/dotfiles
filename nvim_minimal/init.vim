@@ -199,6 +199,10 @@ let g:neosolarized_contrast = "high"
 let g:neosolarized_diffmode = "high"
 colorscheme NeoSolarized
 
+" Change search highlight colour - makes cursor easier to spot
+highlight Search guibg='#dc322f' guifg='#073642' gui=reverse,italic
+highlight IncSearch guibg='#dc322f' guifg='#073642'
+
 " Airline: configuration
 " let g:airline#extensions#neomake#enabled = 1
 let g:airline_powerline_fonts=1
