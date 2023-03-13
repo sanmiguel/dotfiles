@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<real>742</real>
+	<real>743</real>
 	<key>license</key>
 	<string>3796-5927-1894-9155-3249</string>
 	<key>preferences</key>
@@ -30,6 +30,12 @@
 		<integer>1</integer>
 		<key>CPU_MenubarCombineCores</key>
 		<integer>1</integer>
+		<key>CPU_MenubarGraphBreakdowns</key>
+		<integer>0</integer>
+		<key>CPU_MenubarGraphCustomColors</key>
+		<integer>0</integer>
+		<key>CPU_MenubarGraphWidth</key>
+		<real>30</real>
 		<key>CPU_MenubarGroupItems</key>
 		<integer>0</integer>
 		<key>CPU_MenubarMode</key>
@@ -71,9 +77,9 @@
 		<key>MenubarSkinColor</key>
 		<integer>5</integer>
 		<key>MenubarSkinColor-Dark</key>
-		<integer>0</integer>
+		<integer>5</integer>
 		<key>MenubarSkinColor-Light</key>
-		<integer>0</integer>
+		<integer>5</integer>
 		<key>MenubarTheme</key>
 		<integer>1</integer>
 		<key>Migrated_5.0</key>
@@ -107,6 +113,17 @@
 			<integer>6</integer>
 		</array>
 		<key>Theme-SeperateStyles</key>
+		<integer>0</integer>
+		<key>Time_CalendarShowWeeks</key>
+		<integer>1</integer>
+		<key>Time_Cities</key>
+		<array>
+			<real>5128581</real>
+			<real>3081368</real>
+		</array>
+		<key>Time_DropdownCityLayout</key>
+		<integer>0</integer>
+		<key>Time_DropdownShowMoon</key>
 		<integer>0</integer>
 		<key>TimerFrequency</key>
 		<integer>0</integer>
