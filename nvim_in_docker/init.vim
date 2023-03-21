@@ -60,29 +60,6 @@ unmap Y
 " Turn off line numbers in terminal
 autocmd TermOpen * setlocal nonumber
 
-" Python pre-requisites: Use pyenv to install python2 and python3, to create
-" segregated python runtimes for neovim to use:
-" NB: Unfortunately if you upgrade pyenv via homebrew later, you'll have to
-" repeat these steps
-" brew install pyenv pyenv-virtualenv
-" # Add 'pyenv' to your oh-my-zsh plugins in ~/.zshrc
-" # Start a new shell
-" pyenv install 2.7.14
-" pyenv install 3.6.3
-" pyenv virtualenv 2.7.14 neovim2
-" pyenv virtualenv 3.6.3 neovim3
-" ## New shell:
-" pyenv activate neovim2
-" pip install neovim flake8
-" pyenv which python # <- g:python_host_prog
-" ## New shell:
-" pyenv activate neovim3
-" pip install neovim flake8
-" pyenv which python # <- g:python3_host_prog
-" Once you've carried out these commands, uncomment these:
-let g:python_host_prog = expand("~/.pyenv/versions/neovim2/bin/python")
-let g:python3_host_prog = expand("~/.pyenv/versions/neovim3/bin/python")
-
 " Plugins: https://github.com/junegunn/vim-plug#installation
 let g:plug_dir = expand('~/.config/nvim/plugged')
 call plug#begin(g:plug_dir)
