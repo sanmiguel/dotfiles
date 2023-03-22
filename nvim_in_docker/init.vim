@@ -230,6 +230,7 @@ let g:bookmark_save_per_working_dir = 1
 " TODO ^^ git diff --numstat $base-branch
 " TODO ^^ open each changed buffer, run ':Gdiff master'
 
+let g:startify_session_dir = '/work/vim-session'
 let g:startify_lists = [
       \ { 'header': ['   Sessions'],       'type': 'sessions' },
       \ { 'header': ['   MRU '.getcwd()], 'type': 'dir' }
