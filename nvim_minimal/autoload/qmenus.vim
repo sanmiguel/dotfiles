@@ -51,12 +51,12 @@ let g:custom_quickmenus = {
             \ 'neomake': {
             \  'fn': function('CurrentNeomakers')
             \ },
-            \ 'fugitive': {
+            \ 'fugitive/fzf': {
             \  'items': {
-            \   'Gstatus': [ ':Gstatus', 'Show the working tree status' ] ,
+            \   'GFiles?': [ ':GFiles?', 'Show changed files in FZF' ] ,
             \   'Gdiff':   [ ':Gdiff', 'Show changes from index' ],
-            \   'Gcommit': [ ':Gcommit', 'Commit the currently staged changes' ],
-            \   'Gcommit amend': [ ':Gcommit --amend --reuse-message=HEAD', 
+            \   'Git commit': [ ':Git commit', 'Commit the currently staged changes' ],
+            \   'Git commit amend': [ ':Git commit --amend --reuse-message=HEAD', 
                                     \ 'Add the currently staged changes to the last commit'],
             \   'GitGutter': [ ':call qmenus#bottom("git-gutter")', 'Show GitGutter menu' ],
             \   'Git push': [ ':Git push', 'Push the current branch (requires upstream to be set)' ]
@@ -105,6 +105,12 @@ let g:custom_quickmenus = {
             \  'items': {
             \   'PlugUpdate': [ 'PlugUpdate', 'Update all plugins'],
             \   'PlugUpgrade': [ 'PlugUpgrade', 'Upgrade all plugins']
+            \ }},
+            \ 'ls-client': {
+            \  'items': {
+            \   'LSClientEnable': [ 'LSClientEnable', 'Enable Language Server'],
+            \   'LSClientDisable': [ 'LSClientDisable', 'Disable Language Server'],
+            \   'LSClientRestartServer': [ 'LSClientRestartServer', 'Restart Language Server']
             \ }}
             \ }
 
@@ -195,7 +201,7 @@ endfunction
 " call quickmenu#current(0)
 
 function! s:maps()
-    noremap <C-H> :call qmenus#bottom('fugitive')<CR>
+    noremap <C-H> :call qmenus#bottom('fugitive/fzf')<CR>
     noremap <C-T> :call qmenus#bottom('vim-test')<CR>
     noremap <LocalLeader><LocalLeader> :call quickmenu#bottom(99)<CR>
 endfunction

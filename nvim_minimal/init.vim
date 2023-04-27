@@ -190,6 +190,13 @@ if !isdirectory(g:plug_dir)
 endif
 
 " =======================================
+" Initialise the neovide stuff
+" =======================================
+if exists("g:neovide")
+    call myneovide#init()
+endif
+
+" =======================================
 " Plugin Configurations
 " =======================================
 
@@ -212,6 +219,8 @@ let [g:airline_left_sep, g:airline_right_sep] = ['', '']
 let g:airline_section_y = ''
 
 " vim-lsc: configuration
+set shortmess-=F
+let g:lsc_hover_popup = v:false
 let g:lsc_auto_map = {
             \ 'defaults': v:true,
             \ 'Completion': 'omnifunc'
@@ -266,8 +275,11 @@ let g:startify_commands = [
     \ {'m': ['My magical function', 'call Magic()']},
     \ ]
 
+let g:startify_session_autoload = 1
+let g:startify_change_to_vcs_root = 0
+
 " VimTest:
-let test#runners = {'Erlang': ['commontest', 'eqc', 'eunit']}
+" let test#runners = {'Erlang': ['commontest', 'eqc', 'eunit']}
 let test#neovim#term_position = "botright vertical"
 let test#strategy = {
     \ 'nearest': 'neovim',
