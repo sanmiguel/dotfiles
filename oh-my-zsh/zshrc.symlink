@@ -28,8 +28,7 @@ POWERLEVEL9K_MODE='awesome-fontconfig'
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # TODO Set POWERLEVEL9K_CONTEXT_TEMPLATE to control context segment
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
+source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -100,8 +99,9 @@ if type brew &>/dev/null; then
     export path=( $pgbin $path )
   fi
 fi
+
 # Include homebrew-managed zsh-syntax-highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -134,7 +134,7 @@ export VISUAL="$commands[nvim]"
 
 pyenv_post_install_setup() {
     version2=2.7.18
-    version3=3.8.3
+    version3=3.11.4
     
     pyenv install ${version2}
     pyenv install ${version3}
