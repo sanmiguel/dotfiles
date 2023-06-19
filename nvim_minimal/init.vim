@@ -100,8 +100,9 @@ set sessionoptions-=buffers
 
 " TODO: Investigate dotted filetype syntax. Maybe we can define an eqc
 " ft that augments erlang? Might be helpful for erlang/eqc dev
+
 " Snippets
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Improve NetRW windows
 Plug 'tpope/vim-vinegar'
@@ -162,6 +163,8 @@ Plug 'tpope/vim-commentary'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'MattesGroeger/vim-bookmarks'
+
+Plug 'TamaMcGlinn/quickfixdd'
 
 " Language: erlang
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
@@ -342,6 +345,7 @@ augroup elixir
     autocmd FileType elixir call s:elixir_ft_setting()
     " autocmd BufWritePost *.ex,*.exs Neomake mixtest
     " autocmd BufWriteCmd *.ex,*.exs Neomake mix_format
+    autocmd BufNewFile,BufRead *.heex set syntax=heex.html filetype=heex.html
 augroup END
 
 " Language: erlang + autocmd + neomake
