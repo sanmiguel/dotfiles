@@ -147,8 +147,6 @@ let g:notes_directories = ['~/.cache/vim-notes']
 let g:notes_conceal_code = 0
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 
-" Plug 'neomake/neomake' " :h neomake-contents
-
 " Git runtime files: an earlier version of these is shipped with vim, but
 " this is the official distribution now:
 " [NB: 'runtime files' e.g. syntax and highlight definitions for commit
@@ -284,7 +282,6 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " Airline: configuration
-" let g:airline#extensions#neomake#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'sanmiguelito'
 let [g:airline_left_sep, g:airline_right_sep] = ['', '']
@@ -358,52 +355,24 @@ let g:test#preserve_screen = 1
 " Quickmenus:
 call qmenus#load() " See autoload/qmenus.vim
 
-" Language: elixir + autocmd + neomake
+" Language: elixir + autocmd 
 function s:elixir_ft_setting()
-    let g:neomake_open_list = 2
-    " TODO Find a way to just use this from vim-elixir plugin
-    let mix_test_efm =   '%E  %n) %m,'
-    let mix_test_efm .=  '%+G     ** %m,'
-    let mix_test_efm .=  '%+G     stacktrace:,'
-    let mix_test_efm .=  '%C     %f:%l,'
-    let mix_test_efm .=  '%+G       (%\\w%\\+) %f:%l: %m,'
-    let mix_test_efm .=  '%+G       %f:%l: %.%#,'
-    let mix_test_efm .=  '** (%\\w%\\+) %f:%l: %m'
-    let g:neomake_elixir_mixtest_maker = {
-        \ 'exe': 'mix',
-        \ 'args': ['test'],
-        \ 'append_file': 0,
-        \ 'errorformat': mix_test_efm
-        \ }
-    " nmap <silent> [e <Plug>(ale_previous_wrap)
-    " nmap <silent> ]e <Plug>(ale_next_wrap)
-    " setlocal omnifunc=ale#completion#OmniFunc
-    " nmap <C-]> <Plug>(ale_go_to_definition)
-    " nmap <C-W><C-]> call :ALEGoToDefinition -vsplit
-    let g:surround_101 = "{:error, \r}"
-    let g:surround_111 = "{:ok, \r}"
-    let g:surround_37 = "%{\r: }"
-    let g:surround_58 = "\r:"
-    let g:surround_59 = ":\r"
+    let g:surround_101 = "{:error, \r}" " yse
+    let g:surround_111 = "{:ok, \r}" " yso
+    let g:surround_37 = "%{\r: }" " ys%
+    let g:surround_58 = "\r:" "  ys:
+    let g:surround_59 = ":\r" " ys;
 endfunction
 
 augroup elixir
     autocmd FileType elixir call s:elixir_ft_setting()
-    " autocmd BufWritePost *.ex,*.exs Neomake mixtest
-    " autocmd BufWriteCmd *.ex,*.exs Neomake mix_format
     autocmd BufNewFile,BufRead *.heex set syntax=heex.html filetype=heex.html
 augroup END
 
 " Language: erlang + autocmd + neomake
-" TODO: Replace 'Neomake flycheck' here with a function that also cancels an
-" existing flycheck.
-" TODO: Maybe that should be an option in Neomake: only allow a single
-" instance of a given maker, so cancel an existing one before starting a
-" second ('maker.singleton'?)
 augroup erlang
     autocmd FileType erlang call s:erlang_buflocals()
     autocmd BufEnter *.erl call s:erlang_bufenter()
-    " autocmd BufWritePost *.erl,*.hrl Neomake flycheck
 augroup END
 
 function! s:erlang_buflocals()
@@ -443,19 +412,6 @@ function! s:erlang_globals()
     set path+=_build/default/lib
     let g:erlang_tags_ignore = [ ".eunit", ".qc", "logs" ]
 
-    " Enable this to have neomake log its actions:
-    "let g:neomake_logfile = './neomake.log'
-
-    " Control how neomake uses the loclist:
-    " 0 = do not open
-    " 1 = open and jump to first
-    " 2 = open but hold cursor pos
-    let g:neomake_open_list = 2
-
-    " Run each maker in order, one at a time
-    let g:neomake_serialize = 1
-    let g:neomake_serialize_abort_on_error = 1
-
     " TODO Experimental vim-surround setup
     " This enables cs"< to turn "x" into <<"x">>
     let g:surround_60 = "<<\"\r\">>"
@@ -466,10 +422,6 @@ function! s:erlang_globals()
     " Enable cs}# to turn a tuple into a map
     let g:surround_35 = "#{ \r }"
     " TODO But how to do the inverse?
-
-    " EXPERIMENTAL:
-    " Disable the auto-flycheck on BufWritePost for now, replace with
-    command! W w | Neomake flycheck
 endfunction
 
 function! s:erlang_srcdir()
