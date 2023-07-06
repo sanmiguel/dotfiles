@@ -59,6 +59,9 @@ endif
 " Unmap the new default Y y$
 unmap Y
 
+" Map // to temporarily stop highlighting search
+nnoremap <silent> // :nohlsearch<CR>
+
 " Turn off line numbers in terminal
 autocmd TermOpen * setlocal nonumber
 
