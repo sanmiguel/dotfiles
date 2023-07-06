@@ -86,8 +86,8 @@ let g:python_host_prog = expand("~/.pyenv/versions/neovim2/bin/python")
 let g:python3_host_prog = expand("~/.pyenv/versions/neovim3/bin/python")
 
 " Plugins: https://github.com/junegunn/vim-plug#installation
-let g:plug_dir = expand('~/.config/nvim/plugged')
-call plug#begin(g:plug_dir)
+let g:plug_home = expand('~/.config/nvim/plugged')
+call plug#begin()
 " Appearance: colours etc
 Plug 'iCyMind/NeoSolarized'
 " Fancy status lines (see 'g:airline_*' settings below)
@@ -192,7 +192,7 @@ Plug 'natebosch/vim-lsc'
 
 call plug#end()
 
-if !isdirectory(g:plug_dir)
+if !isdirectory(g:plug_home)
     execute 'PlugInstall'
 endif
 
@@ -232,12 +232,9 @@ let g:lsc_auto_map = {
             \ 'defaults': v:true,
             \ 'Completion': 'omnifunc'
             \ }
-let g:lsc_server_commands = {'elixir': g:plug_dir . '/elixir-ls/release/language_server.sh'}
+let g:lsc_server_commands = {'elixir': g:plug_home . '/elixir-ls/release/language_server.sh'}
 
 autocmd CompleteDone * silent! pclose
-
-" ALE: configuration
-let g:ale_virtualtext_cursor = 1
 
 " Illuminate: highlight word under cursor
 let g:Illuminate_delay = 100
@@ -293,25 +290,6 @@ let test#strategy = {
     \ 'file':    'neovim',
     \ 'suite':   'neovim'
     \}
-
-" ALE:
-let g:ale_linters = {
-            \ 'elixir': ['elixir-ls']
-            \ }
-
-let g:ale_elixir_elixir_ls_release = g:plug_dir . '/elixir-ls/release'
-let g:ale_elixir_elixir_ls_config = {
-            \ 'type': 'mix_task',
-            \ 'name': 'mix test',
-            \ "request": "launch",
-            \ "task": "test",
-            \ "taskArgs": ["--trace"],
-            \ "projectDir": "${workspaceRoot}",
-            \ "requireFiles": [
-            \   "test/**/test_helper.exs",
-            \   "test/**/*_test.exs"
-            \ ]
-            \ }
 
 " Quickmenus:
 call qmenus#load() " See autoload/qmenus.vim
