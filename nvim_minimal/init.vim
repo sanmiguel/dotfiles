@@ -22,6 +22,8 @@ set wildignore+=.beam " When tab-completing filenames, ignore .beam
 " 'completeopt' affects the completion engine
 " see :h 'ins-completion'
 set completeopt+=longest
+" Remove 'preview' in favour of float-preview.nvim
+set completeopt-=preview
 
 set title " Set the window title automatically
 
@@ -165,6 +167,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'MattesGroeger/vim-bookmarks'
 
 Plug 'TamaMcGlinn/quickfixdd'
+" Use a floating window instead of old school preview window
+Plug 'ncm2/float-preview.nvim'
 
 " Language: erlang
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
@@ -219,7 +223,7 @@ let g:airline_powerline_fonts=1
 let g:airline_theme = 'sanmiguelito'
 let [g:airline_left_sep, g:airline_right_sep] = ['', '']
 
-let g:airline_section_y = ''
+let g:airline_skip_empty_sections = 1
 
 " vim-lsc: configuration
 set shortmess-=F
