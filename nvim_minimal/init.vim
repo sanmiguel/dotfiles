@@ -351,11 +351,9 @@ let g:startify_change_to_vcs_root = 0
 " VimTest:
 " let test#runners = {'Erlang': ['commontest', 'eqc', 'eunit']}
 let test#neovim#term_position = "botright vertical"
-let test#strategy = {
-    \ 'nearest': 'neovim',
-    \ 'file':    'neovim',
-    \ 'suite':   'neovim'
-    \}
+let test#strategy = 'shtuff'
+let g:shtuff_receiver = 'testrunner'
+let g:test#preserve_screen = 1
 
 " Quickmenus:
 call qmenus#load() " See autoload/qmenus.vim
