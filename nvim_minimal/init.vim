@@ -181,6 +181,9 @@ Plug 'TamaMcGlinn/quickfixdd'
 " Use a floating window instead of old school preview window
 Plug 'ncm2/float-preview.nvim'
 
+" Language Server client/management
+Plug 'prabirshrestha/vim-lsp' | Plug 'mattn/vim-lsp-settings'
+
 " Language: erlang
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
@@ -197,9 +200,6 @@ Plug 'sanmiguel/vim-erlang-compiler', {'branch': 'mtc-compile-as-test',
 Plug 'tpope/vim-projectionist'
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
 " Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
-Plug 'elixir-lsp/elixir-ls'
-" Plug 'dense-analysis/ale'
-Plug 'natebosch/vim-lsc'
 
 call plug#end()
 
@@ -229,6 +229,9 @@ highlight Search guibg='#dc322f' guifg='#073642' gui=reverse,italic
 highlight IncSearch guibg='#dc322f' guifg='#073642'
 
 lua <<EOF
+-- barbecue setup
+-- require'barbecue'.setup()
+
 -- treesitter: configuration
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -320,6 +323,42 @@ let g:lsc_auto_map = {
             \ 'Completion': 'omnifunc'
             \ }
 let g:lsc_server_commands = {'elixir': g:plug_home . '/elixir-ls/release/language_server.sh'}
+
+" vim-lsp configuration:
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    " nmap <buffer> gd <plug>(lsp-definition)
+    " nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    " nmap <buffer> gi <plug>(lsp-implementation)
+    " nmap <buffer> gt <plug>(lsp-type-definition)
+    " nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    " nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    " let g:lsp_format_sync_timeout = 1000
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    autocmd!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+augroup lsp_statusline
+    autocmd!
+    "autocmd User lsp_progress_updated ... Update airline somehow
+augroup END
+
 
 autocmd CompleteDone * silent! pclose
 
