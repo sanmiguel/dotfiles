@@ -459,3 +459,9 @@ function! s:erlang_app(srcdir)
     let appname = fnamemodify(appsrc, ':t:r:r')
     return appname
 endfunction
+
+" Custom text objects: line
+xnoremap il g_o^
+onoremap il <silent> :normal vil<CR>
+xnoremap al $o^
+onoremap al <silent> :normal val<CR>
