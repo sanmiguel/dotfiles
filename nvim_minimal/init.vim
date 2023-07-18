@@ -93,6 +93,9 @@ let g:plug_home = expand('~/.config/nvim/plugged')
 call plug#begin()
 " Appearance: colours etc
 Plug 'iCyMind/NeoSolarized'
+" Auto-dark-/light-mode
+Plug 'f-person/auto-dark-mode.nvim'
+
 " Fancy status lines (see 'g:airline_*' settings below)
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
@@ -279,6 +282,21 @@ require'nvim-treesitter.configs'.setup {
           },
       },
 }
+
+local auto_dark_mode = require('auto-dark-mode')
+
+auto_dark_mode.setup({
+	update_interval = 1000,
+	set_dark_mode = function()
+		vim.api.nvim_set_option('background', 'dark')
+		vim.cmd('colorscheme NeoSolarized')
+	end,
+	set_light_mode = function()
+		vim.api.nvim_set_option('background', 'light')
+		vim.cmd('colorscheme NeoSolarized')
+	end,
+})
+auto_dark_mode.init()
 EOF
 
 " Airline: configuration
