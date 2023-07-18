@@ -117,8 +117,11 @@ Plug 'tpope/vim-vinegar'
 
 " System: External resources
 " fzf: install it from homebrew, then this will enable it:
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+" TODO FIXME Use `brew --prefix` to get the path
+Plug '/opt/homebrew/opt/fzf'
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
+" optional for icon support
+Plug 'nvim-tree/nvim-web-devicons'
 
 " Plug 'git@bitbucket.org:sanmiguel/todoist.vim', {'branch': 'python3'}
 
@@ -298,6 +301,9 @@ auto_dark_mode.setup({
 })
 auto_dark_mode.init()
 EOF
+
+" Maps for FZF
+noremap <C-f> :FZF<CR>
 
 " Airline: configuration
 let g:airline_powerline_fonts=1
