@@ -53,7 +53,7 @@ let g:custom_quickmenus = {
             \ },
             \ 'fugitive/fzf': {
             \  'items': {
-            \   'GFiles?': [ ':GFiles?', 'Show changed files in FZF' ] ,
+            \   'Git': [ ':Git', 'Show changed files' ] ,
             \   'Gdiff':   [ ':Gdiff', 'Show changes from index' ],
             \   'Git commit': [ ':Git commit', 'Commit the currently staged changes' ],
             \   'Git commit amend': [ ':Git commit --amend --reuse-message=HEAD', 
@@ -74,7 +74,8 @@ let g:custom_quickmenus = {
             \   'TestFile': [ ':TestFile', 'Runs the current test file' ],
             \   'TestSuite': [ ':TestSuite', 'Runs the whole test suite' ],
             \   'TestLast': [ ':TestLast', 'Re-runs the last run test' ],
-            \   'TestVisit': [ ':TestVisit', 'Visits the last run test' ]
+            \   'TestVisit': [ ':TestVisit', 'Visits the last run test' ],
+            \   'TestFailed': [ ':ExUnit --failed', 'Retries the failed tests' ]
             \ }},
             \ 'vim-notes': {
             \  'items': {
@@ -88,6 +89,7 @@ let g:custom_quickmenus = {
             \ }},
             \ 'bookmarks': {
             \  'items': {
+            \    'WriteTODO': [ 'WriteTODO', 'Add a dated TODO'],
             \    'BookmarkToggle': [ 'BookmarkToggle', 'Add or remove bookmark at current line' ],
             \    'BookmarkAnnotate <TEXT>': [ 'BookmarkAnnotate', 'Add/edit/remove annotation at current line' ],
             \    'BookmarkNext': [ 'BookmarkNext', 'Jump to the next bookmark downwards' ],
@@ -99,12 +101,13 @@ let g:custom_quickmenus = {
             \    'BookmarkMoveDown [<COUNT>]': [ 'BookmarkMoveDown', 'Move down the bookmark at current line by the specified amount of lines (default: 1)' ],
             \    'BookmarkMoveToLine <LINE>': [ 'BookmarkMoveToLine', 'Move the bookmark at current line to the specified <LINE>' ],
             \    'BookmarkSave <FILE_PATH>': [ 'BookmarkSave', 'Saves all bookmarks to a file so you can load them back in later' ],
+            \    'BookmarkSave <auto>': [ 'BookmarkAutoSave', 'Saves all bookmarks under a file using the current branch name' ],
             \    'BookmarkLoad <FILE_PATH>': [ 'BookmarkLoad', 'Loads bookmarks from a file (see :BookmarkSave)' ]
             \ }},
             \ 'plug.vim': {
             \  'items': {
-            \   'PlugUpdate': [ 'PlugUpdate', 'Update all plugins'],
-            \   'PlugUpgrade': [ 'PlugUpgrade', 'Upgrade all plugins']
+            \   'PlugUpdate': [ 'PlugUpdate', 'Upgrade all plugins'],
+            \   'PlugUpgrade': [ 'PlugUpgrade', 'Upgrade plug.vim']
             \ }},
             \ 'ls-client': {
             \  'items': {

@@ -15,7 +15,7 @@ set showmatch  " Display matching parens (if on-screen)
 set number     " Display line numbers
 
 " 'wildmode' affects tab-completion in commands
-set wildmode=list:longest,list:full
+set wildmode=longest,full
 set wildignorecase " Ignore case when tab-completing a wildcard
 set wildignore+=.beam " When tab-completing filenames, ignore .beam
 
@@ -59,18 +59,17 @@ endif
 " Unmap the new default Y y$
 unmap Y
 
-" Map // to temporarily stop highlighting search
-nnoremap <silent> // :nohlsearch<CR>
+" Map \/ to temporarily stop highlighting search
+nnoremap <silent> \o :nohlsearch<CR>
 
 " Turn off line numbers in terminal
 autocmd TermOpen * setlocal nonumber
 
 " Python pre-requisites: Use pyenv to install python2 and python3, to create
 " segregated python runtimes for neovim to use:
-" NB: Unfortunately if you upgrade pyenv via homebrew later, you'll have to
-" repeat these steps
 " brew install pyenv pyenv-virtualenv
-" # Add 'pyenv' to your oh-my-zsh plugins in ~/.zshrc
+" # Add 'pyenv' to your oh-my-zsh plugins in ~/.zshrc: an exercise left for
+" the reader
 " # Start a new shell
 " pyenv install 2.7.14
 " pyenv install 3.6.3
@@ -119,6 +118,7 @@ Plug 'tpope/vim-vinegar'
 " fzf: install it from homebrew, then this will enable it:
 " TODO FIXME Use `brew --prefix` to get the path
 Plug '/opt/homebrew/opt/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 " optional for icon support
 Plug 'nvim-tree/nvim-web-devicons'
@@ -163,7 +163,11 @@ Plug 'tpope/vim-git'
 " been...?!
 Plug 'tpope/vim-rsi'
 
-Plug 'janko-m/vim-test'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'vim-test/vim-test'
+
+" Place signs based on qflist/loclist
+Plug 'dhruvasagar/vim-markify'
 
 " System: Additional controls
 Plug 'tpope/vim-unimpaired' " :help unimpaired
@@ -181,8 +185,18 @@ Plug 'TamaMcGlinn/quickfixdd'
 " Use a floating window instead of old school preview window
 Plug 'ncm2/float-preview.nvim'
 
+" Plug 'SmiteshP/nvim-navic' | Plug 'utilyre/barbecue.nvim'
+
+" TODO Try out the _native_ lsp client
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-lua/lsp-status.nvim'
+" fzf+lsp
+"Plug 'gfanto/fzf-lsp.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+
 " Language Server client/management
 Plug 'prabirshrestha/vim-lsp' | Plug 'mattn/vim-lsp-settings'
+
 
 " Language: erlang
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
@@ -227,6 +241,19 @@ colorscheme NeoSolarized
 " Change search highlight colour - makes cursor easier to spot
 highlight Search guibg='#dc322f' guifg='#073642' gui=reverse,italic
 highlight IncSearch guibg='#dc322f' guifg='#073642'
+
+" for treesitter folding:
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldnestmax=2
+set foldlevel=2
+set foldlevelstart=2
+
+" For LSP folding
+" let g:lsp_fold_enabled = 1
+" set foldmethod=expr
+"   \ foldexpr=lsp#ui#vim#folding#foldexpr()
+"   \ foldtext=lsp#ui#vim#folding#foldtext()
 
 lua <<EOF
 -- barbecue setup
@@ -312,9 +339,16 @@ noremap <C-f> :FZF<CR>
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'sanmiguelito'
 let [g:airline_left_sep, g:airline_right_sep] = ['', '']
+let g:airline_section_b = ''
+
+" lsp airline section
 
 let g:airline_skip_empty_sections = 1
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#hunks#get_hunks(),100)}'
 
+" TODO FIXME: Switch over to 'lsp' native nvim client
+" maybe that has a way to manually type a function name and search for
+" references
 " vim-lsc: configuration
 set shortmess-=F
 let g:lsc_hover_popup = v:false
@@ -392,9 +426,36 @@ let g:bookmark_save_per_working_dir = 1
 " TODO ^^ git diff --numstat $base-branch
 " TODO ^^ open each changed buffer, run ':Gdiff master'
 
+" TODO Function to return the list of saved bookmark files by mtime
+" list of dicts:
+" { 'line': 'text to display',
+" \ 'cmd': ':BookmarkLoad $line'
+" \ }
+let s:bookmark_sets_dir = '~/.local/share/nvim/vim-bookmarks/'
+function! s:list_bookmark_files()
+    let list = []
+    let files = glob(fnameescape(s:bookmark_sets_dir).'**/{,.}*', 1, 1)
+    for bmfile in files
+        let list += [{ 'line': fnamemodify(bmfile, ":t"), 'cmd': 'call BookmarkLoad("'. expand(bmfile) .'", 0, 0)' }]
+    endfor
+    return list
+endfunction
+
+" TODO the cmd above fails because it tries to load bookmarks for files that
+" don't exist. Would need to extend vim-bookmarks to handle that
+" (automatically open the files??)
+function! s:save_bookmark_file()
+    let branch = fugitive#Head()
+    let filepath = fnameescape(expand(s:bookmark_sets_dir) . branch)
+    " TODO Auto-create path if necessary
+    call BookmarkSave(filepath, 0)
+endfunction
+command! BookmarkAutoSave call s:save_bookmark_file()
+
 let g:startify_lists = [
       \ { 'header': ['   Sessions'],       'type': 'sessions' },
-      \ { 'header': ['   MRU '.getcwd()], 'type': 'dir' }
+      \ { 'header': ['   MRU '.getcwd()], 'type': 'dir' },
+      \ { 'header': ['   Bookmark Sets'], 'type': function('s:list_bookmark_files')}
       \ ]
 
 let g:startify_fortune_use_unicode = 1
@@ -406,14 +467,27 @@ let g:startify_commands = [
     \ ]
 
 let g:startify_session_autoload = 1
-let g:startify_change_to_vcs_root = 0
+let g:startify_session_save_qflist = 1
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
+
+
 
 " VimTest:
 " let test#runners = {'Erlang': ['commontest', 'eqc', 'eunit']}
+let g:test#runner_commands = ['ExUnit']
 let test#neovim#term_position = "botright vertical"
+" let test#strategy = {
+"     \ 'nearest': 'asyncrun',
+"     \ 'file': 'asyncrun',
+"     \ 'suite': 'shtuff'
+"     \ }
 let test#strategy = 'shtuff'
 let g:shtuff_receiver = 'testrunner'
 let g:test#preserve_screen = 1
+
+" AsyncRun 
+let g:asyncrun_open = 10
 
 " Quickmenus:
 call qmenus#load() " See autoload/qmenus.vim
@@ -425,6 +499,32 @@ function s:elixir_ft_setting()
     let g:surround_37 = "%{\r: }" " ys%
     let g:surround_58 = "\r:" "  ys:
     let g:surround_59 = ":\r" " ys;
+    let g:surround_124 = "|> \r" " ys|
+    let g:surround_107 = ".\r" " ysk
+
+    " With makeprg and errorformat set like this we can run :make and capture
+    " qflist contents with locations set correctly
+   setlocal makeprg=mix\ test
+   setlocal errorformat=%Wwarning:\ %m
+   setlocal errorformat+=%-C\\s%#
+   setlocal errorformat+=%C\ \ \ \ #\ %f:%l%#
+   setlocal errorformat+=%C\ \ \ \ %s%#
+   setlocal errorformat+=%+Cexpected\ %m
+   setlocal errorformat+=%E%>==\ Compilation\ error\ in\ file\ %f\ ==
+   setlocal errorformat+=%C**\ %m%#
+   setlocal errorformat+=%+C\ \ \ \ %m
+   setlocal errorformat+=%C\ \ \ \ %f:%l:\ %m%#
+   setlocal errorformat+=%E%>\ \ %n)\ %m
+   setlocal errorformat+=%+G\ \ \ \ \ **\ %m
+   setlocal errorformat+=%+G\ \ \ \ \ stacktrace:
+   setlocal errorformat+=%C\ \ \ \ \ %f:%l
+   setlocal errorformat+=%+G\ \ \ \ \ \ \ (%\\w%\\+)\ %f:%l:\ %m
+   setlocal errorformat+=%+G\ \ \ \ \ \ \ %f:%l:\ %.%#
+   setlocal errorformat+=**\ (%\\w%\\+)\ %f:%l:\ %m
+
+                " \%Wwarning: %m,
+                " \%C\ \ \ \ #\ %f:%l,
+                " \%C\ \ \ \ %m,
 endfunction
 
 augroup elixir
@@ -504,3 +604,6 @@ xnoremap il g_o^
 onoremap il <silent> :normal vil<CR>
 xnoremap al $o^
 onoremap al <silent> :normal val<CR>
+
+" Sneaky reuse a surround to insert a todo
+let g:surround_100 = "TODO mtc (" . strftime('%Y-%m-%d') . "): \r"
