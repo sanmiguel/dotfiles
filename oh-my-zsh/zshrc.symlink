@@ -22,13 +22,38 @@ export LESS='-RiFX'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=""
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=""
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=""
 POWERLEVEL9K_MODE='awesome-fontconfig'
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # TODO Set POWERLEVEL9K_CONTEXT_TEMPLATE to control context segment
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+	status
+	command_exection_time
+	kube_context 
+	asdf
+	dato
+	time
+	newline
+)
+
+POWERLEVEL9K_ASDF_BACKGROUND=237
+POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW=true
+POWERLEVEL9K_ASDF_ELIXIR_VISUAL_IDENTIFIER_EXPANSION=''
+POWERLEVEL9K_ASDF_ELIXIR_FOREGROUND=126
+POWERLEVEL9K_ASDF_ERLANG_VISUAL_IDENTIFIER_EXPANSION=''
+POWERLEVEL9K_ASDF_ERLANG_FOREGROUND=88
+POWERLEVEL9K_ASDF_ELIXIR_SHOW_ON_UPGLOB='mix.exs|*.ex|*.exs'
+POWERLEVEL9K_ASDF_ERLANG_SHOW_ON_UPGLOB='mix.exs|*.ex|*.exs|rebar*|*.erl'
+POWERLEVEL9K_ASDF_NODEJS_SHOW_ON_UPGLOB='*.foobar' # don't show nodejs version
+
+function prompt_dato() {
+    p10k segment -f 208 -t "$DATO_CMS_ENVIRONMENT"
+}
+
+source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -68,14 +93,14 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-ZSH_DOTENV_FILE=.envrc
+# ZSH_DOTENV_FILE=.envrc
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(themes iterm2 aws git asdf pyenv ssh-agent mix-fast)
-plugins=( gh themes dotenv iterm2 git asdf pyenv ) #mix-fast ) #ssh-agent )
+plugins=( gh themes iterm2 git asdf pyenv zsh-fzf-history-search ) #mix-fast ) #ssh-agent )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -191,5 +216,12 @@ source ~/.iterm2_shell_integration.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Necessary for op-integrated CLI tools to work (e.g. todoist)
+source /Users/sanmiguel/.config/op/plugins.sh
+source $(brew --prefix)/share/zsh/site-functions/_todoist_fzf
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Direnv
+eval "$(direnv hook zsh)"

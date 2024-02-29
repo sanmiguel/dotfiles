@@ -3,6 +3,11 @@
 --type-add=erlang:is:rebar.config.script
 --type-add=erlang:is:sys.config
 
+--type-add=elixir:ext:heex
+--type-add=heex:ext:heex
+
+--type-add=exunit:match:_test.exs
+
 --type-set=log:ext:log
 
 --type-add=ct:match:_SUITE.erl

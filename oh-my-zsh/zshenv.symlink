@@ -1,10 +1,10 @@
 if [[ $- != *i* ]]; then
     # echo "Forcing ASDF setup"
     # Set up a primitive environment for [neo]vim terminals to use
-    export MIX_ENV=dev
+    # export MIX_ENV=dev
 
     # Don't mess about with the OMZ plugin, just source asdf ourselves
-    ASDF_DIR=${ASDF_DIR:=/usr/local/opt/asdf}
+    ASDF_DIR=${ASDF_DIR:=/opt/homebrew/opt/asdf/libexec}
     if [[ -f "$ASDF_DIR/asdf.sh" ]]; then
         . "$ASDF_DIR/asdf.sh"
     fi
