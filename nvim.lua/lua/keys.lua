@@ -11,6 +11,7 @@ keymap("n", "<C-t>f", function()
 	require("neotest").run.run(vim.fn.expand("%"))
 end, opts)
 keymap("n", "<C-t>s", require("neotest").summary.toggle, opts)
+keymap("n", "<C-t>o", require("neotest").output.open, opts)
 keymap("n", "<C-t>p", require("neotest").output_panel.toggle, opts)
 keymap("n", "<C-t>w", require("neotest").watch.toggle, opts)
 keymap("n", "<C-t>k", function()
@@ -18,8 +19,8 @@ keymap("n", "<C-t>k", function()
 	local current_line = vim.fn.line('.')
 	os.execute(string.format('shtuff into testrunner \"mix test --trace %s:%d\"', current_file, current_line))
 	end)
-keymap("n", "<C-t>K", require("neotest").jump.prev({ status = "failed" }), opts)
-keymap("n", "<C-t>J", require("neotest").jump.next({ status = "failed" }), opts)
+-- keymap("n", "<C-t>K", function() require("neotest").jump.prev({ status = "failed" }) end, opts)
+-- keymap("n", "<C-t>J", function() require("neotest").jump.next({ status = "failed" }) end, opts)
 
 
 -- TODO

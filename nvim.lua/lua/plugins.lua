@@ -18,6 +18,7 @@ return {
     },
   "folke/which-key.nvim", -- this might be able to replace quickmenu
   -- { "folke/neoconf.nvim", cmd = "Neoconf" }, -- manage project- and dir-specific configs
+  "mileszs/ack.vim",
   {
 	  "folke/neodev.nvim", -- helpers for working on init.lua and other neovim scripts
 	  dependencies = {
@@ -29,7 +30,22 @@ return {
 		  })
 	  end,
   },
-  "f-person/auto-dark-mode.nvim",
+  {
+	  "f-person/auto-dark-mode.nvim",
+	  config = function()
+		  require('auto-dark-mode').setup({
+			  update_interval = 1000,
+			  set_dark_mode = function()
+				  vim.o.background = 'dark'
+				  vim.cmd('colorscheme NeoSolarized')
+			  end,
+			  set_light_mode = function()
+				  vim.o.background = 'light'
+				  vim.cmd('colorscheme NeoSolarized')
+			  end,
+		  })
+	  end,
+  },
   -- {
   --     "vim-airline/vim-airline",
   --     init = function()
@@ -145,7 +161,7 @@ return {
 	  config = function()
 		  vim.g.fzf_session_path = vim.fn.stdpath("data") .. '/session'
 		  kmopts = { noremap = true, silent = true }
-		  vim.keymap.set("n", "<C-s><C-s>", "<cmd>:Sessions<CR>", opts)
+		  vim.keymap.set("n", "<C-s><C-s>", "<cmd>:Sessions<CR>", kmopts)
 	  end,
 	  dependencies = {
 		  "junegunn/fzf.vim"
@@ -268,7 +284,7 @@ return {
 		  })
 		  require'lspconfig'.elixirls.setup{
 			  -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
-			  capabilities = capabilities,
+			  -- capabilities = capabilities,
 			  flags = {
 				  debounce_text_changes = 150,
 			  },
@@ -311,6 +327,7 @@ return {
   {
       "nvim-neotest/neotest",
       dependencies = {
+		  "nvim-neotest/nvim-nio",
 		  "mfussenegger/nvim-dap",
           "nvim-lua/plenary.nvim",
           "antoinemadec/FixCursorHold.nvim",
@@ -327,5 +344,5 @@ return {
 	  end,
   },
   "jfpedroza/neotest-elixir",
-  "direnv/direnv.vim"
+  -- "direnv/direnv.vim"
 }
