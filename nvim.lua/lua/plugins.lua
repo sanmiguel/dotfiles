@@ -24,7 +24,7 @@ return {
 	  dependencies = {
 		  "nvim-neotest/neotest"
 	  },
-	  config = function() 
+	  config = function()
 		  require("neodev").setup({
 			  library = { plugins = { "neotest" }, types = true },
 		  })
@@ -113,7 +113,7 @@ return {
 			  options = {
 				  -- component_separators = { left = '', right = '' },
 				  component_separators = { left = '', right = '' },
-				  --      
+				  --     
 				  section_separators = { left = '', right = '' },
 				  theme = "solarized_dark",
 			  },
@@ -150,7 +150,7 @@ return {
   {
 	  "ibhagwan/fzf-lua",
 	  config = function()
-		 require("fzf-lua").setup({ "fzf-vim" }) 
+		 require("fzf-lua").setup({ "fzf-vim" })
 	  end,
 	  dependencies = {
 		  "nvim-tree/nvim-web-devicons",
@@ -160,7 +160,7 @@ return {
 	  'dominickng/fzf-session.vim',
 	  config = function()
 		  vim.g.fzf_session_path = vim.fn.stdpath("data") .. '/session'
-		  kmopts = { noremap = true, silent = true }
+		  local kmopts = { noremap = true, silent = true }
 		  vim.keymap.set("n", "<C-s><C-s>", "<cmd>:Sessions<CR>", kmopts)
 	  end,
 	  dependencies = {
