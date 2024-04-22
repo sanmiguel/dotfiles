@@ -28,10 +28,18 @@ keymap("n", "<C-t>k", function()
 -- nvim-dap + elixir-ls
 
 -- FZF
-keymap("n", "<C-f>", "<cmd>:Files<CR>", opts)
+keymap("n", "<C-f>", function() require('telescope.builtin').find_files({ ignore = false }) end, opts)
 
 -- handy
 keymap("n", "\\o", "<cmd>:nohlsearch<CR>", opts)
 keymap("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
 keymap("n", "-", "<cmd>:e %:h<CR>", opts)
 
+vim.keymap.set("n", "<leader><C-f>", function()
+	local qfiles = vim.fn.getqflist()
+	local files = {}
+	for _, qf in ipairs(qfiles) do
+		files[#files+1] = vim.fn.bufname(qf.bufnr)
+	end
+	require('telescope.builtin').live_grep({ search_dirs = files })
+end, { noremap = true, silent = true })

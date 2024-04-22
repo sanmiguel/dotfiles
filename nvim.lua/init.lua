@@ -75,6 +75,18 @@ if (vim.fn.exists("g:neovide"))
 then
 	require('neovide')
 end
+
+-- If no args were given, default to opening the find_files dialog
+-- TODO FIXME Need to validate no session is being restored
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argv(0) == "" then
+      require("telescope.builtin").find_files()
+    end
+  end,
+})
+
+-- TODO: local map this in qflist windows 
 -- TODO: a periodic watcher to show any rpc requests pending for LSP
 --       • {requests} (table): The current pending requests in flight to the
         -- server. Entries are key-value pairs with the key being the request ID
