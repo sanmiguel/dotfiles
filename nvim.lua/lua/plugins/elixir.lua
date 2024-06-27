@@ -1,3 +1,3 @@
 return {
-	"elixir-lang/vim-elixir",
+	-- "elixir-lang/vim-elixir",
 }
