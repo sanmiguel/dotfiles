@@ -39,7 +39,8 @@ vim.keymap.set("n", "<leader><C-f>", function()
 	local qfiles = vim.fn.getqflist()
 	local files = {}
 	for _, qf in ipairs(qfiles) do
-		files[#files+1] = vim.fn.bufname(qf.bufnr)
+		-- use the bufnr to get mostly unique
+		table.insert(files, vim.fn.bufname(qf.bufnr))
 	end
 	require('telescope.builtin').live_grep({ search_dirs = files })
 end, { noremap = true, silent = true })

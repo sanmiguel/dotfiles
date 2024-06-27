@@ -16,12 +16,16 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 
 require("lazy").setup("plugins")
 
-vim.o.number = 1
-vim.o.splitbelow = 1
-vim.o.splitright = 1
-vim.o.termguicolors = 1
-vim.o.ignorecase = 1
-vim.o.smartcase = 1
+vim.o.number = true
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.termguicolors = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.title = true
+-- "${branchname} | ${pwd}"
+-- TODO: FugitiveHead() like this gets weird if focused on e.g. help page
+vim.o.titlestring = "%{FugitiveHead()} | %{substitute(getcwd(), $HOME, '~', '')}"
 
 vim.opt.diffopt:append("vertical")
 vim.opt.clipboard:append("unnamed")
@@ -34,7 +38,7 @@ vim.opt.clipboard:append("unnamed")
 -- instance has been attached to an open buffer with matching filetype
 -- here we're setting key mappings for hover documentation, goto definitions, goto references, etc
 -- you may set those key mappings based on your own preference
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local opts = { noremap=true, silent=true }
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)

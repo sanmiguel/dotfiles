@@ -1,20 +1,89 @@
 return {
 	"tpope/vim-rsi",
+	"itchyny/vim-qfedit",
+	-- {
+	-- 	"iCyMind/NeoSolarized",
+	-- 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	-- 	priority = 1000, -- make sure to load this before all the other start plugins
+	-- 	config = function()
+	-- 		-- load the colorscheme here
+	-- 		-- vim.cmd.colorscheme([[NeoSolarized]])
+	-- 	end,
+	-- 	init = function()
+	-- 		vim.g.neosolarized_italic = 1
+	-- 		vim.g.neosolarized_termtrans = 1
+	-- 		vim.g.neosolarized_contrast = "high"
+	-- 		vim.g.neosolarized_diffmode = "high"
+	-- 	end,
+	-- },
 	{
-		"iCyMind/NeoSolarized",
+		"Tsuzat/NeoSolarized.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			-- load the colorscheme here
-			vim.cmd.colorscheme([[NeoSolarized]])
-		end,
 		init = function()
-			vim.g.neosolarized_italic = 1
-			vim.g.neosolarized_termtrans = 1
-			vim.g.neosolarized_contrast = "high"
-			vim.g.neosolarized_diffmode = "high"
+			local ok_status, NeoSolarized = pcall(require, "NeoSolarized")
+
+			if not ok_status then
+				return
+			end
+
+			-- Default Setting for NeoSolarized
+
+			NeoSolarized.setup {
+				-- style = "dark", -- "dark" or "light"
+				transparent = false, -- true/false; Enable this to disable setting the background color
+				-- terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+				-- enable_italics = true, -- Italics for different hightlight groups (eg. Statement, Condition, Comment, Include, etc.)
+				styles = {
+				-- 	-- Style to be applied to different syntax groups
+				-- 	comments = { italic = true },
+				-- 	keywords = { italic = true },
+					functions = { bold = false },
+				-- 	variables = {},
+				-- 	string = { italic = true },
+				-- 	underline = true, -- true/false; for global underline
+				-- 	undercurl = true, -- true/false; for global undercurl
+				},
+				-- Add specific hightlight groups
+				on_highlights = function(highlights, colors)
+					highlights.Function.fg = colors.blue
+					-- highlights.Include.fg = colors.red -- Using `red` foreground for Includes
+				end,
+			}
+			-- Set colorscheme to NeoSolarized
+			vim.cmd [[
+				try
+					colorscheme NeoSolarized
+				catch /^Vim\%((\a\+)\)\=:E18/
+					colorscheme default
+					set background=dark
+				endtry
+			]]
 		end,
+		config = function()
+			-- vim.cmd [[ colorscheme NeoSolarized ]]
+		end
 	},
+	-- {
+	--   "tjdevries/colorbuddy.nvim",
+	-- },
+	-- {
+	-- 	"svrana/neosolarized.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	dependencies = {
+	-- 		"tjdevries/colorbuddy.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		n = require('neosolarized').setup({
+	-- 			comment_italics = true,
+	-- 			background_set = true,
+	-- 		})
+	-- 		vim.cmd.colorscheme("neosolarized")
+	-- 	end,
+	-- 	init = function()
+	-- 	end,
+	-- },
 	-- {
 	-- 	"folke/which-key.nvim",
 	-- 	event = "VeryLazy",
@@ -35,11 +104,9 @@ return {
 				update_interval = 1000,
 				set_dark_mode = function()
 					vim.o.background = 'dark'
-					vim.cmd('colorscheme NeoSolarized')
 				end,
 				set_light_mode = function()
 					vim.o.background = 'light'
-					vim.cmd('colorscheme NeoSolarized')
 				end,
 			})
 		end,

@@ -1,4 +1,10 @@
 return {
+	{
+	  "j-hui/fidget.nvim",
+	  opts = {
+		-- options
+	  },
+	},
   {
 	  "linrongbin16/lsp-progress.nvim",
 	  config = function()
