@@ -129,7 +129,7 @@ return {
 	  config = function()
 		require("auto-session").setup {
 		  log_level = "error",
-		  auto_session_suppress_dirs = { "~/", "~/git", "~/Documents", "~/Downloads", "/"},
+		  auto_session_suppress_dirs = { "~/", "~/git", "~/dotfiles", "~/Documents", "~/Downloads", "/"},
 		  auto_session_use_git_branch = true,
 		}
 	  end

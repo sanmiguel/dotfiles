@@ -25,7 +25,7 @@ vim.o.smartcase = true
 vim.o.title = true
 -- "${branchname} | ${pwd}"
 -- TODO: FugitiveHead() like this gets weird if focused on e.g. help page
-vim.o.titlestring = "%{FugitiveHead()} | %{substitute(getcwd(), $HOME, '~', '')}"
+vim.o.titlestring = "%{FugitiveHead()} | %{substitute(getcwd(), $HOME, '~', '')} | " .. require('auto-session.lib').current_session_name(true)
 
 vim.opt.diffopt:append("vertical")
 vim.opt.clipboard:append("unnamed")
@@ -38,29 +38,29 @@ vim.opt.clipboard:append("unnamed")
 -- instance has been attached to an open buffer with matching filetype
 -- here we're setting key mappings for hover documentation, goto definitions, goto references, etc
 -- you may set those key mappings based on your own preference
-local on_attach = function(_, bufnr)
-  local opts = { noremap=true, silent=true }
+-- local on_attach = function(_, bufnr)
+--   local opts = { noremap=true, silent=true }
 
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-end
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+-- end
 
 -- setting up the elixir language server
 -- you have to manually specify the entrypoint cmd for elixir-ls
-require('lspconfig').elixirls.setup {
-  cmd = { "/Users/sanmiguel/git/elixir-lsp/elixir-ls/release/language_server.sh" },
-  on_attach = on_attach
-}
+-- require('lspconfig').elixirls.setup {
+--   cmd = { "/Users/sanmiguel/git/elixir-lsp/elixir-ls/release/language_server.sh" },
+--   on_attach = on_attach
+-- }
 
 -- require("neotest").setup({
 --     adapters = {
@@ -75,7 +75,7 @@ require('lspconfig').elixirls.setup {
 
 -- things in here almost certainly rely on things setup above
 require("keys")
-if (vim.fn.exists("g:neovide"))
+if vim.g.neovide
 then
 	require('neovide')
 end

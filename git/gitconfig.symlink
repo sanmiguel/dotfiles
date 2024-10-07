@@ -1,7 +1,7 @@
 [user]
-	name = sanmiguel
+	name = Michael Coles
     email = michael.coles@gmail.com
-	signingkey = 4695BD5293264F5C
+    signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTB4FzXviU8OVBIgwy6Avg4zSJOPAQkTUbRJST/D3iDZygYVCd/L28EvNdnWiYfwjhimbDHtlJpRjwMUmiShnI18osZOeideIWnekeYyORsREYjvAgieyMgfrvGT/WTPHJk4F7xYA2zy00GxQfQknJPFP5m7bQemLx8sjniN/DrszgNgOQcbE7s3UuJrwrzBX7BvoxG3V/ODLHcl6khYltnBpW/s4f8AIyLw8yv086VxFUycNuY7v8a3frTDyBhBiJtVIOeGwGY4Lkn3LqccHbY8Vk5TiXRYCUpxHmcQ5LVLRAzirrYgZtIS9SsNuvJo36SJqZCR0gl9cCkD7vK7Rl
 [color]
 	diff = auto
 	status = auto
