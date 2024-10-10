@@ -25,9 +25,9 @@ fullpath=$(realpath	"${directory}")
 
 echo "Starting dev env in ${fullpath} (cwd: $PWD)"
 
-echo "$(asdf current)"
 export PATH="$PATH:/Users/sanmiguel/.asdf/shims:/Users/sanmiguel/.asdf/bin"
 echo "ttab: $(which ttab)"
-export TESTRUNNER="${directory}"
-ttab -d ${fullpath} zsh -c "source .envrc.local && neovide --fork && [ -n \"${TESTRUNNER}\" ] && shtuff as ${TESTRUNNER}"
-ttab -d ${fullpath} -v zsh
+export TESTRUNNER="$(basename ${directory})"
+(cd ${fullpath} && source .envrc.local && neovide --fork )&
+ttab -d ${fullpath} zsh -c "[ -n \"${TESTRUNNER}\" ] && source .envrc.local && shtuff as ${TESTRUNNER}"
+ttab -d ${fullpath} -v zsh -c "mix do deps.get, compile"

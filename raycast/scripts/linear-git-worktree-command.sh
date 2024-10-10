@@ -22,6 +22,8 @@
 branch="$1"
 username="mic"
 
+scriptdir=$(dirname $0)
+
 case "${branch}" in
 	${username}/*)
 		issue_branch=$(basename ${branch})
@@ -33,12 +35,16 @@ case "${branch}" in
 		;;
 esac
 
-echo "Checking out branch ${branch} into ${dir}"
+echo "PWD: ${PWD} / dir: ${dir}"
+fullpath=$(realpath ${dir})
+
 git remote update -p
 if [ -d ${dir} ]
 then
 	echo "${dir} exists"
+	# TODO Maybe spit out the branch on disk here?
 else
+	echo "Checking out branch ${branch} into ${dir}"
 	if [ `git rev-parse --verify ${branch} 2>/dev/null` ]
 	then
 		git worktree add ${dir} ${branch}
@@ -46,13 +52,13 @@ else
 		git worktree add --no-track ${dir} origin/master -b ${branch}
 	fi
 fi
+
+# Setup the env:
 ln -nsf ~/git/valified/valified/.envrc.local ${dir}/.envrc.local
 [ -d _build ] && echo "copying _build" && cp -r _build ${dir}/_build
 [ -d deps ] && echo "copying deps" && cp -r deps ${dir}/deps
 [ -f .iex.exs ] && cp .iex.exs ${dir}/.iex.exs
 [ -d assets ] && echo "copying assets" && cp -r ./assets ${dir}/
-echo "${dir}" >> ~/.oh-my-zsh/cache/dotenv-allowed.list
-gitdir=$(cd ${dir} && git rev-parse --git-dir)
-echo "${issue}: " > ${gitdir}/COMMIT_EDITMSG
-(cd ${dir} && source .envrc.local && neovide --fork )&
+echo "${fullpath}" >> ~/.oh-my-zsh/cache/dotenv-allowed.list
+(${scriptdir}/worktree-dev-env.sh ${fullpath})&
 echo "Done"
