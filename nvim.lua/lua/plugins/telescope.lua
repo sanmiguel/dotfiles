@@ -1,8 +1,20 @@
 return {
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.6',
+		'nvim-telescope/telescope.nvim', tag = '0.1.8',
 		-- or                          , branch = '0.1.x',
-		dependencies = { 'nvim-lua/plenary.nvim' }
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		config = function()
+			vim.keymap.set("n", "<C-t><C-t>", "Telescope<CR>", { noremap = true })
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							["<C-q>"] = require("telescope.actions").smart_add_to_qflist + require("telescope.actions").open_qflist,
+						}
+					}
+				}
+			})
+		end
 	},
 	-- {
 	--   "ahmedkhalf/project.nvim",

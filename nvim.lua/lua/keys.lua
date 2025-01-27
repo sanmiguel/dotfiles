@@ -30,6 +30,7 @@ keymap("n", "<C-t>k", function()
 
 -- FZF
 keymap("n", "<C-f>", function() require('telescope.builtin').find_files({ ignore = false }) end, opts)
+keymap("n", "<C-b>", function() require('telescope.builtin').buffers({ sort_mru = true }) end, opts)
 
 -- handy
 keymap("n", "\\o", "<cmd>:nohlsearch<CR>", opts)
