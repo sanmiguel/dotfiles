@@ -41,6 +41,5 @@ ln -nsf ~/git/valified/valified/.envrc.local ${dir}/.envrc.local
 [ -d assets ] && echo "copying assets" && cp -r ./assets ${dir}/
 echo "${dir}" >> ~/.oh-my-zsh/cache/dotenv-allowed.list
 gitdir=$(cd ${dir} && git rev-parse --git-dir)
-echo "${issue}: " > ${gitdir}/COMMIT_EDITMSG
 (cd ${dir} && source .envrc.local && neovide --fork )&
 echo "Done"

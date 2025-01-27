@@ -36,7 +36,6 @@ case "${branch}" in
 esac
 
 echo "PWD: ${PWD} / dir: ${dir}"
-fullpath=$(realpath ${dir})
 
 git remote update -p
 if [ -d ${dir} ]
@@ -51,7 +50,11 @@ else
 	else
 		git worktree add --no-track ${dir} origin/master -b ${branch}
 	fi
+
 fi
+
+# realpath fails if the path doesn't exist, so only do this here
+fullpath=$(realpath ${dir})
 
 # Setup the env:
 ln -nsf ~/git/valified/valified/.envrc.local ${dir}/.envrc.local

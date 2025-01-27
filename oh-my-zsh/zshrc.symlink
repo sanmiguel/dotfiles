@@ -104,7 +104,7 @@ ZSH_DOTENV_FILE=.envrc
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(themes iterm2 aws git asdf pyenv ssh-agent mix-fast)
-plugins=( gh themes dotenv iterm2 git asdf pyenv zsh-fzf-history-search ) #mix-fast ) #ssh-agent )
+plugins=( gh themes dotenv iterm2 git asdf pyenv fzf zsh-fzf-history-search ) #mix-fast ) #ssh-agent )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,7 +123,7 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 
-  pgbin=$(brew --prefix postgresql@10)/bin
+  pgbin=$(brew --prefix postgresql@15)/bin
   if [ -d $pgbin ]; then 
     export path=( $pgbin $path )
   fi
