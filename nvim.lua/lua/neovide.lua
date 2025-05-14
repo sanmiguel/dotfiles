@@ -35,4 +35,35 @@ if vim.g.neovide then
 
 	vim.keymap.set({"n", "v", "i", "c", "t"}, "<D-n>", "!neovide --fork &<CR>", kmopts)
 	vim.keymap.set({"n", "v", "i", "c", "t"}, "<D-,>", "!cd ~/.config/nvim && neovide --fork &<CR>", kmopts)
+	vim.diagnostic.config({
+	  virtual_text = false, -- Disable virtual text
+	  signs = true, -- Enable signs
+	  update_in_insert = false, -- Update diagnostics in insert mode
+	  underline = true, -- Enable underline
+	  severity_sort = true, -- Sort diagnostics by severity
+	  float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	  },
+	})
+	-- Show diagnostics in a popover preview window on cursor move with a delay
+	vim.api.nvim_create_autocmd("CursorMoved", {
+	  callback = function()
+		vim.defer_fn(function()
+		  local opts = {
+			focusable = false,
+			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+			border = 'rounded',
+			source = 'always',
+			prefix = ' ',
+			scope = 'cursor',
+		  }
+		  vim.diagnostic.open_float(nil, opts)
+		end, 300) -- 300ms delay
+	  end
+	})
 end

@@ -25,7 +25,8 @@ return {
 			  vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
 			  vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
 			  vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-			  vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { buffer = true, noremap = true })
+			  vim.keymap.set("n", "<leader>lr", require("telescope.builtin").lsp_references, { buffer = true, noremap = true })
+			  vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostics, { buffer = true, noremap = true })
 			end,
 		  },
 		  projectionist = {
@@ -46,6 +47,7 @@ return {
 			{ "folke/neodev.nvim", config = true },
 		},
 		config = function()
+			require("lspconfig")["erlangls"].setup({});
 			require("lspconfig")["lua_ls"].setup({
 				settings = {
 					Lua = {
@@ -58,7 +60,7 @@ return {
 						},
 					},
 				},
-			})
+			});
 		end,
 	},
 }

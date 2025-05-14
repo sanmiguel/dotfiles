@@ -6,26 +6,43 @@ return {
 		config = function()
 			vim.keymap.set("n", "<C-t><C-t>", "Telescope<CR>", { noremap = true })
 			require("telescope").setup({
-				defaults = {
-					mappings = {
-						i = {
-							["<C-q>"] = require("telescope.actions").smart_add_to_qflist + require("telescope.actions").open_qflist,
-						}
-					}
+			  layout_strategy = 'vertical',
+			  layout_config = {
+				height = 0.95, -- take up most of the screen height
+				width = 0.95,  -- take up most of the screen width
+				preview_height = 0.6, -- preview window takes 60% of the total height
+				prompt_position = "top" -- put prompt at the top
+			  },
+			  defaults = {
+				mappings = {
+				  i = {
+					["<C-q>"] = require("telescope.actions").smart_add_to_qflist + require("telescope.actions").open_qflist,
+				  }
 				}
+			  },
+			  pickers = {
+				buffers = {
+				  layout_strategy = 'vertical',
+				  layout_config = {
+					height = 0.75, -- take up most of the screen height
+					width = 0.85,  -- take up most of the screen width
+					preview_height = 0.6, -- preview window takes 60% of the total height
+					prompt_position = "bottom" -- put prompt at the top
+				  },
+				},
+				find_files = {
+				  layout_strategy = 'vertical',
+				  layout_config = {
+					height = 0.75, -- take up most of the screen height
+					width = 0.85,  -- take up most of the screen width
+					preview_height = 0.6, -- preview window takes 60% of the total height
+					prompt_position = "bottom" -- put prompt at the top
+				  },
+				}
+			  }
 			})
 		end
 	},
-	-- {
-	--   "ahmedkhalf/project.nvim",
-	--   config = function()
-	-- 	require("project_nvim").setup {
-	-- 	  -- your configuration comes here
-	-- 	  -- or leave it empty to use the default settings
-	-- 	  -- refer to the configuration section below
-	-- 	}
-	--   end
-	-- },
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
 		config = function()
@@ -110,21 +127,6 @@ return {
 		end
 	},
 	{
-		"zk-org/zk-nvim",
-		config = function()
-			require("zk").setup({
-				picker = "telescope"
-				-- See Setup section below
-			})
-			require('telescope').load_extension('zk')
-		end
-	},
-	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" }
-	},
-	{
 		"ThePrimeagen/git-worktree.nvim",
 		config = function()
 			require("git-worktree").setup({
@@ -141,8 +143,11 @@ return {
 	  config = function()
 		require("auto-session").setup {
 		  log_level = "error",
-		  auto_session_suppress_dirs = { "~/", "~/git", "~/dotfiles", "~/Documents", "~/Downloads", "/"},
-		  auto_session_use_git_branch = true,
+		  show_auto_restore_notif = true,
+		  lsp_stop_on_restore = true,
+		  close_unsupported_windows = true,
+		  suppressed_dirs = { "~/", "~/git", "~/dotfiles", "~/Documents", "~/Downloads", "/"},
+		  use_git_branch = true,
 		}
 	  end
 	},
