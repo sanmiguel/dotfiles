@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Battery_battery_chargerInside</key>
+	<true/>
+	<key>Battery_battery_color</key>
+	<true/>
+	<key>Battery_battery_xlSize</key>
+	<true/>
+	<key>Battery_color</key>
+	<true/>
+	<key>CombinedModules</key>
+	<false/>
+	<key>Disk_state</key>
+	<false/>
+	<key>GPU_barChart_position</key>
+	<integer>2</integer>
+	<key>GPU_label_position</key>
+	<integer>0</integer>
+	<key>GPU_lineChart_position</key>
+	<integer>1</integer>
+	<key>GPU_line_chart_box</key>
+	<true/>
+	<key>GPU_line_chart_color</key>
+	<string>utilization</string>
+	<key>GPU_line_chart_label</key>
+	<false/>
+	<key>GPU_line_chart_valueColor</key>
+	<false/>
+	<key>GPU_mini_position</key>
+	<integer>4</integer>
+	<key>GPU_oneView</key>
+	<true/>
+	<key>GPU_state</key>
+	<true/>
+	<key>GPU_tachometer_position</key>
+	<integer>3</integer>
+	<key>GPU_widget</key>
+	<string>line_chart,label</string>
+	<key>LaunchAtLoginNext</key>
+	<true/>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{800, 448}</string>
+	<key>NSNavPanelExpandedStateForSaveMode</key>
+	<true/>
+	<key>NSStatusItem Preferred Position Battery</key>
+	<real>153</real>
+	<key>NSStatusItem Preferred Position Battery_battery</key>
+	<real>154</real>
+	<key>NSStatusItem Preferred Position CPU</key>
+	<real>6089</real>
+	<key>NSStatusItem Preferred Position CPU_mini</key>
+	<real>5692</real>
+	<key>NSStatusItem Preferred Position GPU</key>
+	<real>285</real>
+	<key>NSStatusItem Preferred Position Network</key>
+	<real>240</real>
+	<key>NSStatusItem Preferred Position Network_network_chart</key>
+	<real>241</real>
+	<key>NSStatusItem Preferred Position RAM</key>
+	<real>6171</real>
+	<key>NSStatusItem Preferred Position RAM_line_chart</key>
+	<real>5654</real>
+	<key>NSStatusItem Restore Position Disk_mini</key>
+	<integer>5795</integer>
+	<key>NSStatusItem Restore Position GPU_label</key>
+	<integer>297</integer>
+	<key>NSStatusItem Restore Position GPU_line_chart</key>
+	<integer>259</integer>
+	<key>NSStatusItem Restore Position GPU_mini</key>
+	<integer>379</integer>
+	<key>NSStatusItem Restore Position Network_label</key>
+	<integer>241</integer>
+	<key>NSStatusItem Restore Position Network_speed</key>
+	<integer>223</integer>
+	<key>NSStatusItem Restore Position RAM_mini</key>
+	<integer>5539</integer>
+	<key>NSToolbar Configuration eu.exelban.Stats.Settings.Toolbar</key>
+	<dict>
+		<key>TB Display Mode</key>
+		<integer>1</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<true/>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>355 300 800 448 0 0 1512 944 </string>
+	<key>Network_label_position</key>
+	<integer>3</integer>
+	<key>Network_networkChart_position</key>
+	<integer>0</integer>
+	<key>Network_network_chart_box</key>
+	<false/>
+	<key>Network_network_chart_downloadColor</key>
+	<string>secondBlue</string>
+	<key>Network_network_chart_frame</key>
+	<true/>
+	<key>Network_network_chart_label</key>
+	<true/>
+	<key>Network_network_chart_uploadColor</key>
+	<string>red</string>
+	<key>Network_publicIPRefreshInterval</key>
+	<string>hour</string>
+	<key>Network_speed_position</key>
+	<integer>2</integer>
+	<key>Network_state_position</key>
+	<integer>1</integer>
+	<key>Network_widget</key>
+	<string>network_chart</string>
+	<key>RAM_barChart_position</key>
+	<integer>3</integer>
+	<key>RAM_label_position</key>
+	<integer>1</integer>
+	<key>RAM_lineChart_position</key>
+	<integer>0</integer>
+	<key>RAM_line_chart_color</key>
+	<string>pressure</string>
+	<key>RAM_line_chart_label</key>
+	<false/>
+	<key>RAM_line_chart_valueColor</key>
+	<false/>
+	<key>RAM_memory_position</key>
+	<integer>5</integer>
+	<key>RAM_mini_position</key>
+	<integer>2</integer>
+	<key>RAM_pieChart_position</key>
+	<integer>4</integer>
+	<key>RAM_tachometer_position</key>
+	<integer>6</integer>
+	<key>RAM_updateInterval</key>
+	<integer>10</integer>
+	<key>RAM_widget</key>
+	<string>line_chart</string>
+	<key>dockIcon</key>
+	<false/>
+	<key>runAtLoginInitialized</key>
+	<true/>
+	<key>setupProcess</key>
+	<true/>
+	<key>support_ts</key>
+	<integer>1744822036</integer>
+	<key>telemetry</key>
+	<true/>
+	<key>telemetry_id</key>
+	<string>83640444-D4A7-49FE-B416-B249791ED406</string>
+	<key>temperature_units</key>
+	<string>system</string>
+	<key>updater_check_ts</key>
+	<integer>1747215517</integer>
+	<key>version</key>
+	<string>2.11.41</string>
+</dict>
+</plist>
