@@ -10,6 +10,8 @@ slate:
 	ln -nsf $(PWD)/slate/slate.symlink ~/.slate
 git:
 	ln -nsf $(PWD)/git/gitconfig.symlink ~/.gitconfig
+	ln -nsf $(PWD)/git/gitconfig.github ~/.gitconfig.github
+	ln -nsf $(PWD)/git/gitconfig.telesystems ~/.gitconfig.telesystems
 
 nvim:
 	ln -nsf $(PWD)/nvim/nvim.symlink ~/.config/nvim

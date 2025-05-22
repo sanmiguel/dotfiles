@@ -1,7 +1,26 @@
-[user]
-	name = Michael Coles
-    email = michael.coles@gmail.com
-    signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTB4FzXviU8OVBIgwy6Avg4zSJOPAQkTUbRJST/D3iDZygYVCd/L28EvNdnWiYfwjhimbDHtlJpRjwMUmiShnI18osZOeideIWnekeYyORsREYjvAgieyMgfrvGT/WTPHJk4F7xYA2zy00GxQfQknJPFP5m7bQemLx8sjniN/DrszgNgOQcbE7s3UuJrwrzBX7BvoxG3V/ODLHcl6khYltnBpW/s4f8AIyLw8yv086VxFUycNuY7v8a3frTDyBhBiJtVIOeGwGY4Lkn3LqccHbY8Vk5TiXRYCUpxHmcQ5LVLRAzirrYgZtIS9SsNuvJo36SJqZCR0gl9cCkD7vK7Rl
+[url "https://github.com/"]
+	insteadOf = git://github.com/
+
+## This literally only matches https://, even with the rewrite rule above
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+        path = /Users/sanmiguel/.gitconfig.github
+
+[includeIf "hasconfig:remote.*.url:git://github.com/**"]
+        path = /Users/sanmiguel/.gitconfig.github
+
+## :** doesn't work like /**
+[includeIf "hasconfig:remote.*.url:git@github.com:*/*"]
+        path = /Users/sanmiguel/.gitconfig.github
+
+# TeleSystems
+[url "git@gitlab.telesystems.hr:"]
+        insteadOf = "https://gitlab.telesystems.hr/"
+
+[includeIf "hasconfig:remote.*.url:https://gitlab.telesystems.hr/**"]
+        path = /Users/sanmiguel/.gitconfig.telesystems
+[includeIf "hasconfig:remote.*.url:*gitlab.telesystems.hr[/:]*/*"]
+        path = /Users/sanmiguel/.gitconfig.telesystems
+
 [color]
 	diff = auto
 	status = auto
@@ -17,10 +36,6 @@
 	tool = diffconflicts
 [branch]
 	autosetuprebase = always
-[github]
-	user = sanmiguel
-[url "https://github.com/"]
-	insteadOf = git://github.com/
 [push]
 	default = current
 [mergetool "diffconflicts"]
