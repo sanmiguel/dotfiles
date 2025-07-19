@@ -4,7 +4,7 @@ if [[ $- != *i* ]]; then
     # export MIX_ENV=dev
 
     # Don't mess about with the OMZ plugin, just source asdf ourselves
-    ASDF_DIR=${ASDF_DIR:=/opt/homebrew/opt/asdf/libexec}
+    ASDF_DIR=${ASDF_DIR:=/opt/homebrew/opt/asdf}
     if [[ -f "$ASDF_DIR/asdf.sh" ]]; then
         . "$ASDF_DIR/asdf.sh"
     fi
