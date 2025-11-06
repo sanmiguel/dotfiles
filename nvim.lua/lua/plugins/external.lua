@@ -45,10 +45,6 @@ return {
 				name = "Personal",
 				path = "~/Obsidian/Personal"
 			  },
-			  {
-				name = "Valified",
-				path = "~/Obsidian/Valified"
-			  },
 			},
 			picker = {
 			  name = "telescope.nvim",
