@@ -1,6 +1,6 @@
 tags
 .mix_tasks
-.tool-versions
 .vim-bookmarks
 .bookmarks
 .zk
+.elixir-tools
