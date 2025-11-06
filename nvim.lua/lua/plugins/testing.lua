@@ -25,6 +25,7 @@ return {
 		  }
 	  end
   },
+  "jfpedroza/neotest-elixir",
   {
       "nvim-neotest/neotest",
       dependencies = {
@@ -39,10 +40,29 @@ return {
 		  require("neotest").setup({
 			  adapters = {
 				  require("neotest-elixir"){
+					args = { "--cover" }
 				  }
 			  }
 		  })
 	  end,
   },
-  "jfpedroza/neotest-elixir",
+  {
+	  "andythigpen/nvim-coverage",
+	  version = "*",
+	  config = function()
+		  require("coverage").setup({
+			  highlights = {
+				covered = { fg = "#B771F0" },
+				uncovered = { fg = "#FA7167" },
+
+			  },
+			  auto_reload = true,
+			  lang = {
+				  elixir = {
+					  coverage_file = ".sanmiguel/cover/lcov.info",
+				  },
+			  },
+		  })
+	  end,
+  },
 }
