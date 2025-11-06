@@ -5,6 +5,8 @@
 
 --type-add=elixir:ext:heex
 --type-add=heex:ext:heex
+--type-add=mix:is:mix.exs
+--type-add=mixlock:is:mix.lock
 
 --type-add=exunit:match:_test.exs
 
@@ -12,7 +14,15 @@
 
 --type-add=ct:match:_SUITE.erl
 
+--type-add=docker:is:Dockerfile
+
+--type-add=gitlabci:is:.gitlab-ci.yml
+--type-add=deptree:is:deps_tree.dot
+
 --ignore-dir=deps
 --ignore-dir=_build
 --ignore-dir=cover
 --ignore-dir=.elixir_ls
+--ignore-dir=log
+--ignore-dir=.elixir-tools
+--ignore-file=is:erl_crash.dump
