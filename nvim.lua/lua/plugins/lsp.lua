@@ -47,8 +47,8 @@ return {
 			{ "folke/neodev.nvim", config = true },
 		},
 		config = function()
-			require("lspconfig")["erlangls"].setup({});
-			require("lspconfig")["lua_ls"].setup({
+			vim.lsp.enable('erlangls');
+			vim.lsp.config('lua_ls', {
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -61,6 +61,7 @@ return {
 					},
 				},
 			});
+			vim.lsp.enable('lua_ls');
 		end,
 	},
 }
