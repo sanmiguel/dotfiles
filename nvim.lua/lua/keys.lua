@@ -11,6 +11,8 @@ vim.keymap.set("n", "<C-t>s", require("neotest").summary.toggle, { noremap = tru
 vim.keymap.set("n", "<C-t>o", require("neotest").output.open, { noremap = true, silent = true })
 vim.keymap.set("n", "<C-t>p", require("neotest").output_panel.toggle, { noremap = true, silent = true })
 vim.keymap.set("n", "<C-t>w", require("neotest").watch.toggle, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-t>c", function() require("coverage").load(true) end, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-t>C", function() require("coverage").load(true); require("coverage").summary() end, { noremap = true, silent = true })
 vim.keymap.set("n", "<C-t>k", function()
 	local current_file = vim.fn.expand("%:p")
 	local current_line = vim.fn.line('.')
