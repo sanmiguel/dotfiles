@@ -40,7 +40,41 @@ return {
 		  require("neotest").setup({
 			  adapters = {
 				  require("neotest-elixir"){
-					args = { "--cover" }
+					post_process_command = function(cmd)
+						-- Extract the test file path from the command
+						-- Command format: {"elixir", ..., "-S", "mix", "test", ..., "test/path/file_test.exs"}
+						local test_file = cmd[#cmd]
+						
+						-- Only process if it's a test file (not a directory)
+						if test_file and test_file:match("_test%.exs$") then
+							-- Read the test file to detect @moduletag
+							local file = io.open(test_file, "r")
+							if file then
+								local content = file:read("*all")
+								file:close()
+								
+								local tags_found = {}
+								
+								-- Look for @moduletag :tagname pattern
+								for tag in content:gmatch("@moduletag%s+:([%w_]+)") do
+									tags_found[tag] = true
+								end
+								
+								-- Also handle @moduletag tagname: value syntax
+								for tag in content:gmatch("@moduletag%s+([%w_]+):%s*[^%s]+") do
+									tags_found[tag] = true
+								end
+								
+								-- Insert --include flags before the test file path
+								for tag, _ in pairs(tags_found) do
+									table.insert(cmd, #cmd, "--include")
+									table.insert(cmd, #cmd, tag .. ":true")
+								end
+							end
+						end
+						
+						return cmd
+					end
 				  }
 			  }
 		  })
