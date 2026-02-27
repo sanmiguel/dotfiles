@@ -1,0 +1,9 @@
+[url "git@github-hopco:"]
+    insteadOf = "git@github.com:"
+[user]
+    name = Michael Coles
+    email = michael.coles@thecoreinstitute.com
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII5FVufZT1NQNBa/3ib/dJPxJ6hPJ7ULSBIOTK1JnPmC
+
+[github]
+	user = "michael-coles_hop"
