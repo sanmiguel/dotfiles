@@ -1,0 +1,134 @@
+# Starship prompt configuration
+# 2-line, left/right split, Nerd Font v3 icons
+# Symlink: ~/.config/starship.toml -> ~/dotfiles/starship/starship.toml
+
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$mise\
+$time\
+$line_break\
+$status\
+$character"""
+
+# ── Top-level behaviour ────────────────────────────────────────────────────────
+
+# Add a blank line between prompts for breathing room
+add_newline = true
+
+# ── OS icon (left, line 1) ─────────────────────────────────────────────────────
+
+[os]
+disabled = false
+format = "[$symbol]($style) "
+style = "fg:#6c7086"  # muted grey
+
+[os.symbols]
+Macos = ""   # nf-fa-apple
+
+# ── Directory (left, line 1) ──────────────────────────────────────────────────
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold fg:#89b4fa"        # soft blue
+read_only = " 󰌾"                 # nf-md-lock
+read_only_style = "fg:#f38ba8"   # muted red
+truncation_length = 4
+truncate_to_repo = true
+home_symbol = "~"
+
+# ── Git branch (left, line 1) ─────────────────────────────────────────────────
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = " "   # nf-dev-git_branch
+style = "fg:#cba6f7"             # soft purple
+truncation_length = 30
+truncation_symbol = "…"
+
+# ── Git status (left, line 1) ─────────────────────────────────────────────────
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "fg:#f5c2e7"             # soft pink
+conflicted = "󰞇 "               # nf-md-alert_decagram
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇡${ahead_count}⇣${behind_count}"
+untracked = "󰙴 "                # nf-md-file_question
+stashed = " "                  # nf-fa-inbox
+modified = "󰝤 "                 # nf-md-pencil_box
+staged = " "                   # nf-fa-plus
+renamed = "󰑕 "                  # nf-md-rename_box
+deleted = " "                  # nf-fa-trash
+
+# ── Fill (spacer between left and right) ──────────────────────────────────────
+
+[fill]
+symbol = " "
+
+# ── Mise versions (right, line 1) ─────────────────────────────────────────────
+
+[mise]
+format = "[$symbol($version )]($style)"
+symbol = "󱁤 "                   # nf-md-package_variant
+style = "fg:#a6e3a1"             # soft green
+disabled = false
+
+# ── Time (right, line 1) ──────────────────────────────────────────────────────
+
+[time]
+disabled = false
+format = "[$time]($style) "
+style = "fg:#6c7086"             # muted grey
+time_format = "%H:%M"
+
+# ── Exit status (left, line 2) ────────────────────────────────────────────────
+
+[status]
+disabled = false
+format = "[$symbol$status]($style) "
+symbol = "✗ "
+success_symbol = ""             # hidden on success — character module handles it
+not_executable_symbol = "󰜺 "    # nf-md-file_cancel
+not_found_symbol = "󰍉 "         # nf-md-magnify_close
+sigint_symbol = "󰚭 "            # nf-md-keyboard_off
+signal_symbol = "󱐋 "            # nf-md-lightning_bolt
+style = "bold fg:#f38ba8"        # muted red
+map_symbol = true
+
+# ── Prompt character (left, line 2) ───────────────────────────────────────────
+
+[character]
+success_symbol = "[❯](bold fg:#a6e3a1)"   # green on success
+error_symbol = "[❯](bold fg:#f38ba8)"     # red on error
+vimcmd_symbol = "[❮](bold fg:#cba6f7)"   # purple in vi normal mode
+
+# ── Modules disabled (keep prompt lean) ───────────────────────────────────────
+
+[cmd_duration]
+disabled = true   # noise for short commands; enable if you want it
+
+[package]
+disabled = true
+
+[python]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
