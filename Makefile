@@ -1,4 +1,4 @@
-.PHONY: powerline prezto oh-my-zsh bash nvim vim git kerl ripit slate
+.PHONY: powerline prezto oh-my-zsh zsh-sheldon bash nvim vim git kerl ripit slate
 
 ripit:
 	ln -nsf $(PWD)/ripit/ripit.symlink ~/.ripit
@@ -24,7 +24,13 @@ vim:
 oh-my-zsh:
 	ln -nsf $(PWD)/oh-my-zsh/zshrc.symlink ~/.zshrc
 	ln -nsf $(PWD)/oh-my-zsh/zshenv.symlink ~/.zshenv
-	ln -nsf $(PWD)/oh-my-zsh/p10k.sh.symlink ~/.p10k.sh
+	ln -nsf $(PWD)/oh-my-zsh/p10k.zsh.symlink ~/.p10k.zsh
+
+zsh-sheldon:
+	ln -nsf $(PWD)/zsh-sheldon/zshrc.symlink ~/.zshrc
+	ln -nsf $(PWD)/zsh-sheldon/zshenv.symlink ~/.zshenv
+	mkdir -p ~/.config/sheldon
+	ln -nsf $(PWD)/zsh-sheldon/plugins.toml ~/.config/sheldon/plugins.toml
 
 prezto-deps:
 	if [ ! -d ~/.zprezto ]; then \

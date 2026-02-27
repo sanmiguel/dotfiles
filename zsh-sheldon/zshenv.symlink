@@ -1,0 +1,26 @@
+if [[ $- != *i* ]]; then
+    # echo "Forcing ASDF setup"
+    # Set up a primitive environment for [neo]vim terminals to use
+    # export MIX_ENV=dev
+
+    # # Don't mess about with the OMZ plugin, just source asdf ourselves
+    # ASDF_DIR=${ASDF_DIR:=/opt/homebrew/opt/asdf}
+    # if [[ -f "$ASDF_DIR/asdf.sh" ]]; then
+    #     . "$ASDF_DIR/asdf.sh"
+    # fi
+	eval "$(mise activate zsh)"
+fi
+
+# TODO: Port this to mise if necessary
+# if [[ -n "${ASDF_DIR}" ]]; then
+#     export KERL_BASE_DIR=${ASDF_DIR}/installs/erlang
+# fi
+
+export TERM=${TERM:=xterm-256color}
+if [ "$VIM" -a "$+commands[nvr]" ]; then
+    export VISUAL="$commands[nvr] -cc split --remote-wait"
+fi
+
+export GPG_TTY=$(tty)
+
+export path=( $HOME/bin $path )

@@ -1,0 +1,9 @@
+shell = "zsh"
+
+[plugins.zsh-fzf-history-search]
+github = "joshskidmore/zsh-fzf-history-search"
+
+[plugins.dotenv]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/dotenv"
+use = ["dotenv.plugin.zsh"]
