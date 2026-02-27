@@ -12,15 +12,6 @@
 [includeIf "hasconfig:remote.*.url:git@github.com:*/*"]
         path = /Users/sanmiguel/.gitconfig.github
 
-# TeleSystems
-[url "git@gitlab.telesystems.hr:"]
-        insteadOf = "https://gitlab.telesystems.hr/"
-
-[includeIf "hasconfig:remote.*.url:https://gitlab.telesystems.hr/**"]
-        path = /Users/sanmiguel/.gitconfig.telesystems
-[includeIf "hasconfig:remote.*.url:*gitlab.telesystems.hr[/:]*/*"]
-        path = /Users/sanmiguel/.gitconfig.telesystems
-
 [color]
 	diff = auto
 	status = auto

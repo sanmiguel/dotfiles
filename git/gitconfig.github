@@ -6,3 +6,11 @@
 [github]
 	user = sanmiguel
 
+[includeIf "hasconfig:remote.*.url:git@github.com:hopper-team/*"]
+	path = /Users/sanmiguel/.gitconfig.hopco
+
+[includeIf "hasconfig:remote.*.url:https://github.com/hopper-team/**"]
+        path = /Users/sanmiguel/.gitconfig.hopco
+
+[includeIf "hasconfig:remote.*.url:git://github.com/hopper-team/**"]
+        path = /Users/sanmiguel/.gitconfig.hopco
