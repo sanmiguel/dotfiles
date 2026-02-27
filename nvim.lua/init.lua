@@ -13,10 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Example using a list of specs with the default options
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.maplocalleader = " "
 vim.g.python3_host_prog = vim.env.HOME .. "/.venvs/neovim3/bin/python"
 
 require("lazy").setup("plugins")
 
+vim.o.autoread = true
 vim.o.number = true
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -73,6 +75,10 @@ vim.opt.clipboard:append("unnamed")
 -- require("neodev").setup({
 --     library = { plugins = { "neotest" }, types = true },
 -- })
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  command = "checktime",
+})
 
 -- things in here almost certainly rely on things setup above
 require("keys")

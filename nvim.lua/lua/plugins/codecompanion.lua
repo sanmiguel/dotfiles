@@ -1,0 +1,78 @@
+return {
+  -- DISABLED: Requires API credit from Claude, does not currently work with Max
+  -- "olimorris/codecompanion.nvim",
+  -- lazy = false,
+  -- dependencies = {
+  --   "nvim-lua/plenary.nvim",
+  --   "nvim-treesitter/nvim-treesitter",
+  --   -- Optional but recommended: better vim.ui.select for action palette
+  --   "stevearc/dressing.nvim",
+  -- },
+  -- keys = {
+  --   { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Toggle AI chat" },
+  --   { "<leader>aa", "<cmd>CodeCompanionActions<cr>",     mode = { "n", "v" }, desc = "AI action palette" },
+  --   { "<leader>ai", "<cmd>CodeCompanion<cr>",            mode = { "n", "v" }, desc = "Inline AI assistant" },
+  --   -- Add visual selection to the chat buffer
+  --   { "ga",         "<cmd>CodeCompanionChat Add<cr>",    mode = "v",          desc = "Add selection to AI chat" },
+  -- },
+  -- opts = {
+  --   adapters = {
+  --     http = {
+  --       anthropic = function()
+  --         return require("codecompanion.adapters").extend("anthropic", {
+  --           env = {
+  --             -- Replace with your actual 1Password path after creating the item
+  --             -- Format: op://vault-name/item-name/field-name
+  --             api_key = "cmd:op read op://Private/otegv47yc3mkg75gz2wu4myyrq/api-key --no-newline",
+  --           },
+  --           schema = {
+  --             model = {
+  --               -- claude-sonnet-4-5 is the best balance of speed/quality
+  --               -- swap to claude-opus-4-5 for harder problems
+  --               default = "claude-sonnet-4-6",
+  --             },
+  --           },
+  --         })
+  --       end,
+  --     },
+  --   },
+
+  --   interactions = {
+  --     chat    = { adapter = "anthropic" },
+  --     inline  = { adapter = "anthropic" },
+  --   },
+
+  --   display = {
+  --     chat = {
+  --       -- Show token count in the chat buffer statusline
+  --       show_token_count = true,
+  --       -- Start with the chat window on the right (like Avante)
+  --       window = {
+  --         layout = "vertical",
+  --         width = 0.35,
+  --       },
+  --     },
+  --     diff = {
+  --       -- Uses built-in diff; swap to "mini_diff" if you have mini.diff
+  --       provider = "default",
+  --     },
+  --     action_palette = {
+  --       -- Uses dressing.nvim if installed, otherwise vim.ui.select
+  --       provider = "default",
+  --     },
+  --   },
+  -- },
+
+  -- -- Wire up nvim-cmp source for completions inside the chat buffer
+  -- -- (slash commands, variables, etc.)
+  -- config = function(_, opts)
+  --   require("codecompanion").setup(opts)
+
+  --   local cmp = require("cmp")
+  --   cmp.setup.filetype({ "codecompanion" }, {
+  --     sources = cmp.config.sources({
+  --       { name = "codecompanion" },
+  --     }),
+  --   })
+  -- end,
+}
