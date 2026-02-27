@@ -56,7 +56,7 @@ ZSH_DOTENV_FILE=.envrc
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(themes iterm2 aws git asdf pyenv ssh-agent mix-fast)
-plugins=( gh themes dotenv iterm2 git asdf mise fzf zsh-fzf-history-search ) #mix-fast ) #ssh-agent )
+plugins=( dotenv zsh-fzf-history-search )
 
 source $ZSH/oh-my-zsh.sh
 
