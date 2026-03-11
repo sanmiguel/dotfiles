@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+
+# Given a filepath:
+# if relative, look for a running nvim instance that has that filepath in it's CWD
+# if none, I guess default to /Users/sanmiguel/git/valified/valified ?
+
+common_prefix_length() {
+    local IFS=/
+    local parts
+    set -f
+
+    reference=$1
+    to_check=$2
+
+    ref_parts=( $reference )
+    chk_parts=( $to_check )
+    set +f
+
+    # Now pull from both until they don't match
+    common=0
+    for i in ${!chk_parts[*]}; do
+        if [ "${chk_parts[$i]}" == "${ref_parts[$i]}" ]; then
+            common=$(( common + 1 ))
+        fi
+    done
+    echo $common
+}
+# Just stop at the first one we find, send it the path to open in a new tab
+
+# Path hackery: if we don't find 'nvr' in path, hardcode it to /opt/homebrew/bin/nvr
+
+export PATH=/opt/homebrew/bin:$PATH
+
+path=$1
+line="$2"
+
+if echo "$path" | grep -Eq '.*:[0-9]+$'; then
+  line="${path/*:/}"
+  path="${path/:*/}"
+fi
+opened=0
+
+# echo "opening ${path} @${line}" >> /tmp/open-in-nvim.log
+
+type=unknown
+case $path in
+    /*) type=absolute
+        ;;
+    *) type=relative
+        ;;
+esac
+# Strategy for absolute filenames:
+#  - Check the CWD for all open nvims
+#  - Longest common prefix wins
+#  
+max_score=0
+winner=
+
+# Strategy for relative filenames:
+#  - Check if ${pid-cwd}/${path} exists
+#  - if so, open here
+for nvim in $(nvr --serverlist | grep 'nvim\.[0-9.]\+$'); do
+    pid=$(lsof -t $nvim)
+    dir=$(lsof -a -d cwd -p ${pid} -Fn | grep ^n | awk '{print substr($0, 2)}')
+
+    echo "${nvim}: ${dir}"
+    if [ "$type" = "relative" ]; then
+        fullpath="${dir}/${path}"
+	echo "$fullpath"
+	echo $nvim
+        if [ -f "${fullpath}" ]; then 
+            echo "Opening in $nvim: $fullpath" >> /tmp/open-in-nvim.log
+            nvr "+${line}" -p "${fullpath}" --servername "${nvim}"
+            # Just quit once we found it
+            opened=1
+            break
+        fi
+    elif [ "$type" = "absolute" ]; then
+        score=$(common_prefix_length "$path" "$dir")
+        if [ $score -gt $max_score ]; then
+            max_score=$score
+            winner=$nvim
+        fi
+    fi
+done
+case $type in
+    relative)
+        [ $opened ] || echo "No running nvim found"
+
+        ;;
+    absolute)
+        [ "$winner" != "" ] && nvr --servername "${winner}" "+${line}" -p "${path}"
+        ;;
+esac
