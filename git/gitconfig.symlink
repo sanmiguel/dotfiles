@@ -12,6 +12,17 @@
 [includeIf "hasconfig:remote.*.url:git@github.com:*/*"]
         path = /Users/sanmiguel/.gitconfig.github
 
+## This literally only matches https://, even with the rewrite rule above
+[includeIf "hasconfig:remote.*.url:https://192.168.3.78/**"]
+        path = /Users/sanmiguel/.gitconfig.forgejo
+
+[includeIf "hasconfig:remote.*.url:git://192.168.3.78/**"]
+        path = /Users/sanmiguel/.gitconfig.forgejo
+
+## :** doesn't work like /**
+[includeIf "hasconfig:remote.*.url:forgejo@192.168.3.78:*/*"]
+        path = /Users/sanmiguel/.gitconfig.forgejo
+
 [color]
 	diff = auto
 	status = auto
