@@ -7,6 +7,11 @@ export LESS='-RiFX'
 
 ZSH_DOTENV_FILE=.envrc
 
+setopt EXTENDED_GLOB
+
+# Make ctrl-w delete only up to path separators (not entire paths)
+WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+
 eval "$(sheldon source)"
 
 # Include homebrew-managed zsh-completions
@@ -15,6 +20,9 @@ if type brew &>/dev/null; then
 
   autoload -Uz compinit
   compinit
+
+  # Case-insensitive tab completion
+  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}'
 
   pgbin=$(brew --prefix postgresql@15)/bin
   if [ -d $pgbin ]; then
@@ -44,3 +52,7 @@ eval "$(starship init zsh)"
 # PostgreSQL 18 (keg-only, not symlinked into /opt/homebrew/bin)
 export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+function take() {
+  mkdir -p "$1" && cd "$1"
+}
