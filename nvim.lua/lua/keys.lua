@@ -32,6 +32,10 @@ vim.keymap.set("n", "<C-t>k", function()
 -- keymap for mix test --failed
 -- nvim-dap + elixir-ls
 
+-- LSP call hierarchy (via telescope)
+vim.keymap.set("n", "grci", function() require('call_hierarchy').incoming() end, { noremap = true, silent = true, desc = "LSP: incoming calls" })
+vim.keymap.set("n", "grco", function() require('call_hierarchy').outgoing() end, { noremap = true, silent = true, desc = "LSP: outgoing calls" })
+
 -- FZF
 vim.keymap.set("n", "<C-f>", function() require('telescope.builtin').find_files({ ignore = false }) end, { noremap = true, silent = true })
 vim.keymap.set("n", "<C-b>", function() require('telescope.builtin').buffers({ sort_mru = true }) end, { noremap = true, silent = true })
