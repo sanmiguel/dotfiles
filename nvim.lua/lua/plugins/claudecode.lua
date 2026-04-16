@@ -2,10 +2,20 @@ return {
   {
     "coder/claudecode.nvim",
     dependencies = { "folke/snacks.nvim" },
-    config = true,
+    event = "VeryLazy",
+    opts = {
+      -- Use "none" terminal provider so send/add commands don't open
+      -- an embedded Claude terminal — we run Claude in a separate terminal
+      -- and connect via /ide.
+      terminal = {
+        provider = "none",
+      },
+      diff_opts = {
+        open_in_new_tab = true,
+        layout = "vertical",
+      },
+    },
     keys = {
-      { "<leader>ac", "<cmd>ClaudeCode<cr>",         desc = "Toggle Claude" },
-      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>",     desc = "Focus Claude" },
       { "<leader>as", "<cmd>ClaudeCodeSend<cr>",      mode = "v", desc = "Send to Claude" },
       { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>",     desc = "Add buffer to Claude" },
       { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
