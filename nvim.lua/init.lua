@@ -26,6 +26,11 @@ vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.title = true
+
+vim.o.expandtab = true
+vim.o.shiftround = true
+vim.o.shiftwidth = 2
+
 -- "${branchname} | ${pwd}"
 -- TODO: FugitiveHead() like this gets weird if focused on e.g. help page
 vim.o.titlestring = "%{FugitiveHead()} | %{substitute(getcwd(), $HOME, '~', '')} | " .. require('auto-session.lib').current_session_name(true)
