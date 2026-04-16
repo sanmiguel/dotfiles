@@ -2,7 +2,7 @@
     insteadOf = "git@github.com:"
 [user]
     name = Michael Coles
-    email = michael.coles@thecoreinstitute.com
+    email = michael.coles@hopco.com
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII5FVufZT1NQNBa/3ib/dJPxJ6hPJ7ULSBIOTK1JnPmC
 
 [github]
