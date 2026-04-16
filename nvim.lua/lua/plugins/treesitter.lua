@@ -2,9 +2,10 @@ return {
   -- treesitter
   {
       "nvim-treesitter/nvim-treesitter",
+	  branch = 'master',
       config = function()
           vim.cmd([[TSUpdate]])
-	  require'nvim-treesitter.configs'.setup {
+	  require('nvim-treesitter').setup {
 		  -- A list of parser names, or "all" (the five listed parsers should always be installed)
 		  ensure_installed = { "erlang", "elixir", "eex", "heex", "lua", "vim", "vimdoc", "query" },
 		  -- Install parsers synchronously (only applied to `ensure_installed`)

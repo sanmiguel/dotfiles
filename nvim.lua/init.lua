@@ -85,6 +85,12 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   command = "checktime",
 })
 
+-- automatically enable treesitter for these filetypes
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'erlang', 'elixir', 'eex', 'heex', 'lua', 'vim', 'vimdoc', 'query' },
+  callback = function() vim.treesitter.start() end,
+})
+
 -- things in here almost certainly rely on things setup above
 require("keys")
 if vim.g.neovide
