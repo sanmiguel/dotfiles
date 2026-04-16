@@ -36,8 +36,8 @@ format = "[$path]($style)[$read_only]($read_only_style) "
 style = "bold fg:#89b4fa"        # soft blue
 read_only = " 󰌾"                 # nf-md-lock
 read_only_style = "fg:#f38ba8"   # muted red
-truncation_length = 4
-truncate_to_repo = true
+truncation_length = 3
+truncate_to_repo = false
 home_symbol = "~"
 
 # ── Git branch (left, line 1) ─────────────────────────────────────────────────
