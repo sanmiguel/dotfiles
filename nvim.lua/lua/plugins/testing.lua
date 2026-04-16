@@ -25,7 +25,6 @@ return {
 		  }
 	  end
   },
-  "jfpedroza/neotest-elixir",
   {
       "nvim-neotest/neotest",
       dependencies = {
