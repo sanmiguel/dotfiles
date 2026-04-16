@@ -39,7 +39,7 @@ export ERL_AFLAGS="$ERL_AFLAGS -kernel shell_history enabled"
 
 source ~/.iterm2_shell_integration.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
 
 # Necessary for op-integrated CLI tools to work (e.g. todoist)
 source /Users/sanmiguel/.config/op/plugins.sh
