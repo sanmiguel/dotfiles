@@ -27,6 +27,7 @@ if vim.g.neovide then
 	local kmopts = { noremap = true, silent = true }
 
 	vim.keymap.set("n", "<D-->", dec_font, kmopts)
+	vim.keymap.set("n", "<D-+>", inc_font, kmopts)
 	vim.keymap.set("n", "<D-0>", reset_font, kmopts)
 
 	vim.keymap.set({"n", "v"}, "<D-c>", '"+y', kmopts)
@@ -35,6 +36,11 @@ if vim.g.neovide then
 
 	vim.keymap.set({"n", "v", "i", "c", "t"}, "<D-n>", "!neovide --fork &<CR>", kmopts)
 	vim.keymap.set({"n", "v", "i", "c", "t"}, "<D-,>", "!cd ~/.config/nvim && neovide --fork &<CR>", kmopts)
+
+	vim.api.nvim_create_user_command('NeovideRestart', function()
+		vim.fn.jobstart({ 'neovide' }, { detach = true, cwd = vim.fn.getcwd() })
+		vim.cmd('qa!')
+	end, {})
 	vim.diagnostic.config({
 	  virtual_text = false, -- Disable virtual text
 	  signs = true, -- Enable signs
