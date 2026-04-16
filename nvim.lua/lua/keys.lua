@@ -1,6 +1,10 @@
 -- unset neovim's new default of Y as y$
 vim.keymap.del("n", "Y")
 
+-- disable K (hover) — crashes treesitter highlighting in neovide on stable neovim
+-- TODO: re-enable once neovide supports latest treesitter
+vim.keymap.set("n", "K", "<Nop>", { noremap = true, silent = true })
+
 -- neotest
 -- TODO Make these only apply for .exs files
 vim.keymap.set("n", "<C-t>t", require("neotest").run.run, { noremap = true, silent = true })
