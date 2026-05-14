@@ -15,6 +15,13 @@ return {
         layout = "vertical",
       },
     },
+    config = function(_, opts)
+      require("claudecode").setup(opts)
+      -- Register custom MCP tools after the plugin initialises
+      require("claudecode.tools.init").register(
+        require("plugins.claudecode.set_quickfix_list")
+      )
+    end,
     keys = {
       { "<leader>as", "<cmd>ClaudeCodeSend<cr>",      mode = "v", desc = "Send to Claude" },
       { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>",     desc = "Add buffer to Claude" },
