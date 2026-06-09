@@ -34,6 +34,57 @@
 	<true/>
 	<key>CheckTestRelease</key>
 	<true/>
+	<key>CodeReviewSavedPrompts</key>
+	<data>
+	W3sidXVpZCI6IjY4NjhCRjc1LTNBNDYtNEE4Ri1BOTJELTY2Q0MwRjYyOTBDRiIsIm5h
+	bWUiOiJEZWZhdWx0IiwidGV4dCI6IlJldmlldyB0aGUgcGVuZGluZyBjaGFuZ2VzIGlu
+	IHRoaXMgcmVwby4gRmxhZyBpc3N1ZXMgYSBjYXJlZnVsIG1haW50YWluZXIgd291bGQg
+	YmxvY2sgb24gYmVmb3JlIG1lcmdlLCBpbiByb3VnaGx5IHRoaXMgb3JkZXI6XG4gIDEu
+	IENvcnJlY3RuZXNzIOKAlCBsb2dpYyBlcnJvcnMsIGJyb2tlbiBpbnZhcmlhbnRzLCBt
+	aXNzZWQgZWRnZSBjYXNlcywgb2ZmLWJ5LW9uZSwgcmFjZXMsIGxpZmV0aW1lXC9tZW1v
+	cnkgYnVncywgZXJyb3IgcGF0aHMgdGhhdCBzd2FsbG93IGZhaWx1cmVzLlxuICAyLiBT
+	ZWN1cml0eSDigJQgaW5qZWN0aW9uLCBhdXRoblwvYXV0aHogbWlzdGFrZXMsIHNlY3Jl
+	dCBoYW5kbGluZywgdW5zYWZlIGRlc2VyaWFsaXphdGlvbiwgdW5zYWZlIGRlZmF1bHRz
+	LCBUT0NUT1UuXG4gIDMuIFJlbGlhYmlsaXR5ICYgcGVyZm9ybWFuY2Ug4oCUIGJsb2Nr
+	aW5nIHRoZSB3cm9uZyB0aHJlYWQsIHVuYm91bmRlZCByZXNvdXJjZSB1c2UsIGFjY2lk
+	ZW50YWwgTyhOwrIpLCByZXRyaWVzIHdpdGhvdXQgYmFja29mZiwgc2lsZW50IGZhaWx1
+	cmUgcGF0aHMuXG4gIDQuIENvbnRyYWN0IHJpc2sg4oCUIGJlaGF2aW9yIGNoYW5nZXMg
+	Y2FsbGVycyByZWx5IG9uLCBzaWxlbnRseSBjaGFuZ2VkIGRlZmF1bHRzLCBicm9rZW4g
+	YmFja3dhcmQgY29tcGF0aWJpbGl0eSwgbWlzc2luZyBtaWdyYXRpb25zLlxuXG5Gb3Ig
+	ZWFjaCBmaW5kaW5nIGNpdGUgYGZpbGU6bGluZWAsIGV4cGxhaW4gKndoeSogaXQgaXMg
+	d3JvbmcgKG5vdCB3aGF0IHRoZSBjb2RlIGRvZXMpLCBhbmQgcHJvcG9zZSBhIGNvbmNy
+	ZXRlIGZpeCB3aGVuIG9uZSBpcyBvYnZpb3VzLiBCZSBjYWxpYnJhdGVkOiBpZiBhIGZp
+	bmRpbmcgaXMgbm90IGhpZ2gtY29uZmlkZW5jZSwgc2F5IHNvIG9yIHNraXAgaXQuIFZl
+	cmlmeSBjbGFpbXMgYWdhaW5zdCB0aGUgYWN0dWFsIGNvZGUgcmF0aGVyIHRoYW4gaW5m
+	ZXJyaW5nIGZyb20gbmFtZXMuXG5cblNraXAgcHVyZSBzdHlsZSwgZm9ybWF0dGluZywg
+	bmFtaW5nLCBhbmQgYW55dGhpbmcgYSBsaW50ZXIgb3IgQ0kgYWxyZWFkeSBlbmZvcmNl
+	cy5cblxuSWYgeW91IGZpbmQgbm90aGluZyB3b3J0aCBmaXhpbmcsIHNheSBzbyBwbGFp
+	bmx5LiJ9LHsidXVpZCI6IkYyRUY1OTE3LUJGNjEtNEE5Ri05RjVGLTIzNEE5NzczM0E1
+	NSIsIm5hbWUiOiJ3b3JrdHJlZSBjb21taXR0ZWQgcmV2aWV3IiwidGV4dCI6IlJldmll
+	dyB0aGUgcGVuZGluZyBjaGFuZ2VzIGluIHRoZSB3b3JrdHJlZSBgLlwvLmNsYXVkZVwv
+	d29ya3RyZWVzXC9hdGhlbmFgIChicmFuY2ggYHdvcmt0cmVlLWF0aGVuYWApLiBGbGFn
+	IGlzc3VlcyBhIGNhcmVmdWwgbWFpbnRhaW5lciB3b3VsZCBibG9jayBvbiBiZWZvcmUg
+	bWVyZ2UsIGluIHJvdWdobHkgdGhpcyBvcmRlcjpcbiAgMS4gQ29ycmVjdG5lc3Mg4oCU
+	IGxvZ2ljIGVycm9ycywgYnJva2VuIGludmFyaWFudHMsIG1pc3NlZCBlZGdlIGNhc2Vz
+	LCBvZmYtYnktb25lLCByYWNlcywgbGlmZXRpbWVcL21lbW9yeSBidWdzLCBlcnJvciBw
+	YXRocyB0aGF0IHN3YWxsb3cgZmFpbHVyZXMuXG4gIDIuIFNlY3VyaXR5IOKAlCBpbmpl
+	Y3Rpb24sIGF1dGhuXC9hdXRoeiBtaXN0YWtlcywgc2VjcmV0IGhhbmRsaW5nLCB1bnNh
+	ZmUgZGVzZXJpYWxpemF0aW9uLCB1bnNhZmUgZGVmYXVsdHMsIFRPQ1RPVS5cbiAgMy4g
+	UmVsaWFiaWxpdHkgJiBwZXJmb3JtYW5jZSDigJQgYmxvY2tpbmcgdGhlIHdyb25nIHRo
+	cmVhZCwgdW5ib3VuZGVkIHJlc291cmNlIHVzZSwgYWNjaWRlbnRhbCBPKE7CsiksIHJl
+	dHJpZXMgd2l0aG91dCBiYWNrb2ZmLCBzaWxlbnQgZmFpbHVyZSBwYXRocy5cbiAgNC4g
+	Q29udHJhY3QgcmlzayDigJQgYmVoYXZpb3IgY2hhbmdlcyBjYWxsZXJzIHJlbHkgb24s
+	IHNpbGVudGx5IGNoYW5nZWQgZGVmYXVsdHMsIGJyb2tlbiBiYWNrd2FyZCBjb21wYXRp
+	YmlsaXR5LCBtaXNzaW5nIG1pZ3JhdGlvbnMuXG5cbkZvciBlYWNoIGZpbmRpbmcgY2l0
+	ZSBgZmlsZTpsaW5lYCwgZXhwbGFpbiAqd2h5KiBpdCBpcyB3cm9uZyAobm90IHdoYXQg
+	dGhlIGNvZGUgZG9lcyksIGFuZCBwcm9wb3NlIGEgY29uY3JldGUgZml4IHdoZW4gb25l
+	IGlzIG9idmlvdXMuIEJlIGNhbGlicmF0ZWQ6IGlmIGEgZmluZGluZyBpcyBub3QgaGln
+	aC1jb25maWRlbmNlLCBzYXkgc28gb3Igc2tpcCBpdC4gVmVyaWZ5IGNsYWltcyBhZ2Fp
+	bnN0IHRoZSBhY3R1YWwgY29kZSByYXRoZXIgdGhhbiBpbmZlcnJpbmcgZnJvbSBuYW1l
+	cy5cblxuU2tpcCBwdXJlIHN0eWxlLCBmb3JtYXR0aW5nLCBuYW1pbmcsIGFuZCBhbnl0
+	aGluZyBhIGxpbnRlciBvciBDSSBhbHJlYWR5IGVuZm9yY2VzLlxuXG5JZiB5b3UgZmlu
+	ZCBub3RoaW5nIHdvcnRoIGZpeGluZywgc2F5IHNvIHBsYWlubHkuIn1d
+	</data>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Solarized Darcula</key>
@@ -715,7 +766,11 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>B95EAB3F-1EEB-47D8-8C5D-6777848161B4</string>
+	<key>Default Browser Profile Guid</key>
+	<string>D3E951BB-7C72-4ADC-8C86-F7591B7D711B</string>
 	<key>DoubleClickPerformsSmartSelection</key>
+	<true/>
+	<key>EnableAPIServer</key>
 	<true/>
 	<key>GlobalKeyMap</key>
 	<dict>
@@ -876,7 +931,7 @@
 			<key>AWDS Pane Option</key>
 			<string>Recycle</string>
 			<key>AWDS Tab Directory</key>
-			<string>/Users/sanmiguel/worktree/valified/valified</string>
+			<string></string>
 			<key>AWDS Tab Option</key>
 			<string>No</string>
 			<key>AWDS Window Directory</key>
@@ -1707,6 +1762,8 @@
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
 			<integer>1000000</integer>
+			<key>Scrollback in Alternate Screen</key>
+			<false/>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1768,7 +1825,7 @@
 			<key>Semantic History</key>
 			<dict>
 				<key>action</key>
-				<string>raw command</string>
+				<string>best editor</string>
 				<key>editor</key>
 				<string>com.github.atom</string>
 				<key>text</key>
@@ -1859,12 +1916,1291 @@
 			<integer>3</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
+			<key>Triggers</key>
+			<array>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Do you want to proceed\?</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Esc to cancel.*Tab to amend</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Waiting for permission</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+(Auto|Bash) classifier checking</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and don.t ask again for</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and allow Claude to edit its own settings</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>No, and tell Claude what to do differently</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Deny, and tell Claude what to do differently</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Exit plan mode\?</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Ready to code\?</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, clear context.*and (use auto mode|bypass permissions|auto-accept edits)</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and use auto mode</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and bypass permissions</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, auto-accept edits</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, manually approve edits</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>No, keep planning</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Allow external CLAUDE\.md file imports\?</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enable Remote Control\? \(y/n\)</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Waiting for team lead</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Waiting for leader to approve</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>\[awaiting approval\]</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>MCP server \S.+ requests your input</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>MCP server \S.+ wants to open a URL</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>MCP server \S.+waiting for completion</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Computer Use needs macOS permissions</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Computer Use wants to control these apps</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Detected a custom API key in your environment</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Claude Code running in Bypass Permissions mode</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Use this (and all future )?MCP server</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Continue without using this MCP server</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Continue without waiting</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter OAuth client secret:</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter to confirm.*Esc to cancel</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter to select.*Esc to cancel</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter to submit.*Esc to cancel</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter to copy link.*Esc to cancel</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Press Enter when ready to verify</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Press \S+ again to exit</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Tab to toggle.*Enter to move on</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Grant the missing permissions in System Settings</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, for this session</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and remember this directory</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Allow for this session</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>^[·✢✳✶✻✽*●] [A-Z][a-z]</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Running…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Fetching…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Processing…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Waiting…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Creating worktree…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Exiting worktree…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Allowed by auto mode classifier</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Denied by auto mode classifier</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>\(thought for \d+s\)</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Compacting conversation</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Running (PreCompact|PostCompact|SessionStart) hooks</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>running \S+ hook</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>running stop hooks</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#0000d7d75f5fp3#888888888888Idle</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>^❯</string>
+				</dict>
+			</array>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
 			<key>Unicode Version</key>
 			<integer>9</integer>
 			<key>Unlimited Scrollback</key>
-			<false/>
+			<true/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
@@ -3408,6 +4744,2367 @@
 			<key>Working Directory</key>
 			<string>/Users/sanmiguel/worktree/valified/valified/</string>
 		</dict>
+		<dict>
+			<key>ASCII Anti Aliased</key>
+			<true/>
+			<key>ASCII Ligatures</key>
+			<true/>
+			<key>AWDS Pane Directory</key>
+			<string></string>
+			<key>AWDS Pane Option</key>
+			<string>Recycle</string>
+			<key>AWDS Tab Directory</key>
+			<string>/Users/sanmiguel/worktree/valified/valified</string>
+			<key>AWDS Tab Option</key>
+			<string>No</string>
+			<key>AWDS Window Directory</key>
+			<string></string>
+			<key>AWDS Window Option</key>
+			<string>No</string>
+			<key>Ambiguous Double Width</key>
+			<false/>
+			<key>Ansi 0 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.19370138645172119</real>
+				<key>Green Component</key>
+				<real>0.15575926005840302</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Ansi 0 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.19370138645172119</real>
+				<key>Green Component</key>
+				<real>0.15575926005840302</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Ansi 0 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.25882352941176473</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.21176470588235294</real>
+				<key>Red Component</key>
+				<real>0.027450980392156862</real>
+			</dict>
+			<key>Ansi 1 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.14145714044570923</real>
+				<key>Green Component</key>
+				<real>0.10840655118227005</real>
+				<key>Red Component</key>
+				<real>0.81926977634429932</real>
+			</dict>
+			<key>Ansi 1 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.14145714044570923</real>
+				<key>Green Component</key>
+				<real>0.10840655118227005</real>
+				<key>Red Component</key>
+				<real>0.81926977634429932</real>
+			</dict>
+			<key>Ansi 1 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.18431372549019609</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.19607843137254902</real>
+				<key>Red Component</key>
+				<real>0.86274509803921573</real>
+			</dict>
+			<key>Ansi 10 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.51931029558181763</real>
+				<key>Green Component</key>
+				<real>0.93699550628662109</real>
+				<key>Red Component</key>
+				<real>0.31744870543479919</real>
+			</dict>
+			<key>Ansi 10 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.51931029558181763</real>
+				<key>Green Component</key>
+				<real>0.93699550628662109</real>
+				<key>Red Component</key>
+				<real>0.31744870543479919</real>
+			</dict>
+			<key>Ansi 10 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.45882352941176469</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.43137254901960786</real>
+				<key>Red Component</key>
+				<real>0.34509803921568627</real>
+			</dict>
+			<key>Ansi 11 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.1584954559803009</real>
+				<key>Green Component</key>
+				<real>0.49430075287818909</real>
+				<key>Red Component</key>
+				<real>0.69710838794708252</real>
+			</dict>
+			<key>Ansi 11 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.1584954559803009</real>
+				<key>Green Component</key>
+				<real>0.49430075287818909</real>
+				<key>Red Component</key>
+				<real>0.69710838794708252</real>
+			</dict>
+			<key>Ansi 11 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.51372549019607838</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.4823529411764706</real>
+				<key>Red Component</key>
+				<real>0.396078431372549</real>
+			</dict>
+			<key>Ansi 12 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.78393226861953735</real>
+				<key>Green Component</key>
+				<real>0.55553519725799561</real>
+				<key>Red Component</key>
+				<real>0.091996639966964722</real>
+			</dict>
+			<key>Ansi 12 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.78393226861953735</real>
+				<key>Green Component</key>
+				<real>0.55553519725799561</real>
+				<key>Red Component</key>
+				<real>0.091996639966964722</real>
+			</dict>
+			<key>Ansi 12 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.58823529411764708</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.58039215686274515</real>
+				<key>Red Component</key>
+				<real>0.51372549019607838</real>
+			</dict>
+			<key>Ansi 13 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.55838865041732788</real>
+				<key>Green Component</key>
+				<real>0.30289158225059509</real>
+				<key>Red Component</key>
+				<real>0.88624399900436401</real>
+			</dict>
+			<key>Ansi 13 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.55838865041732788</real>
+				<key>Green Component</key>
+				<real>0.30289158225059509</real>
+				<key>Red Component</key>
+				<real>0.88624399900436401</real>
+			</dict>
+			<key>Ansi 13 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.7686274509803922</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.44313725490196076</real>
+				<key>Red Component</key>
+				<real>0.42352941176470588</real>
+			</dict>
+			<key>Ansi 14 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.62018769979476929</real>
+				<key>Green Component</key>
+				<real>0.70167088508605957</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Ansi 14 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.62018769979476929</real>
+				<key>Green Component</key>
+				<real>0.70167088508605957</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Ansi 14 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.63137254901960782</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.63137254901960782</real>
+				<key>Red Component</key>
+				<real>0.57647058823529407</real>
+			</dict>
+			<key>Ansi 15 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.86405980587005615</real>
+				<key>Green Component</key>
+				<real>0.95794391632080078</real>
+				<key>Red Component</key>
+				<real>0.98943418264389038</real>
+			</dict>
+			<key>Ansi 15 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.86405980587005615</real>
+				<key>Green Component</key>
+				<real>0.95794391632080078</real>
+				<key>Red Component</key>
+				<real>0.98943418264389038</real>
+			</dict>
+			<key>Ansi 15 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.8901960784313725</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.96470588235294119</real>
+				<key>Red Component</key>
+				<real>0.99215686274509807</real>
+			</dict>
+			<key>Ansi 2 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.42409399151802063</real>
+				<key>Green Component</key>
+				<real>0.7455558180809021</real>
+				<key>Red Component</key>
+				<real>0.42339208722114563</real>
+			</dict>
+			<key>Ansi 2 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.42409399151802063</real>
+				<key>Green Component</key>
+				<real>0.7455558180809021</real>
+				<key>Red Component</key>
+				<real>0.42339208722114563</real>
+			</dict>
+			<key>Ansi 2 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.0</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.59999999999999998</real>
+				<key>Red Component</key>
+				<real>0.52156862745098043</real>
+			</dict>
+			<key>Ansi 3 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.023484811186790466</real>
+				<key>Green Component</key>
+				<real>0.46751424670219421</real>
+				<key>Red Component</key>
+				<real>0.64746475219726562</real>
+			</dict>
+			<key>Ansi 3 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.023484811186790466</real>
+				<key>Green Component</key>
+				<real>0.46751424670219421</real>
+				<key>Red Component</key>
+				<real>0.64746475219726562</real>
+			</dict>
+			<key>Ansi 3 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.0</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.53725490196078429</real>
+				<key>Red Component</key>
+				<real>0.70980392156862748</real>
+			</dict>
+			<key>Ansi 4 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.78231418132781982</real>
+				<key>Green Component</key>
+				<real>0.46265947818756104</real>
+				<key>Red Component</key>
+				<real>0.12754884362220764</real>
+			</dict>
+			<key>Ansi 4 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.78231418132781982</real>
+				<key>Green Component</key>
+				<real>0.46265947818756104</real>
+				<key>Red Component</key>
+				<real>0.12754884362220764</real>
+			</dict>
+			<key>Ansi 4 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.82352941176470584</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.54509803921568623</real>
+				<key>Red Component</key>
+				<real>0.14901960784313725</real>
+			</dict>
+			<key>Ansi 5 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.43516635894775391</real>
+				<key>Green Component</key>
+				<real>0.10802463442087173</real>
+				<key>Red Component</key>
+				<real>0.77738940715789795</real>
+			</dict>
+			<key>Ansi 5 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.43516635894775391</real>
+				<key>Green Component</key>
+				<real>0.10802463442087173</real>
+				<key>Red Component</key>
+				<real>0.77738940715789795</real>
+			</dict>
+			<key>Ansi 5 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.50980392156862742</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.21176470588235294</real>
+				<key>Red Component</key>
+				<real>0.82745098039215681</real>
+			</dict>
+			<key>Ansi 6 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.52502274513244629</real>
+				<key>Green Component</key>
+				<real>0.57082360982894897</real>
+				<key>Red Component</key>
+				<real>0.14679534733295441</real>
+			</dict>
+			<key>Ansi 6 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.52502274513244629</real>
+				<key>Green Component</key>
+				<real>0.57082360982894897</real>
+				<key>Red Component</key>
+				<real>0.14679534733295441</real>
+			</dict>
+			<key>Ansi 6 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.59607843137254901</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.63137254901960782</real>
+				<key>Red Component</key>
+				<real>0.16470588235294117</real>
+			</dict>
+			<key>Ansi 7 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.79781103134155273</real>
+				<key>Green Component</key>
+				<real>0.89001238346099854</real>
+				<key>Red Component</key>
+				<real>0.91611063480377197</real>
+			</dict>
+			<key>Ansi 7 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.79781103134155273</real>
+				<key>Green Component</key>
+				<real>0.89001238346099854</real>
+				<key>Red Component</key>
+				<real>0.91611063480377197</real>
+			</dict>
+			<key>Ansi 7 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.83529411764705885</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.90980392156862744</real>
+				<key>Red Component</key>
+				<real>0.93333333333333335</real>
+			</dict>
+			<key>Ansi 8 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.53505516052246094</real>
+				<key>Green Component</key>
+				<real>0.39142724871635437</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Ansi 8 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.53505516052246094</real>
+				<key>Green Component</key>
+				<real>0.39142724871635437</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Ansi 8 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.21176470588235294</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.16862745098039217</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Ansi 9 Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.23225757479667664</real>
+				<key>Green Component</key>
+				<real>0.084504462778568268</real>
+				<key>Red Component</key>
+				<real>0.95941102504730225</real>
+			</dict>
+			<key>Ansi 9 Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.23225757479667664</real>
+				<key>Green Component</key>
+				<real>0.084504462778568268</real>
+				<key>Red Component</key>
+				<real>0.95941102504730225</real>
+			</dict>
+			<key>Ansi 9 Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.086274509803921567</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.29411764705882354</real>
+				<key>Red Component</key>
+				<real>0.79607843137254897</real>
+			</dict>
+			<key>Automatically Log</key>
+			<false/>
+			<key>BM Growl</key>
+			<true/>
+			<key>Background Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.15170273184776306</real>
+				<key>Green Component</key>
+				<real>0.11783610284328461</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Background Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.15170273184776306</real>
+				<key>Green Component</key>
+				<real>0.11783610284328461</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Background Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.8901960784313725</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.96470588235294119</real>
+				<key>Red Component</key>
+				<real>0.99215686274509807</real>
+			</dict>
+			<key>Background Image Location</key>
+			<string></string>
+			<key>Badge Color</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>0.5</real>
+				<key>Blue Component</key>
+				<real>0.0</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.14910030364990234</real>
+				<key>Red Component</key>
+				<real>1</real>
+			</dict>
+			<key>Badge Color (Dark)</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>0.5</real>
+				<key>Blue Component</key>
+				<real>0.13960540294647217</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>0.25479039549827576</real>
+				<key>Red Component</key>
+				<real>0.92929404973983765</real>
+			</dict>
+			<key>Badge Color (Light)</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>0.5</real>
+				<key>Blue Component</key>
+				<real>0.13960540294647217</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>0.25479039549827576</real>
+				<key>Red Component</key>
+				<real>0.92929404973983765</real>
+			</dict>
+			<key>Blinking Cursor</key>
+			<false/>
+			<key>Blur</key>
+			<false/>
+			<key>Bold Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.82687115669250488</real>
+				<key>Green Component</key>
+				<real>0.83450067043304443</real>
+				<key>Red Component</key>
+				<real>0.70913255214691162</real>
+			</dict>
+			<key>Bold Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.82687115669250488</real>
+				<key>Green Component</key>
+				<real>0.83450067043304443</real>
+				<key>Red Component</key>
+				<real>0.70913255214691162</real>
+			</dict>
+			<key>Bold Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.45882352941176469</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.43137254901960786</real>
+				<key>Red Component</key>
+				<real>0.34509803921568627</real>
+			</dict>
+			<key>Bound Hosts</key>
+			<array/>
+			<key>Brighten Bold Text (Dark)</key>
+			<true/>
+			<key>Brighten Bold Text (Light)</key>
+			<true/>
+			<key>Character Encoding</key>
+			<integer>4</integer>
+			<key>Close Sessions On End</key>
+			<true/>
+			<key>Columns</key>
+			<integer>80</integer>
+			<key>Command</key>
+			<string></string>
+			<key>Cursor Boost (Dark)</key>
+			<real>0.0</real>
+			<key>Cursor Boost (Light)</key>
+			<real>0.0</real>
+			<key>Cursor Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.0</real>
+				<key>Green Component</key>
+				<real>0.29334646463394165</real>
+				<key>Red Component</key>
+				<real>0.95475113391876221</real>
+			</dict>
+			<key>Cursor Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.0</real>
+				<key>Green Component</key>
+				<real>0.29334646463394165</real>
+				<key>Red Component</key>
+				<real>0.95475113391876221</real>
+			</dict>
+			<key>Cursor Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.51372549019607838</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.4823529411764706</real>
+				<key>Red Component</key>
+				<real>0.396078431372549</real>
+			</dict>
+			<key>Cursor Guide Color</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>0.25</real>
+				<key>Blue Component</key>
+				<real>1</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.92681378126144409</real>
+				<key>Red Component</key>
+				<real>0.70214027166366577</real>
+			</dict>
+			<key>Cursor Guide Color (Dark)</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>0.25</real>
+				<key>Blue Component</key>
+				<real>0.99125725030899048</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>0.92047786712646484</real>
+				<key>Red Component</key>
+				<real>0.74862593412399292</real>
+			</dict>
+			<key>Cursor Guide Color (Light)</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>0.25</real>
+				<key>Blue Component</key>
+				<real>0.99125725030899048</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>0.92047786712646484</real>
+				<key>Red Component</key>
+				<real>0.74862593412399292</real>
+			</dict>
+			<key>Cursor Text Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.19370138645172119</real>
+				<key>Green Component</key>
+				<real>0.15575926005840302</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Cursor Text Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.19370138645172119</real>
+				<key>Green Component</key>
+				<real>0.15575926005840302</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Cursor Text Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.83529411764705885</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.90980392156862744</real>
+				<key>Red Component</key>
+				<real>0.93333333333333335</real>
+			</dict>
+			<key>Custom Command</key>
+			<string>No</string>
+			<key>Custom Directory</key>
+			<string>Advanced</string>
+			<key>Custom Locale</key>
+			<string>en_GB.UTF-8</string>
+			<key>Default Bookmark</key>
+			<string>No</string>
+			<key>Description</key>
+			<string>Default</string>
+			<key>Disable Window Resizing</key>
+			<true/>
+			<key>Draw Powerline Glyphs</key>
+			<false/>
+			<key>Flashing Bell</key>
+			<false/>
+			<key>Foreground Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.7630731463432312</real>
+				<key>Green Component</key>
+				<real>0.75921261310577393</real>
+				<key>Red Component</key>
+				<real>0.61000990867614746</real>
+			</dict>
+			<key>Foreground Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.7630731463432312</real>
+				<key>Green Component</key>
+				<real>0.75921261310577393</real>
+				<key>Red Component</key>
+				<real>0.61000990867614746</real>
+			</dict>
+			<key>Foreground Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.51372549019607838</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.4823529411764706</real>
+				<key>Red Component</key>
+				<real>0.396078431372549</real>
+			</dict>
+			<key>Guid</key>
+			<string>B5CE0C23-DDE6-4897-B3C0-D8AB67BFFDF0</string>
+			<key>Has Hotkey</key>
+			<false/>
+			<key>Horizontal Spacing</key>
+			<real>1</real>
+			<key>Idle Code</key>
+			<integer>0</integer>
+			<key>Jobs to Ignore</key>
+			<array>
+				<string>rlogin</string>
+				<string>ssh</string>
+				<string>slogin</string>
+				<string>telnet</string>
+			</array>
+			<key>Keyboard Map</key>
+			<dict/>
+			<key>Link Color</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.73422706127166748</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.35915294289588928</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Link Color (Dark)</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.7093239426612854</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>0.35333043336868286</real>
+				<key>Red Component</key>
+				<real>0.14513972401618958</real>
+			</dict>
+			<key>Link Color (Light)</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.7093239426612854</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>0.35333043336868286</real>
+				<key>Red Component</key>
+				<real>0.14513972401618958</real>
+			</dict>
+			<key>Match Background Color (Dark)</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.0</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>1</real>
+				<key>Red Component</key>
+				<real>1</real>
+			</dict>
+			<key>Minimum Contrast (Dark)</key>
+			<real>0.0</real>
+			<key>Minimum Contrast (Light)</key>
+			<real>0.0</real>
+			<key>Mouse Reporting</key>
+			<true/>
+			<key>Name</key>
+			<string>Claude Code</string>
+			<key>Non Ascii Font</key>
+			<string>Monaco 12</string>
+			<key>Non-ASCII Anti Aliased</key>
+			<true/>
+			<key>Normal Font</key>
+			<string>HasklugNFM 14</string>
+			<key>Option Key Sends</key>
+			<integer>0</integer>
+			<key>Prompt Before Closing 2</key>
+			<false/>
+			<key>Right Option Key Sends</key>
+			<integer>0</integer>
+			<key>Rows</key>
+			<integer>25</integer>
+			<key>Screen</key>
+			<integer>-1</integer>
+			<key>Scrollback Lines</key>
+			<integer>1000000</integer>
+			<key>Scrollback in Alternate Screen</key>
+			<false/>
+			<key>Selected Text Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.55732053518295288</real>
+				<key>Green Component</key>
+				<real>0.56244754791259766</real>
+				<key>Red Component</key>
+				<real>0.47797361016273499</real>
+			</dict>
+			<key>Selected Text Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.55732053518295288</real>
+				<key>Green Component</key>
+				<real>0.56244754791259766</real>
+				<key>Red Component</key>
+				<real>0.47797361016273499</real>
+			</dict>
+			<key>Selected Text Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.45882352941176469</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.43137254901960786</real>
+				<key>Red Component</key>
+				<real>0.34509803921568627</real>
+			</dict>
+			<key>Selection Color</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.28167051076889038</real>
+				<key>Green Component</key>
+				<real>0.21576285362243652</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Selection Color (Dark)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.28167051076889038</real>
+				<key>Green Component</key>
+				<real>0.21576285362243652</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
+			<key>Selection Color (Light)</key>
+			<dict>
+				<key>Blue Component</key>
+				<real>0.83529411764705885</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.90980392156862744</real>
+				<key>Red Component</key>
+				<real>0.93333333333333335</real>
+			</dict>
+			<key>Semantic History</key>
+			<dict>
+				<key>action</key>
+				<string>raw command</string>
+				<key>editor</key>
+				<string>com.github.atom</string>
+				<key>text</key>
+				<string>~/bin/open-in-nvim \1 \2 \5</string>
+			</dict>
+			<key>Send Code When Idle</key>
+			<false/>
+			<key>Set Local Environment Vars</key>
+			<integer>2</integer>
+			<key>Shortcut</key>
+			<string></string>
+			<key>Show Status Bar</key>
+			<true/>
+			<key>Silence Bell</key>
+			<false/>
+			<key>Smart Cursor Color (Dark)</key>
+			<false/>
+			<key>Smart Cursor Color (Light)</key>
+			<false/>
+			<key>Status Bar Layout</key>
+			<dict>
+				<key>advanced configuration</key>
+				<dict>
+					<key>algorithm</key>
+					<integer>0</integer>
+					<key>auto-rainbow style</key>
+					<integer>0</integer>
+					<key>font</key>
+					<string>.SFNS-Regular 12</string>
+					<key>remove empty components</key>
+					<false/>
+				</dict>
+				<key>components</key>
+				<array>
+					<dict>
+						<key>class</key>
+						<string>iTermStatusBarGitComponent</string>
+						<key>configuration</key>
+						<dict>
+							<key>knobs</key>
+							<dict>
+								<key>base: compression resistance</key>
+								<integer>1</integer>
+								<key>base: priority</key>
+								<real>5</real>
+								<key>iTermStatusBarGitComponentPollingIntervalKey</key>
+								<real>2</real>
+								<key>maxwidth</key>
+								<real>+infinity</real>
+								<key>minwidth</key>
+								<integer>0</integer>
+								<key>shared text color</key>
+								<dict>
+									<key>Alpha Component</key>
+									<real>1</real>
+									<key>Blue Component</key>
+									<real>0.64036160707473755</real>
+									<key>Color Space</key>
+									<string>P3</string>
+									<key>Green Component</key>
+									<real>0.85741746425628662</real>
+									<key>Red Component</key>
+									<real>0.8823581337928772</real>
+								</dict>
+							</dict>
+							<key>layout advanced configuration dictionary value</key>
+							<dict>
+								<key>algorithm</key>
+								<integer>0</integer>
+								<key>auto-rainbow style</key>
+								<integer>0</integer>
+								<key>font</key>
+								<string>.AppleSystemUIFont 12</string>
+								<key>remove empty components</key>
+								<false/>
+							</dict>
+						</dict>
+					</dict>
+				</array>
+			</dict>
+			<key>Sync Title</key>
+			<false/>
+			<key>Tags</key>
+			<array/>
+			<key>Terminal Type</key>
+			<string>xterm-256color</string>
+			<key>Thin Strokes</key>
+			<integer>3</integer>
+			<key>Transparency</key>
+			<real>0.0</real>
+			<key>Triggers</key>
+			<array>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Do you want to proceed\?</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Esc to cancel.*Tab to amend</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Waiting for permission</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+(Auto|Bash) classifier checking</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and don.t ask again for</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and allow Claude to edit its own settings</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>No, and tell Claude what to do differently</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Deny, and tell Claude what to do differently</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Exit plan mode\?</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Ready to code\?</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, clear context.*and (use auto mode|bypass permissions|auto-accept edits)</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and use auto mode</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and bypass permissions</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, auto-accept edits</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, manually approve edits</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>No, keep planning</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Allow external CLAUDE\.md file imports\?</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enable Remote Control\? \(y/n\)</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Waiting for team lead</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Waiting for leader to approve</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>\[awaiting approval\]</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>MCP server \S.+ requests your input</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>MCP server \S.+ wants to open a URL</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>MCP server \S.+waiting for completion</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Computer Use needs macOS permissions</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Computer Use wants to control these apps</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Detected a custom API key in your environment</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Claude Code running in Bypass Permissions mode</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Use this (and all future )?MCP server</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Continue without using this MCP server</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Continue without waiting</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter OAuth client secret:</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter to confirm.*Esc to cancel</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter to select.*Esc to cancel</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter to submit.*Esc to cancel</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Enter to copy link.*Esc to cancel</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Press Enter when ready to verify</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Press \S+ again to exit</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Tab to toggle.*Enter to move on</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Grant the missing permissions in System Settings</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, for this session</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Yes, and remember this directory</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#5f5f8787ffffp3#5f5f8787ffffWaiting</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Allow for this session</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>^[·✢✳✶✻✽*●] [A-Z][a-z]</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Running…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Fetching…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Processing…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Waiting…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Creating worktree…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Exiting worktree…</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Allowed by auto mode classifier</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>⎿\s+Denied by auto mode classifier</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>\(thought for \d+s\)</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Compacting conversation</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>Running (PreCompact|PostCompact|SessionStart) hooks</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>running \S+ hook</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#ffff95950000p3#ffff95950000Working…</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>running stop hooks</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermSetTabStatusTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>job</key>
+					<string>claude</string>
+					<key>matchType</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string></string>
+					<key>parameter</key>
+					<string>p3#0000d7d75f5fp3#888888888888Idle</string>
+					<key>partial</key>
+					<false/>
+					<key>provenance</key>
+					<string>claude-v1</string>
+					<key>regex</key>
+					<string>^❯</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermEnterWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+					</dict>
+					<key>matchType</key>
+					<integer>113</integer>
+					<key>parameter</key>
+					<string>builtin.claudeCode</string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermExitWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+					</dict>
+					<key>matchType</key>
+					<integer>114</integer>
+					<key>parameter</key>
+					<string></string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Unicode Normalization</key>
+			<integer>0</integer>
+			<key>Unicode Version</key>
+			<integer>9</integer>
+			<key>Unlimited Scrollback</key>
+			<true/>
+			<key>Use Bold Font</key>
+			<true/>
+			<key>Use Bright Bold</key>
+			<true/>
+			<key>Use Bright Bold (Dark)</key>
+			<true/>
+			<key>Use Bright Bold (Light)</key>
+			<true/>
+			<key>Use Cursor Guide (Dark)</key>
+			<false/>
+			<key>Use Cursor Guide (Light)</key>
+			<false/>
+			<key>Use Italic Font</key>
+			<true/>
+			<key>Use Non-ASCII Font</key>
+			<false/>
+			<key>Use Separate Colors for Light and Dark Mode</key>
+			<true/>
+			<key>Use Tab Color (Dark)</key>
+			<false/>
+			<key>Use Tab Color (Light)</key>
+			<false/>
+			<key>Use Underline Color (Dark)</key>
+			<false/>
+			<key>Use Underline Color (Light)</key>
+			<false/>
+			<key>Vertical Spacing</key>
+			<real>1</real>
+			<key>Visual Bell</key>
+			<true/>
+			<key>Window Type</key>
+			<integer>0</integer>
+			<key>Working Directory</key>
+			<string>/Users/sanmiguel</string>
+		</dict>
 	</array>
 	<key>PasteTabToStringTabStopSize</key>
 	<integer>2</integer>
@@ -3465,13 +7162,51 @@
 	</array>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>StatusPriorityEntries</key>
+	<data>
+	W3sibm90aWZ5Ijp0cnVlLCJwYXR0ZXJuIjoid2FpdCJ9LHsibm90aWZ5IjpmYWxzZSwi
+	cGF0dGVybiI6IndvcmsifSx7Im5vdGlmeSI6ZmFsc2UsInBhdHRlcm4iOiJpZGxlIn1d
+	</data>
+	<key>SuppressRestartAnnouncement</key>
+	<true/>
 	<key>ToolbeltTools</key>
 	<array>
-		<string>Captured Output</string>
-		<string>Codecierge</string>
+		<string>Session Status</string>
 	</array>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
+	<key>Workgroups</key>
+	<data>
+	W3sic2Vzc2lvbnMiOlt7ImNvbW1hbmQiOiIiLCJtb2RlIjoicmVndWxhciIsInVybFN0
+	cmluZyI6IiIsInRvb2xiYXJJdGVtcyI6W3sia2luZCI6Im1vZGVTd2l0Y2hlciJ9LHsi
+	a2luZCI6ImdpdFN0YXR1cyJ9XSwidW5pcXVlSWRlbnRpZmllciI6ImJ1aWx0aW4uY2xh
+	dWRlQ29kZS5tYWluIiwicGVyRmlsZUNvbW1hbmQiOiIiLCJraW5kIjp7ImtpbmQiOiJy
+	b290In0sImRpc3BsYXlOYW1lIjoiQ2hhdCJ9LHsiY29tbWFuZCI6ImdpdCBkaWZmdG9v
+	bCAteSAteCB2aW1kaWZmIFxcKGdpdEJhc2UpIiwibW9kZSI6ImRpZmYiLCJ1cmxTdHJp
+	bmciOiIiLCJ0b29sYmFySXRlbXMiOlt7ImtpbmQiOiJtb2RlU3dpdGNoZXIifSx7Imtp
+	bmQiOiJjaGFuZ2VkRmlsZVNlbGVjdG9yIn0seyJraW5kIjoiZ2l0QmFzZVNlbGVjdG9y
+	In0seyJraW5kIjoibmF2aWdhdGlvbiIsImJhY2tTaG9ydGN1dCI6eyJzZXJpYWxpemVk
+	IjoiMHhmNzAyLTB4MzQwMDAwLTB4N2IifSwiZm9yd2FyZFNob3J0Y3V0Ijp7InNlcmlh
+	bGl6ZWQiOiIweGY3MDMtMHgzNDAwMDAtMHg3YyJ9LCJyZWxvYWRTaG9ydGN1dCI6eyJz
+	ZXJpYWxpemVkIjoiMHg3Mi0weDEwMDAwMC0weGYifX1dLCJwYXJlbnRJRCI6ImJ1aWx0
+	aW4uY2xhdWRlQ29kZS5tYWluIiwidW5pcXVlSWRlbnRpZmllciI6ImJ1aWx0aW4uY2xh
+	dWRlQ29kZS5kaWZmIiwicGVyRmlsZUNvbW1hbmQiOiJnaXQgZGlmZnRvb2wgLXkgLXgg
+	dmltZGlmZiBcXChnaXRCYXNlKSAtLSBcXChmaWxlKSIsImtpbmQiOnsia2luZCI6InBl
+	ZXIifSwiZGlzcGxheU5hbWUiOiJEaWZmIn0seyJjb21tYW5kIjoiY2xhdWRlIFxcKGNv
+	ZGVSZXZpZXdQcm9tcHQpIC0tYXBwZW5kLXN5c3RlbS1wcm9tcHQtZmlsZSAnXFwoY29k
+	ZVJldmlld1N5c3RlbVByb21wdEZpbGUpJyAtLXNldHRpbmdzICdcXChpdGVybTIuYXBw
+	QnVuZGxlUGF0aClcL0NvbnRlbnRzXC9SZXNvdXJjZXNcL2NvZGUtcmV2aWV3LXNldHRp
+	bmdzLnR4dCciLCJtb2RlIjoiY29kZVJldmlldyIsInVybFN0cmluZyI6IiIsInRvb2xi
+	YXJJdGVtcyI6W3sia2luZCI6Im1vZGVTd2l0Y2hlciJ9LHsia2luZCI6InJlbG9hZCIs
+	InNob3J0Y3V0Ijp7InNlcmlhbGl6ZWQiOiIweDcyLTB4MTAwMDAwLTB4ZiJ9fV0sInBh
+	cmVudElEIjoiYnVpbHRpbi5jbGF1ZGVDb2RlLm1haW4iLCJ1bmlxdWVJZGVudGlmaWVy
+	IjoiYnVpbHRpbi5jbGF1ZGVDb2RlLnJldmlldyIsInBlckZpbGVDb21tYW5kIjoiIiwi
+	a2luZCI6eyJraW5kIjoicGVlciJ9LCJkaXNwbGF5TmFtZSI6IkNvZGUgUmV2aWV3In1d
+	LCJ1bmlxdWVJZGVudGlmaWVyIjoiYnVpbHRpbi5jbGF1ZGVDb2RlIiwibmFtZSI6IkNs
+	YXVkZSBDb2RlIn1d
+	</data>
+	<key>com.apple.WebPrivacy.ResourceMonitorURLsVersion</key>
+	<string>qrsAAAGXnXBrwGxMO6s=</string>
 	<key>findMode_iTerm</key>
 	<integer>3</integer>
 	<key>kCPKSelectionViewPreferredModeKey</key>
