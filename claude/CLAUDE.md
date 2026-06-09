@@ -21,6 +21,7 @@
 
 - Follow the Phoenix Contexts pattern: business logic lives in context modules, controllers/LiveViews are thin
 - Prefer pattern matching and multi-clause functions over conditionals where it reads clearly
+- For small fixed business-rule matrices (~10 entries or fewer — promotion ladders, permission tables, state transitions), write explicit multi-clause functions rather than rank arithmetic, lookup maps, or other clever encodings. The function body should read as the business rule itself
 - Use `with` for chains of operations that can fail, not nested `case`
 - Tests go in `test/` mirroring the `lib/` structure; use `describe` blocks and `setup` for shared state
 - Tag slow/integration tests with `@moduletag :integration` so they can be excluded with `mix test --exclude integration`
@@ -70,6 +71,25 @@ bug investigations), ALWAYS build a Prompt Contract before writing code:
 4. **Execute against the contract** — Use Plan Mode for the implementation plan,
    then implement. Reference the contract when making decisions. After completing,
    verify the Goal is met and no Failure Conditions were triggered.
+5. **Self-review before declaring done** — Once verification passes (tests
+   green, types/credo/dialyzer clean), do a final pass over your own diff
+   *before* reporting completion. Look for and fix:
+   - **Defensive code for impossible states** — fallback function clauses,
+     nil/empty handling for inputs the schema/types/callers can't produce.
+     Per YAGNI: delete.
+   - **Unnecessary indirection** — helpers that wrap a single call site, or
+     two functions that could be one.
+   - **Duplicated condition checks** — the same predicate evaluated in
+     multiple places. Compute once, name it.
+   - **Repetitive templates / markup** — 3+ near-identical blocks that should
+     become a tiny private component.
+   - **Inaccurate docstrings** — words like "idempotent" or "safely" that the
+     implementation doesn't actually deliver.
+   - **WHAT-comments** — comments restating what well-named code already says;
+     keep only comments explaining WHY (non-obvious constraint, surprising
+     behaviour, workaround).
+
+   Re-run verification after cleanups, then report.
 
 Contracts get shorter over time — the permanent constraints in this file do the
 heavy lifting, so each contract only needs the task-specific parts.

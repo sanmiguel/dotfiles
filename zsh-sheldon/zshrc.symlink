@@ -53,6 +53,8 @@ eval "$(starship init zsh)"
 export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+alias claude-personal='CLAUDE_CONFIG_DIR=$HOME/.claude-personal claude'
+
 function take() {
   mkdir -p "$1" && cd "$1"
 }

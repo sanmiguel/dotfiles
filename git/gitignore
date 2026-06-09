@@ -6,3 +6,5 @@ tags
 .elixir-tools
 .expert
 .dexter.db*
+
+**/.claude/settings.local.json
