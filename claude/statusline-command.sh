@@ -1,0 +1,720 @@
+#!/bin/bash
+# Resolve config/cache/usage-fetcher relative to the active profile dir so each
+# Claude profile (work vs personal) reads its own statusline config and usage
+# data. Falls back to ~/.claude when CLAUDE_CONFIG_DIR is unset (plain `claude`).
+claude_base="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+config_file="$claude_base/statusline-config.txt"
+if [ -f "$config_file" ]; then
+  source "$config_file"
+  show_model=$SHOW_MODEL
+  show_dir=$SHOW_DIRECTORY
+  show_branch=$SHOW_BRANCH
+  show_context=$SHOW_CONTEXT
+  context_as_tokens=$CONTEXT_AS_TOKENS
+  show_usage=$SHOW_USAGE
+  show_bar=$SHOW_PROGRESS_BAR
+  show_pace_marker=$SHOW_PACE_MARKER
+  show_reset=$SHOW_RESET_TIME
+  use_24h=$USE_24_HOUR_TIME
+  show_context_label=$SHOW_CONTEXT_LABEL
+  show_usage_label=$SHOW_USAGE_LABEL
+  show_reset_label=$SHOW_RESET_LABEL
+  color_mode=$COLOR_MODE
+  single_color=$SINGLE_COLOR
+  show_profile=$SHOW_PROFILE
+  profile_name="$PROFILE_NAME"
+  pace_marker_step_colors=$PACE_MARKER_STEP_COLORS
+  show_weekly=$SHOW_WEEKLY
+  show_weekly_bar=$SHOW_WEEKLY_BAR
+  show_weekly_pace_marker=$SHOW_WEEKLY_PACE_MARKER
+  show_weekly_reset=$SHOW_WEEKLY_RESET_TIME
+  show_weekly_label=$SHOW_WEEKLY_LABEL
+  show_extra_usage=$SHOW_EXTRA_USAGE
+  element_color_dir=$ELEMENT_COLOR_DIR
+  element_color_branch=$ELEMENT_COLOR_BRANCH
+  element_color_model=$ELEMENT_COLOR_MODEL
+  element_color_profile=$ELEMENT_COLOR_PROFILE
+  element_color_context=$ELEMENT_COLOR_CONTEXT
+  element_color_separator=$ELEMENT_COLOR_SEPARATOR
+  element_color_usage=$ELEMENT_COLOR_USAGE
+  element_color_pace=$ELEMENT_COLOR_PACE
+  element_color_weekly=$ELEMENT_COLOR_WEEKLY
+  element_color_extra=$ELEMENT_COLOR_EXTRA
+else
+  show_model=1
+  show_dir=1
+  show_branch=1
+  show_context=1
+  context_as_tokens=0
+  show_usage=1
+  show_bar=1
+  show_pace_marker=1
+  show_reset=1
+  use_24h=0
+  show_context_label=1
+  show_usage_label=1
+  show_reset_label=1
+  color_mode="colored"
+  single_color="#00BFFF"
+  show_profile=0
+  profile_name=""
+  pace_marker_step_colors=1
+  show_weekly=0
+  show_weekly_bar=1
+  show_weekly_pace_marker=1
+  show_weekly_reset=1
+  show_weekly_label=1
+  show_extra_usage=0
+  element_color_dir="#0000EE"
+  element_color_branch="#00BB00"
+  element_color_model="#BBBB00"
+  element_color_profile="#BB00BB"
+  element_color_context="#00BBBB"
+  element_color_separator="#808080"
+  element_color_usage=""
+  element_color_pace=""
+  element_color_weekly=""
+  element_color_extra=""
+fi
+
+input=$(cat)
+current_dir_path=$(echo "$input" | grep -o '"current_dir":"[^"]*"' | sed 's/"current_dir":"//;s/"$//')
+current_dir=$(basename "$current_dir_path")
+model=$(echo "$input" | grep -o '"display_name":"[^"]*"' | sed 's/"display_name":"//;s/"$//')
+
+# Function to convert hex color to ANSI escape code
+hex_to_ansi() {
+  local hex=$1
+  hex=${hex#\#}
+
+  local r=$((16#${hex:0:2}))
+  local g=$((16#${hex:2:2}))
+  local b=$((16#${hex:4:2}))
+
+  printf '\033[38;2;%d;%d;%dm' "$r" "$g" "$b"
+}
+
+# Set colors based on mode
+RESET=$'\033[0m'
+
+if [ "$color_mode" = "monochrome" ]; then
+  # Monochrome mode - no colors
+  BLUE=""
+  GREEN=""
+  GRAY=""
+  YELLOW=""
+  CYAN=""
+  MAGENTA=""
+  LEVEL_1=""
+  LEVEL_2=""
+  LEVEL_3=""
+  LEVEL_4=""
+  LEVEL_5=""
+  LEVEL_6=""
+  LEVEL_7=""
+  LEVEL_8=""
+  LEVEL_9=""
+  LEVEL_10=""
+  PACE_COMFORTABLE=""
+  PACE_ON_TRACK=""
+  PACE_WARMING=""
+  PACE_PRESSING=""
+  PACE_CRITICAL=""
+  PACE_RUNAWAY=""
+elif [ "$color_mode" = "singleColor" ]; then
+  # Single color mode - use user's chosen color for everything
+  single_ansi=$(hex_to_ansi "$single_color")
+  BLUE=$single_ansi
+  GREEN=$single_ansi
+  GRAY=$single_ansi
+  YELLOW=$single_ansi
+  CYAN=$single_ansi
+  MAGENTA=$single_ansi
+  LEVEL_1=$single_ansi
+  LEVEL_2=$single_ansi
+  LEVEL_3=$single_ansi
+  LEVEL_4=$single_ansi
+  LEVEL_5=$single_ansi
+  LEVEL_6=$single_ansi
+  LEVEL_7=$single_ansi
+  LEVEL_8=$single_ansi
+  LEVEL_9=$single_ansi
+  LEVEL_10=$single_ansi
+  PACE_COMFORTABLE=$single_ansi
+  PACE_ON_TRACK=$single_ansi
+  PACE_WARMING=$single_ansi
+  PACE_PRESSING=$single_ansi
+  PACE_CRITICAL=$single_ansi
+  PACE_RUNAWAY=$single_ansi
+elif [ "$color_mode" = "perElement" ]; then
+  # Per-element mode - each element uses its own user-defined color
+  BLUE=$(hex_to_ansi "$element_color_dir")
+  GREEN=$(hex_to_ansi "$element_color_branch")
+  YELLOW=$(hex_to_ansi "$element_color_model")
+  MAGENTA=$(hex_to_ansi "$element_color_profile")
+  CYAN=$(hex_to_ansi "$element_color_context")
+  GRAY=$(hex_to_ansi "$element_color_separator")
+
+  # Usage gradient: override all levels if a base color is set, else use standard gradient
+  if [ -n "$element_color_usage" ]; then
+    usage_override=$(hex_to_ansi "$element_color_usage")
+    LEVEL_1=$usage_override
+    LEVEL_2=$usage_override
+    LEVEL_3=$usage_override
+    LEVEL_4=$usage_override
+    LEVEL_5=$usage_override
+    LEVEL_6=$usage_override
+    LEVEL_7=$usage_override
+    LEVEL_8=$usage_override
+    LEVEL_9=$usage_override
+    LEVEL_10=$usage_override
+  else
+    LEVEL_1=$'\033[38;5;22m'
+    LEVEL_2=$'\033[38;5;28m'
+    LEVEL_3=$'\033[38;5;34m'
+    LEVEL_4=$'\033[38;5;100m'
+    LEVEL_5=$'\033[38;5;142m'
+    LEVEL_6=$'\033[38;5;178m'
+    LEVEL_7=$'\033[38;5;172m'
+    LEVEL_8=$'\033[38;5;166m'
+    LEVEL_9=$'\033[38;5;160m'
+    LEVEL_10=$'\033[38;5;124m'
+  fi
+
+  # Pace colors: override all tiers if a base color is set, else use standard 6-tier
+  if [ -n "$element_color_pace" ]; then
+    pace_override=$(hex_to_ansi "$element_color_pace")
+    PACE_COMFORTABLE=$pace_override
+    PACE_ON_TRACK=$pace_override
+    PACE_WARMING=$pace_override
+    PACE_PRESSING=$pace_override
+    PACE_CRITICAL=$pace_override
+    PACE_RUNAWAY=$pace_override
+  else
+    PACE_COMFORTABLE=$'\033[38;5;34m'
+    PACE_ON_TRACK=$'\033[38;5;37m'
+    PACE_WARMING=$'\033[38;5;178m'
+    PACE_PRESSING=$'\033[38;5;208m'
+    PACE_CRITICAL=$'\033[38;5;160m'
+    PACE_RUNAWAY=$'\033[38;5;135m'
+  fi
+else
+  # Colored mode (default) - use full color palette
+  BLUE=$'\033[0;34m'
+  GREEN=$'\033[0;32m'
+  GRAY=$'\033[0;90m'
+  YELLOW=$'\033[0;33m'
+  CYAN=$'\033[0;36m'
+  MAGENTA=$'\033[0;35m'
+
+  # 10-level gradient: dark green → deep red
+  LEVEL_1=$'\033[38;5;22m'   # dark green
+  LEVEL_2=$'\033[38;5;28m'   # soft green
+  LEVEL_3=$'\033[38;5;34m'   # medium green
+  LEVEL_4=$'\033[38;5;100m'  # green-yellowish dark
+  LEVEL_5=$'\033[38;5;142m'  # olive/yellow-green dark
+  LEVEL_6=$'\033[38;5;178m'  # muted yellow
+  LEVEL_7=$'\033[38;5;172m'  # muted yellow-orange
+  LEVEL_8=$'\033[38;5;166m'  # darker orange
+  LEVEL_9=$'\033[38;5;160m'  # dark red
+  LEVEL_10=$'\033[38;5;124m' # deep red
+
+  # 6-tier pace marker colors
+  PACE_COMFORTABLE=$'\033[38;5;34m'  # green
+  PACE_ON_TRACK=$'\033[38;5;37m'     # teal
+  PACE_WARMING=$'\033[38;5;178m'     # yellow
+  PACE_PRESSING=$'\033[38;5;208m'    # orange
+  PACE_CRITICAL=$'\033[38;5;160m'    # red
+  PACE_RUNAWAY=$'\033[38;5;135m'     # purple
+fi
+
+# When pace step colors enabled, use real 6-tier colors (but not in monochrome mode)
+if [ "$pace_marker_step_colors" != "0" ] && [ "$color_mode" != "monochrome" ]; then
+  PACE_COMFORTABLE=$'\033[38;5;34m'
+  PACE_ON_TRACK=$'\033[38;5;37m'
+  PACE_WARMING=$'\033[38;5;178m'
+  PACE_PRESSING=$'\033[38;5;208m'
+  PACE_CRITICAL=$'\033[38;5;160m'
+  PACE_RUNAWAY=$'\033[38;5;135m'
+fi
+
+# Build components (without separators)
+dir_text=""
+if [ "$show_dir" = "1" ]; then
+  dir_text="${BLUE}${current_dir}${RESET}"
+fi
+
+branch_text=""
+if [ "$show_branch" = "1" ]; then
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    branch=$(git branch --show-current 2>/dev/null)
+    [ -n "$branch" ] && branch_text="${GREEN}⎇ ${branch}${RESET}"
+  fi
+fi
+
+model_text=""
+if [ "$show_model" = "1" ] && [ -n "$model" ]; then
+  model_text="${YELLOW}${model}${RESET}"
+fi
+
+profile_text=""
+if [ "$show_profile" = "1" ] && [ -n "$profile_name" ]; then
+  profile_text="${MAGENTA}${profile_name}${RESET}"
+fi
+
+# Context percentage calculation from current_usage tokens
+context_text=""
+if [ "$show_context" = "1" ]; then
+  input_tokens=$(echo "$input" | grep -o '"input_tokens":[0-9]*' | head -1 | sed 's/"input_tokens"://')
+  cache_create=$(echo "$input" | grep -o '"cache_creation_input_tokens":[0-9]*' | sed 's/"cache_creation_input_tokens"://')
+  cache_read=$(echo "$input" | grep -o '"cache_read_input_tokens":[0-9]*' | sed 's/"cache_read_input_tokens"://')
+  context_size=$(echo "$input" | grep -o '"context_window_size":[0-9]*' | sed 's/"context_window_size"://')
+
+  [ -z "$input_tokens" ] && input_tokens=0
+  [ -z "$cache_create" ] && cache_create=0
+  [ -z "$cache_read" ] && cache_read=0
+
+  if [ -n "$context_size" ] && [ "$context_size" -gt 0 ]; then
+    current_tokens=$((input_tokens + cache_create + cache_read))
+    context_pct=$((current_tokens * 100 / context_size))
+
+    # Determine color based on percentage
+    if [ "$context_pct" -le 50 ]; then
+      context_color="$CYAN"
+    elif [ "$context_pct" -le 75 ]; then
+      context_color="$YELLOW"
+    else
+      context_color="$LEVEL_9"
+    fi
+
+    # Integer percentage for display
+    context_int=$context_pct
+
+    # Display as tokens or percentage
+    ctx_label=""
+    [ "$show_context_label" = "1" ] && ctx_label="Ctx: "
+
+    if [ "$context_as_tokens" = "1" ]; then
+      if [ "$current_tokens" -ge 1000 ]; then
+        tokens_k=$((current_tokens / 1000))
+        context_text="${context_color}${ctx_label}${tokens_k}K${RESET}"
+      else
+        context_text="${context_color}${ctx_label}${current_tokens}${RESET}"
+      fi
+    else
+      context_text="${context_color}${ctx_label}${context_int}%${RESET}"
+    fi
+  fi
+fi
+
+usage_text=""
+if [ "$show_usage" = "1" ]; then
+  # Try reading from cache first (written by Claude Usage app on each refresh)
+  cache_file="$claude_base/.statusline-usage-cache"
+  swift_result=""
+  if [ -f "$cache_file" ]; then
+    cache_ts=$(grep "^TIMESTAMP=" "$cache_file" 2>/dev/null | cut -d= -f2)
+    now_ts=$(date +%s)
+    if [ -n "$cache_ts" ]; then
+      cache_age=$((now_ts - cache_ts))
+      if [ "$cache_age" -lt 300 ]; then
+        cache_util=$(grep "^UTILIZATION=" "$cache_file" | cut -d= -f2)
+        cache_reset=$(grep "^RESETS_AT=" "$cache_file" | cut -d= -f2)
+        if [ -n "$cache_util" ]; then
+          swift_result="${cache_util}|${cache_reset}"
+        fi
+      fi
+    fi
+  fi
+
+  # Fall back to swift script if cache is stale or missing
+  if [ -z "$swift_result" ]; then
+    swift_result=$(swift "$claude_base/fetch-claude-usage.swift" 2>/dev/null)
+  fi
+
+  if [ $? -eq 0 ] && [ -n "$swift_result" ]; then
+    utilization=$(echo "$swift_result" | cut -d'|' -f1)
+    resets_at=$(echo "$swift_result" | cut -d'|' -f2)
+
+    # Parse reset epoch once for shared use by pace marker and reset time display
+      reset_epoch=""
+      if [ -n "$resets_at" ] && [ "$resets_at" != "null" ]; then
+        iso_time=$(echo "$resets_at" | sed 's/\.[0-9]*Z$//')
+        reset_epoch=$(date -ju -f "%Y-%m-%dT%H:%M:%S" "$iso_time" "+%s" 2>/dev/null)
+      fi
+
+    if [ -n "$utilization" ] && [ "$utilization" != "ERROR" ]; then
+      if [ "$utilization" -le 10 ]; then
+        usage_color="$LEVEL_1"
+      elif [ "$utilization" -le 20 ]; then
+        usage_color="$LEVEL_2"
+      elif [ "$utilization" -le 30 ]; then
+        usage_color="$LEVEL_3"
+      elif [ "$utilization" -le 40 ]; then
+        usage_color="$LEVEL_4"
+      elif [ "$utilization" -le 50 ]; then
+        usage_color="$LEVEL_5"
+      elif [ "$utilization" -le 60 ]; then
+        usage_color="$LEVEL_6"
+      elif [ "$utilization" -le 70 ]; then
+        usage_color="$LEVEL_7"
+      elif [ "$utilization" -le 80 ]; then
+        usage_color="$LEVEL_8"
+      elif [ "$utilization" -le 90 ]; then
+        usage_color="$LEVEL_9"
+      else
+        usage_color="$LEVEL_10"
+      fi
+
+      if [ "$show_bar" = "1" ]; then
+        if [ "$utilization" -eq 0 ]; then
+          filled_blocks=0
+        elif [ "$utilization" -eq 100 ]; then
+          filled_blocks=10
+        else
+          filled_blocks=$(( (utilization * 10 + 50) / 100 ))
+        fi
+        [ "$filled_blocks" -lt 0 ] && filled_blocks=0
+        [ "$filled_blocks" -gt 10 ] && filled_blocks=10
+        empty_blocks=$((10 - filled_blocks))
+
+        # Build progress bar safely without seq
+        progress_bar=" "
+        i=0
+        while [ $i -lt $filled_blocks ]; do
+          progress_bar="${progress_bar}▓"
+          i=$((i + 1))
+        done
+        i=0
+        while [ $i -lt $empty_blocks ]; do
+          progress_bar="${progress_bar}░"
+          i=$((i + 1))
+        done
+      else
+        progress_bar=""
+      fi
+
+      # Pace marker: insert colored │ at elapsed time position
+      if [ "$show_pace_marker" = "1" ] && [ "$show_bar" = "1" ] && [ -n "$reset_epoch" ]; then
+        now_epoch=$(date +%s)
+        remaining=$((reset_epoch - now_epoch))
+        if [ $remaining -gt 0 ] && [ $remaining -lt 18000 ]; then
+          elapsed_secs=$((18000 - remaining))
+          marker_pos=$(( (elapsed_secs * 10 + 9000) / 18000 ))
+          [ $marker_pos -gt 9 ] && marker_pos=9
+          [ $marker_pos -lt 0 ] && marker_pos=0
+
+          # Compute pace color; fall back to usage_color (empty in monochrome = no color)
+          pace_color="$usage_color"
+          if [ "$pace_marker_step_colors" != "0" ] && [ $elapsed_secs -ge 540 ]; then
+            projected_pct=$((utilization * 18000 / elapsed_secs))
+            if [ $projected_pct -lt 50 ]; then
+              pace_color="$PACE_COMFORTABLE"
+            elif [ $projected_pct -lt 75 ]; then
+              pace_color="$PACE_ON_TRACK"
+            elif [ $projected_pct -lt 90 ]; then
+              pace_color="$PACE_WARMING"
+            elif [ $projected_pct -lt 100 ]; then
+              pace_color="$PACE_PRESSING"
+            elif [ $projected_pct -lt 120 ]; then
+              pace_color="$PACE_CRITICAL"
+            else
+              pace_color="$PACE_RUNAWAY"
+            fi
+          fi
+
+          # Always insert marker (color may be empty in monochrome = terminal default)
+          left="${progress_bar:0:$((marker_pos + 1))}"
+          right="${progress_bar:$((marker_pos + 2))}"
+          progress_bar="${left}${pace_color}┃${RESET}${usage_color}${right}"
+        fi
+      fi
+
+      reset_time_display=""
+      if [ "$show_reset" = "1" ] && [ -n "$reset_epoch" ]; then
+        epoch=$reset_epoch
+
+        if [ -n "$epoch" ]; then
+          # Round to nearest minute to prevent pinballing (e.g., 6:59:45 -> 7:00)
+          seconds_part=$((epoch % 60))
+          if [ "$seconds_part" -ge 30 ]; then
+            epoch=$((epoch + (60 - seconds_part)))
+          else
+            epoch=$((epoch - seconds_part))
+          fi
+
+          # Use user's time format preference from config
+          if [ "$use_24h" = "1" ]; then
+            # 24-hour format
+            reset_time=$(date -r "$epoch" "+%H:%M" 2>/dev/null)
+          else
+            # 12-hour format (default)
+            reset_time=$(date -r "$epoch" "+%I:%M %p" 2>/dev/null)
+          fi
+          if [ "$show_reset_label" = "1" ]; then
+            [ -n "$reset_time" ] && reset_time_display=$(printf " → Reset: %s" "$reset_time")
+          else
+            [ -n "$reset_time" ] && reset_time_display=$(printf " → %s" "$reset_time")
+          fi
+        fi
+      fi
+
+      if [ "$show_usage_label" = "1" ]; then
+        usage_text="${usage_color}Usage: ${utilization}%${progress_bar}${reset_time_display}${RESET}"
+      else
+        usage_text="${usage_color}${utilization}%${progress_bar}${reset_time_display}${RESET}"
+      fi
+    else
+      if [ "$show_usage_label" = "1" ]; then
+        usage_text="${YELLOW}Usage: ~${RESET}"
+      else
+        usage_text="${YELLOW}~${RESET}"
+      fi
+    fi
+  else
+    if [ "$show_usage_label" = "1" ]; then
+      usage_text="${YELLOW}Usage: ~${RESET}"
+    else
+      usage_text="${YELLOW}~${RESET}"
+    fi
+  fi
+fi
+
+weekly_text=""
+if [ "$show_weekly" = "1" ] && [ "$show_usage" = "1" ]; then
+  cache_file="$claude_base/.statusline-usage-cache"
+  weekly_util=""
+  weekly_reset=""
+  if [ -f "$cache_file" ]; then
+    cache_ts=$(grep "^TIMESTAMP=" "$cache_file" 2>/dev/null | cut -d= -f2)
+    now_ts=$(date +%s)
+    if [ -n "$cache_ts" ]; then
+      cache_age=$((now_ts - cache_ts))
+      if [ "$cache_age" -lt 300 ]; then
+        weekly_util=$(grep "^WEEKLY_UTILIZATION=" "$cache_file" | cut -d= -f2)
+        weekly_reset=$(grep "^WEEKLY_RESETS_AT=" "$cache_file" | cut -d= -f2)
+      fi
+    fi
+  fi
+
+  if [ -n "$weekly_util" ]; then
+    if [ "$weekly_util" -le 10 ]; then
+      weekly_color="$LEVEL_1"
+    elif [ "$weekly_util" -le 20 ]; then
+      weekly_color="$LEVEL_2"
+    elif [ "$weekly_util" -le 30 ]; then
+      weekly_color="$LEVEL_3"
+    elif [ "$weekly_util" -le 40 ]; then
+      weekly_color="$LEVEL_4"
+    elif [ "$weekly_util" -le 50 ]; then
+      weekly_color="$LEVEL_5"
+    elif [ "$weekly_util" -le 60 ]; then
+      weekly_color="$LEVEL_6"
+    elif [ "$weekly_util" -le 70 ]; then
+      weekly_color="$LEVEL_7"
+    elif [ "$weekly_util" -le 80 ]; then
+      weekly_color="$LEVEL_8"
+    elif [ "$weekly_util" -le 90 ]; then
+      weekly_color="$LEVEL_9"
+    else
+      weekly_color="$LEVEL_10"
+    fi
+
+    # Per-element override: weekly gets its own fixed color when set
+    if [ "$color_mode" = "perElement" ] && [ -n "$element_color_weekly" ]; then
+      weekly_color=$(hex_to_ansi "$element_color_weekly")
+    fi
+
+    if [ "$show_weekly_bar" = "1" ]; then
+      if [ "$weekly_util" -eq 0 ]; then
+        w_filled=0
+      elif [ "$weekly_util" -eq 100 ]; then
+        w_filled=10
+      else
+        w_filled=$(( (weekly_util * 10 + 50) / 100 ))
+      fi
+      [ "$w_filled" -lt 0 ] && w_filled=0
+      [ "$w_filled" -gt 10 ] && w_filled=10
+      w_empty=$((10 - w_filled))
+
+      weekly_bar=" "
+      i=0
+      while [ $i -lt $w_filled ]; do
+        weekly_bar="${weekly_bar}▓"
+        i=$((i + 1))
+      done
+      i=0
+      while [ $i -lt $w_empty ]; do
+        weekly_bar="${weekly_bar}░"
+        i=$((i + 1))
+      done
+    else
+      weekly_bar=""
+    fi
+
+    if [ "$show_weekly_pace_marker" = "1" ] && [ "$show_weekly_bar" = "1" ] && [ -n "$weekly_reset" ] && [ "$weekly_reset" != "null" ]; then
+      w_iso=$(echo "$weekly_reset" | sed 's/\.[0-9]*Z$//')
+      w_reset_epoch=$(date -ju -f "%Y-%m-%dT%H:%M:%S" "$w_iso" "+%s" 2>/dev/null)
+      if [ -n "$w_reset_epoch" ]; then
+        now_epoch=$(date +%s)
+        w_remaining=$((w_reset_epoch - now_epoch))
+        if [ $w_remaining -gt 0 ] && [ $w_remaining -lt 604800 ]; then
+          w_elapsed=$((604800 - w_remaining))
+          w_marker_pos=$(( (w_elapsed * 10 + 302400) / 604800 ))
+          [ $w_marker_pos -gt 9 ] && w_marker_pos=9
+          [ $w_marker_pos -lt 0 ] && w_marker_pos=0
+
+          w_pace_color="$weekly_color"
+          if [ "$pace_marker_step_colors" != "0" ] && [ $w_elapsed -ge 3024 ]; then
+            w_projected=$((weekly_util * 604800 / w_elapsed))
+            if [ $w_projected -lt 50 ]; then
+              w_pace_color="$PACE_COMFORTABLE"
+            elif [ $w_projected -lt 75 ]; then
+              w_pace_color="$PACE_ON_TRACK"
+            elif [ $w_projected -lt 90 ]; then
+              w_pace_color="$PACE_WARMING"
+            elif [ $w_projected -lt 100 ]; then
+              w_pace_color="$PACE_PRESSING"
+            elif [ $w_projected -lt 120 ]; then
+              w_pace_color="$PACE_CRITICAL"
+            else
+              w_pace_color="$PACE_RUNAWAY"
+            fi
+          fi
+
+          # Always insert marker; w_pace_color may be empty (monochrome = no color wrap)
+          w_left="${weekly_bar:0:$((w_marker_pos + 1))}"
+          w_right="${weekly_bar:$((w_marker_pos + 2))}"
+          weekly_bar="${w_left}${w_pace_color}┃${RESET}${weekly_color}${w_right}"
+        fi
+      fi
+    fi
+
+    weekly_reset_display=""
+    if [ "$show_weekly_reset" = "1" ] && [ -n "$weekly_reset" ] && [ "$weekly_reset" != "null" ]; then
+      w_iso=$(echo "$weekly_reset" | sed 's/\.[0-9]*Z$//')
+      w_reset_epoch=$(date -ju -f "%Y-%m-%dT%H:%M:%S" "$w_iso" "+%s" 2>/dev/null)
+      if [ -n "$w_reset_epoch" ]; then
+        seconds_part=$((w_reset_epoch % 60))
+        if [ "$seconds_part" -ge 30 ]; then
+          w_reset_epoch=$((w_reset_epoch + (60 - seconds_part)))
+        else
+          w_reset_epoch=$((w_reset_epoch - seconds_part))
+        fi
+        if [ "$use_24h" = "1" ]; then
+          w_reset_time=$(date -r "$w_reset_epoch" "+%a %H:%M" 2>/dev/null)
+        else
+          w_reset_time=$(date -r "$w_reset_epoch" "+%a %I:%M %p" 2>/dev/null)
+        fi
+        [ -n "$w_reset_time" ] && weekly_reset_display=$(printf " → %s" "$w_reset_time")
+      fi
+    fi
+
+    if [ "$show_weekly_label" = "1" ]; then
+      weekly_text="${weekly_color}Weekly: ${weekly_util}%${weekly_bar}${weekly_reset_display}${RESET}"
+    else
+      weekly_text="${weekly_color}${weekly_util}%${weekly_bar}${weekly_reset_display}${RESET}"
+    fi
+  fi
+fi
+
+extra_usage_text=""
+if [ "$show_extra_usage" = "1" ] && [ "$show_usage" = "1" ]; then
+  cache_file="$claude_base/.statusline-usage-cache"
+  cost_used=""
+  cost_limit=""
+  cost_currency=""
+  if [ -f "$cache_file" ]; then
+    cache_ts=$(grep "^TIMESTAMP=" "$cache_file" 2>/dev/null | cut -d= -f2)
+    now_ts=$(date +%s)
+    if [ -n "$cache_ts" ]; then
+      cache_age=$((now_ts - cache_ts))
+      if [ "$cache_age" -lt 300 ]; then
+        cost_used=$(grep "^COST_USED=" "$cache_file" | cut -d= -f2)
+        cost_limit=$(grep "^COST_LIMIT=" "$cache_file" | cut -d= -f2)
+        cost_currency=$(grep "^COST_CURRENCY=" "$cache_file" | cut -d= -f2)
+      fi
+    fi
+  fi
+
+  if [ -n "$cost_used" ] && [ -n "$cost_limit" ] && [ -n "$cost_currency" ]; then
+    cost_pct=$(awk "BEGIN { p = int($cost_used / $cost_limit * 100); if (p > 100) p = 100; if (p < 0) p = 0; print p }")
+    if [ "$cost_pct" -le 10 ]; then
+      cost_color="$LEVEL_1"
+    elif [ "$cost_pct" -le 20 ]; then
+      cost_color="$LEVEL_2"
+    elif [ "$cost_pct" -le 30 ]; then
+      cost_color="$LEVEL_3"
+    elif [ "$cost_pct" -le 40 ]; then
+      cost_color="$LEVEL_4"
+    elif [ "$cost_pct" -le 50 ]; then
+      cost_color="$LEVEL_5"
+    elif [ "$cost_pct" -le 60 ]; then
+      cost_color="$LEVEL_6"
+    elif [ "$cost_pct" -le 70 ]; then
+      cost_color="$LEVEL_7"
+    elif [ "$cost_pct" -le 80 ]; then
+      cost_color="$LEVEL_8"
+    elif [ "$cost_pct" -le 90 ]; then
+      cost_color="$LEVEL_9"
+    else
+      cost_color="$LEVEL_10"
+    fi
+    # Per-element override: extra usage gets its own fixed color when set
+    if [ "$color_mode" = "perElement" ] && [ -n "$element_color_extra" ]; then
+      cost_color=$(hex_to_ansi "$element_color_extra")
+    fi
+    extra_usage_text="${cost_color}${cost_used} ${cost_currency}${RESET}"
+  fi
+fi
+
+output=""
+separator="${GRAY} │ ${RESET}"
+
+# New order: Directory → Branch → Model → Context → Usage
+# Directory comes first
+[ -n "$dir_text" ] && output="${dir_text}"
+
+# Then branch
+if [ -n "$branch_text" ]; then
+  [ -n "$output" ] && output="${output}${separator}"
+  output="${output}${branch_text}"
+fi
+
+# Then model
+if [ -n "$model_text" ]; then
+  [ -n "$output" ] && output="${output}${separator}"
+  output="${output}${model_text}"
+fi
+
+# Then profile
+if [ -n "$profile_text" ]; then
+  [ -n "$output" ] && output="${output}${separator}"
+  output="${output}${profile_text}"
+fi
+
+# Then context
+if [ -n "$context_text" ]; then
+  [ -n "$output" ] && output="${output}${separator}"
+  output="${output}${context_text}"
+fi
+
+# Finally usage
+if [ -n "$usage_text" ]; then
+  [ -n "$output" ] && output="${output}${separator}"
+  output="${output}${usage_text}"
+fi
+
+# Then weekly usage
+if [ -n "$weekly_text" ]; then
+  [ -n "$output" ] && output="${output}${separator}"
+  output="${output}${weekly_text}"
+fi
+
+# Then extra usage
+if [ -n "$extra_usage_text" ]; then
+  [ -n "$output" ] && output="${output}${separator}"
+  output="${output}${extra_usage_text}"
+fi
+
+printf "%s\n" "$output"

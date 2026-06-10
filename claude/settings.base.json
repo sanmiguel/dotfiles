@@ -1,0 +1,61 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/sanmiguel/dotfiles/claude/statusline-command.sh"
+  },
+  "theme": "dark-daltonized",
+  "effortLevel": "xhigh",
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "permissions": {
+    "allow": [
+      "Bash(mix test)",
+      "Bash(mix test:*)",
+      "Bash(mix precommit)",
+      "Bash(mix format)",
+      "Bash(mix deps.get)",
+      "Bash(it2 session add-clipping:*)",
+      "Bash(it2 session archive-clippings:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    }
+  },
+  "hooks": {
+    "Notification": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ],
+    "PermissionRequest": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ],
+    "PostToolUse": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ],
+    "PreToolUse": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ],
+    "SessionEnd": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ],
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ],
+    "Stop": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ],
+    "StopFailure": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-.PHONY: powerline prezto oh-my-zsh zsh-sheldon bash nvim vim git kerl ripit slate
+.PHONY: powerline prezto oh-my-zsh zsh-sheldon bash nvim vim git kerl ripit slate claude
 
 ripit:
 	ln -nsf $(PWD)/ripit/ripit.symlink ~/.ripit
@@ -12,6 +12,22 @@ git:
 	ln -nsf $(PWD)/git/gitconfig.symlink ~/.gitconfig
 	ln -nsf $(PWD)/git/gitconfig.github ~/.gitconfig.github
 	ln -nsf $(PWD)/git/gitconfig.telesystems ~/.gitconfig.telesystems
+
+claude:
+	mkdir -p ~/.claude ~/.claude-personal
+	# Shared global instructions for both profiles (work + personal)
+	ln -nsf $(PWD)/claude/CLAUDE.md ~/.claude/CLAUDE.md
+	ln -nsf $(PWD)/claude/CLAUDE.md ~/.claude-personal/CLAUDE.md
+	# Statusline: one script (referenced by repo path in settings.base.json),
+	# per-profile config, plus the usage fetcher (only the work profile uses it)
+	ln -nsf $(PWD)/claude/statusline-config.work.txt ~/.claude/statusline-config.txt
+	ln -nsf $(PWD)/claude/statusline-config.personal.txt ~/.claude-personal/statusline-config.txt
+	ln -nsf $(PWD)/claude/fetch-claude-usage.swift ~/.claude/fetch-claude-usage.swift
+	# Settings: shared base merged with each profile's overrides. jq '*' lets
+	# overrides win on scalars/objects but REPLACES arrays, so keep shared
+	# arrays (permissions.allow, hooks) in settings.base.json, not the overrides.
+	jq -s '.[0] * .[1]' $(PWD)/claude/settings.base.json $(PWD)/claude/settings.work.json > ~/.claude/settings.json
+	jq -s '.[0] * .[1]' $(PWD)/claude/settings.base.json $(PWD)/claude/settings.personal.json > ~/.claude-personal/settings.json
 
 nvim:
 	ln -nsf $(PWD)/nvim/nvim.symlink ~/.config/nvim
