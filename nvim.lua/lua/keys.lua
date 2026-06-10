@@ -57,3 +57,38 @@ vim.keymap.set("n", "<leader><C-f>", function()
 	end
 	require('telescope.builtin').live_grep({ search_dirs = files })
 end, { noremap = true, silent = true })
+
+-- Live grep (respects .gitignore — excludes deps/_build)
+vim.keymap.set("n", "<C-g>", function()
+	require('telescope.builtin').live_grep({ prompt_title = "Live grep · gitignore respected" })
+end, { noremap = true, silent = true, desc = "Live grep" })
+
+-- Live grep INCLUDING gitignored files (deps, _build, ...)
+vim.keymap.set("n", "<leader><C-g>", function()
+	require('telescope.builtin').live_grep({
+		additional_args = { "--no-ignore" },
+		prompt_title = "Live grep · --no-ignore (incl. deps/_build)",
+	})
+end, { noremap = true, silent = true, desc = "Live grep (incl. ignored)" })
+
+-- Live grep scoped to prompted dirs/globs, e.g. "./lib ./deps/*/lib" or "./lib ./test".
+-- Explicit paths override .gitignore in ripgrep, so deps paths work without --no-ignore.
+vim.keymap.set("n", "<leader>gp", function()
+	vim.ui.input({ prompt = "Grep in (space-separated, globs ok): ", default = "./lib ./test" }, function(input)
+		if not input or input == "" then return end
+		local dirs = {}
+		for token in input:gmatch("%S+") do
+			local matches = vim.fn.glob(token, false, true) -- expand ./deps/*/lib → real dirs
+			if #matches == 0 then
+				table.insert(dirs, token)                 -- no match: pass through, rg will report
+			else
+				vim.list_extend(dirs, matches)
+			end
+		end
+		require('telescope.builtin').live_grep({
+			search_dirs = dirs,
+			prompt_title = "Live grep · " .. input,       -- show typed tokens, not expanded list
+			results_title = #dirs .. " path" .. (#dirs == 1 and "" or "s"),
+		})
+	end)
+end, { noremap = true, silent = true, desc = "Live grep in dirs/globs" })
