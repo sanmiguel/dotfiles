@@ -74,7 +74,7 @@ end, { noremap = true, silent = true, desc = "Live grep (incl. ignored)" })
 -- Live grep scoped to prompted dirs/globs, e.g. "./lib ./deps/*/lib" or "./lib ./test".
 -- Explicit paths override .gitignore in ripgrep, so deps paths work without --no-ignore.
 vim.keymap.set("n", "<leader>gp", function()
-	vim.ui.input({ prompt = "Grep in (space-separated, globs ok): ", default = "./lib ./test" }, function(input)
+	vim.ui.input({ prompt = "Grep in (space-separated, globs ok): ", default = "./lib ./deps/*/lib" }, function(input)
 		if not input or input == "" then return end
 		local dirs = {}
 		for token in input:gmatch("%S+") do
