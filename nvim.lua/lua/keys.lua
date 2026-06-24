@@ -47,6 +47,10 @@ require("review")
 vim.keymap.set("n", "<leader>rb", "<cmd>ReviewBranch<CR>", { noremap = true, silent = true, desc = "Review branch vs base (files changed)" })
 vim.keymap.set("n", "<leader>rc", "<cmd>ReviewCommits<CR>", { noremap = true, silent = true, desc = "Review branch vs base (per-commit)" })
 
+-- Cheatsheet of our custom keymaps/commands (floating popup).
+require("cheatsheet")
+vim.keymap.set("n", "<leader>?", "<cmd>Cheatsheet<CR>", { noremap = true, silent = true, desc = "Show custom keymaps cheatsheet" })
+
 -- FZF
 -- Find files (respects .gitignore — excludes deps/_build)
 vim.keymap.set("n", "<C-f>", function()
