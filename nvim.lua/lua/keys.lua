@@ -48,7 +48,18 @@ vim.keymap.set("n", "<leader>rb", "<cmd>ReviewBranch<CR>", { noremap = true, sil
 vim.keymap.set("n", "<leader>rc", "<cmd>ReviewCommits<CR>", { noremap = true, silent = true, desc = "Review branch vs base (per-commit)" })
 
 -- FZF
-vim.keymap.set("n", "<C-f>", function() require('telescope.builtin').find_files({ ignore = false }) end, { noremap = true, silent = true })
+-- Find files (respects .gitignore — excludes deps/_build)
+vim.keymap.set("n", "<C-f>", function()
+	require('telescope.builtin').find_files({ prompt_title = "Find files · gitignore respected" })
+end, { noremap = true, silent = true, desc = "Find files" })
+
+-- Find files INCLUDING gitignored files (deps, _build, ...)
+vim.keymap.set("n", "<leader><C-f>", function()
+	require('telescope.builtin').find_files({
+		no_ignore = true,
+		prompt_title = "Find files · --no-ignore (incl. deps/_build)",
+	})
+end, { noremap = true, silent = true, desc = "Find files (incl. ignored)" })
 vim.keymap.set("n", "<C-b>", function() require('telescope.builtin').buffers({ sort_mru = true }) end, { noremap = true, silent = true })
 vim.keymap.set("n", "<C-;>", function() require('telescope.builtin').commands() end, { noremap = true, silent = true })
 vim.keymap.set("v", "<C-;>", function() require('telescope.builtin').commands() end, { noremap = true, silent = true })
@@ -59,15 +70,16 @@ vim.keymap.set("n", "\\o", "<cmd>:nohlsearch<CR>", { noremap = true, silent = tr
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 vim.keymap.set("n", "-", "<cmd>:e %:h<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader><C-f>", function()
+-- Live grep within the files currently in the quickfix list
+vim.keymap.set("n", "<leader><C-q>", function()
 	local qfiles = vim.fn.getqflist()
 	local files = {}
 	for _, qf in ipairs(qfiles) do
 		-- use the bufnr to get mostly unique
 		table.insert(files, vim.fn.bufname(qf.bufnr))
 	end
-	require('telescope.builtin').live_grep({ search_dirs = files })
-end, { noremap = true, silent = true })
+	require('telescope.builtin').live_grep({ search_dirs = files, prompt_title = "Live grep · quickfix files" })
+end, { noremap = true, silent = true, desc = "Live grep in quickfix files" })
 
 -- Live grep (respects .gitignore — excludes deps/_build)
 vim.keymap.set("n", "<C-g>", function()
