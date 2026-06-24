@@ -13,6 +13,17 @@ return {
   "airblade/vim-gitgutter",
   "whiteinge/diffconflicts",
   {
+	  -- PR-style review of a local branch vs a base; driven by lua/review.lua
+	  -- (:ReviewBranch / :ReviewCommits). Lazy-loads on its own commands, which
+	  -- the review wrappers invoke.
+	  "sindrets/diffview.nvim",
+	  dependencies = { "nvim-lua/plenary.nvim" },
+	  cmd = {
+		  "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory",
+		  "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh",
+	  },
+  },
+  {
 	  "ldelossa/gh.nvim",
 	  dependencies = {
 		  {

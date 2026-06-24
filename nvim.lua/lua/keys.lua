@@ -41,6 +41,12 @@ vim.keymap.set("n", "grt", function() vim.lsp.buf.type_definition({ loclist = tr
 vim.keymap.set("n", "grci", function() require('call_hierarchy').incoming() end, { noremap = true, silent = true, desc = "LSP: incoming calls" })
 vim.keymap.set("n", "grco", function() require('call_hierarchy').outgoing() end, { noremap = true, silent = true, desc = "LSP: outgoing calls" })
 
+-- Local branch review (diffview) — PR-style review of the current branch vs a base.
+-- require registers the :ReviewBranch / :ReviewCommits commands so they're typeable too.
+require("review")
+vim.keymap.set("n", "<leader>rb", "<cmd>ReviewBranch<CR>", { noremap = true, silent = true, desc = "Review branch vs base (files changed)" })
+vim.keymap.set("n", "<leader>rc", "<cmd>ReviewCommits<CR>", { noremap = true, silent = true, desc = "Review branch vs base (per-commit)" })
+
 -- FZF
 vim.keymap.set("n", "<C-f>", function() require('telescope.builtin').find_files({ ignore = false }) end, { noremap = true, silent = true })
 vim.keymap.set("n", "<C-b>", function() require('telescope.builtin').buffers({ sort_mru = true }) end, { noremap = true, silent = true })
