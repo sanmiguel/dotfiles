@@ -32,6 +32,11 @@ vim.keymap.set("n", "<C-t>k", function()
 -- keymap for mix test --failed
 -- nvim-dap + elixir-ls
 
+-- Override built-in grr/gri/grt to populate the location list instead of the quickfix list
+vim.keymap.set("n", "grr", function() vim.lsp.buf.references(nil, { loclist = true }) end, { noremap = true, silent = true, desc = "LSP: references (loclist)" })
+vim.keymap.set("n", "gri", function() vim.lsp.buf.implementation({ loclist = true }) end, { noremap = true, silent = true, desc = "LSP: implementation (loclist)" })
+vim.keymap.set("n", "grt", function() vim.lsp.buf.type_definition({ loclist = true }) end, { noremap = true, silent = true, desc = "LSP: type definition (loclist)" })
+
 -- LSP call hierarchy (via telescope)
 vim.keymap.set("n", "grci", function() require('call_hierarchy').incoming() end, { noremap = true, silent = true, desc = "LSP: incoming calls" })
 vim.keymap.set("n", "grco", function() require('call_hierarchy').outgoing() end, { noremap = true, silent = true, desc = "LSP: outgoing calls" })
