@@ -50,7 +50,10 @@
       { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
     ],
     "SessionStart": [
-      { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }
+      { "hooks": [
+        { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" },
+        { "type": "command", "command": "bash /Users/sanmiguel/dotfiles/claude/skills/worktree-context/worktree-context.sh hook" }
+      ] }
     ],
     "Stop": [
       { "hooks": [ { "type": "command", "command": "/Users/sanmiguel/.config/iterm2/cc-status" } ] }

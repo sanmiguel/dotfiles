@@ -28,6 +28,10 @@ claude:
 	# arrays (permissions.allow, hooks) in settings.base.json, not the overrides.
 	jq -s '.[0] * .[1]' $(PWD)/claude/settings.base.json $(PWD)/claude/settings.work.json > ~/.claude/settings.json
 	jq -s '.[0] * .[1]' $(PWD)/claude/settings.base.json $(PWD)/claude/settings.personal.json > ~/.claude-personal/settings.json
+	# Skills: symlink shared skill dirs into both profiles (SKILL.md + scripts travel together)
+	mkdir -p ~/.claude/skills ~/.claude-personal/skills
+	ln -nsf $(PWD)/claude/skills/worktree-context ~/.claude/skills/worktree-context
+	ln -nsf $(PWD)/claude/skills/worktree-context ~/.claude-personal/skills/worktree-context
 
 nvim:
 	ln -nsf $(PWD)/nvim/nvim.symlink ~/.config/nvim

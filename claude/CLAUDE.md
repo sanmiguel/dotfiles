@@ -97,6 +97,15 @@ heavy lifting, so each contract only needs the task-specific parts.
 If the task is trivial (single-line fix, simple rename, etc.), skip the contract
 and just do it.
 
+## Worktrees
+
+When you finish a task in a git worktree and have opened the PR, run the
+`worktree-context` skill in **save** mode to record the branch's reasoning —
+key decisions, dead-ends, and open threads — as a git note on the branch's
+first commit. This lets a later session (e.g. one opened to act on PR feedback
+after this session is gone) resume with full context. A SessionStart hook
+detects the note when you return to the branch and offers **resume** mode.
+
 ## Review Reminders
 
 - **2026-03-04**: Review how the Prompt Contract workflow is going. Is it helping?
