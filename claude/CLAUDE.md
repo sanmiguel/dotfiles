@@ -105,9 +105,3 @@ key decisions, dead-ends, and open threads — as a git note on the branch's
 first commit. This lets a later session (e.g. one opened to act on PR feedback
 after this session is gone) resume with full context. A SessionStart hook
 detects the note when you return to the branch and offers **resume** mode.
-
-## Review Reminders
-
-- **2026-03-04**: Review how the Prompt Contract workflow is going. Is it helping?
-  Too heavy for some tasks? Need to adjust the threshold for when it kicks in?
-  Discuss with the user and revise the instructions above based on experience.
