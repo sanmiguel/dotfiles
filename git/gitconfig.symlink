@@ -23,6 +23,13 @@
 [includeIf "hasconfig:remote.*.url:forgejo@192.168.3.78:*/*"]
         path = /Users/sanmiguel/.gitconfig.forgejo
 
+[includeIf "hasconfig:remote.*.url:https://hopper-healthcare.ghe.com/**"]
+        path = /Users/sanmiguel/.gitconfig.ghe
+
+## :** doesn't work like /**
+[includeIf "hasconfig:remote.*.url:hopper-healthcare@hopper-healthcare.ghe.com:*/*"]
+        path = /Users/sanmiguel/.gitconfig.ghe
+
 [color]
 	diff = auto
 	status = auto
@@ -64,3 +71,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential "https://hopper-healthcare.ghe.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.hopper-healthcare.ghe.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

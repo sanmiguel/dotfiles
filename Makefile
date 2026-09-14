@@ -12,6 +12,7 @@ git:
 	ln -nsf $(PWD)/git/gitconfig.symlink ~/.gitconfig
 	ln -nsf $(PWD)/git/gitconfig.github ~/.gitconfig.github
 	ln -nsf $(PWD)/git/gitconfig.telesystems ~/.gitconfig.telesystems
+	ln -nsf $(PWD)/git/gitconfig.ghe ~/.gitconfig.ghe
 
 claude:
 	mkdir -p ~/.claude ~/.claude-personal

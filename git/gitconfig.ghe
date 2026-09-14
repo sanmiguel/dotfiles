@@ -1,0 +1,7 @@
+[user]
+    name = Michael Coles
+    email = michael.coles@hopperos.com
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN4CycLlXnABhCE4Uz3tBoMCOfeO1TUOsBchSaiDuzCh
+
+[github]
+	user = Michael-Coles
