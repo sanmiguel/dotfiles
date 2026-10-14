@@ -8,6 +8,8 @@ $directory\
 $git_branch\
 $git_status\
 $fill\
+${env_var.DEV_DB_NAME}\
+${env_var.ATHENA_PRACTICE_ID}\
 $mise\
 $time\
 $line_break\
@@ -69,6 +71,18 @@ deleted = " "                  # nf-fa-trash
 
 [fill]
 symbol = " "
+
+# ── Env vars (right, line 1) — hidden when unset ──────────────────────────────
+
+[env_var.DEV_DB_NAME]
+format = "[$symbol$env_value]($style) "
+symbol = "󰆼 "                   # nf-md-database
+style = "fg:#fab387"             # soft peach
+
+[env_var.ATHENA_PRACTICE_ID]
+format = "[$symbol$env_value]($style) "
+symbol = " "                    # nf-fa-hospital_o
+style = "fg:#94e2d5"             # soft teal
 
 # ── Mise versions (right, line 1) ─────────────────────────────────────────────
 
