@@ -33,6 +33,10 @@ claude:
 	mkdir -p ~/.claude/skills ~/.claude-personal/skills
 	ln -nsf $(PWD)/claude/skills/worktree-context ~/.claude/skills/worktree-context
 	ln -nsf $(PWD)/claude/skills/worktree-context ~/.claude-personal/skills/worktree-context
+	ln -nsf $(PWD)/claude/skills/prompt-contract ~/.claude/skills/prompt-contract
+	ln -nsf $(PWD)/claude/skills/prompt-contract ~/.claude-personal/skills/prompt-contract
+	# Work-profile-only skills: the HOPCo Obsidian vault exists only on the work setup
+	ln -nsf $(PWD)/claude/skills/obsidian-vault ~/.claude/skills/obsidian-vault
 
 nvim:
 	ln -nsf $(PWD)/nvim/nvim.symlink ~/.config/nvim
