@@ -19,6 +19,7 @@ local sections = {
 	{
 		title = "LSP lists  (→ location list)",
 		items = {
+			{ "K", "hover docs (floating popup)" },
 			{ "grr", "references" },
 			{ "gri", "implementation" },
 			{ "grt", "type definition" },
