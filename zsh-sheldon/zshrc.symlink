@@ -8,6 +8,7 @@ export LESS='-RiFX'
 ZSH_DOTENV_FILE=.envrc
 
 setopt EXTENDED_GLOB
+setopt INTERACTIVE_COMMENTS
 
 # Make ctrl-w delete only up to path separators (not entire paths)
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
