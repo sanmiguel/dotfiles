@@ -85,6 +85,17 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   command = "checktime",
 })
 
+-- neotest only re-parses test positions on BufAdd/BufWritePost, so a file
+-- changed outside Neovim (Claude, git checkout) and reloaded by autoread keeps
+-- its old positions: signs land on stale lines and results for new tests are
+-- dropped. Replay neotest's own BufWritePost handler after such a reload.
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  callback = function(ev)
+    -- The group only exists once neotest's client has started
+    pcall(vim.api.nvim_exec_autocmds, "BufWritePost", { group = "neotest.Client", pattern = ev.file })
+  end,
+})
+
 -- automatically enable treesitter for these filetypes
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'erlang', 'elixir', 'eex', 'heex', 'lua', 'vim', 'vimdoc', 'query', 'markdown' },
