@@ -71,6 +71,10 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[notes]
+	# Copy notes (incl. refs/notes/wt-context) across amend/rebase/cherry-pick so
+	# worktree-context docs stay attached to a branch's rewritten first commit.
+	rewriteRef = refs/notes/*
 [credential "https://hopper-healthcare.ghe.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential

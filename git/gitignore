@@ -8,3 +8,5 @@ tags
 .dexter.db*
 
 **/.claude/settings.local.json
+**/.claude/worktrees
+.worktree-context.md
