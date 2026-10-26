@@ -40,6 +40,17 @@ export ERL_AFLAGS="$ERL_AFLAGS -kernel shell_history enabled"
 source ~/.iterm2_shell_integration.zsh
 
 eval "$(fzf --zsh)"
+# Ctrl-T: respect .gitignore (hides deps/, _build/ etc.); alt-i toggles ignored files,
+# and the prompt shows which mode you're in
+_fzf_fd='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$_fzf_fd"
+export FZF_CTRL_T_OPTS="--scheme=path \
+  --prompt 'files> ' \
+  --header 'alt-i: toggle ignored files (deps, _build, …)' \
+  --bind 'alt-i:transform:[[ \$FZF_PROMPT == \"files> \" ]] \
+    && echo \"change-prompt(all files> )+reload($_fzf_fd --no-ignore)\" \
+    || echo \"change-prompt(files> )+reload($_fzf_fd)\"'"
+unset _fzf_fd
 
 # Necessary for op-integrated CLI tools to work (e.g. todoist)
 source /Users/sanmiguel/.config/op/plugins.sh
