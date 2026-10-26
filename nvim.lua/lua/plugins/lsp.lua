@@ -28,11 +28,12 @@ return {
 
 			-- Dexter panics on non-file:// URIs (e.g. fugitive://) in didOpen,
 			-- which crashes the whole server. Gate attachment to real files.
-			-- Upstream bug: dexter internal/lsp/server.go:452 (DidOpen).
+			-- Upstream bug: dexter internal/lsp/server.go:492 (DidOpen); still
+			-- present in 0.7.1 (uriToPath -> uri.URI.Filename panics).
 			local dexter_config = {
 			  name = 'dexter',
 			  cmd = { 'dexter', 'lsp' },
-			  root_markers = { '.dexter.db', 'mix.exs', '.git' },
+			  root_markers = { '.dexter', 'mix.exs', '.git' },
 			  filetypes = { 'elixir', 'eelixir', 'heex' },
 			  init_options = {
 				followDelegates = true,
